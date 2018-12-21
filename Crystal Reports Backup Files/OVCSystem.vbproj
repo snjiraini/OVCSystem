@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C59019D-33B5-4295-9C2F-179E1ED9BB5A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>APHIAPlus.My.MyApplication</StartupObject>
+    <RootNamespace>APHIAPlus</RootNamespace>
+    <AssemblyName>APHIAPlus</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <ApplicationIcon>aphiaplus.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>APHIAPlus.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>APHIAPlus.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CPIMS.Net.OLMIS.Core">
+      <HintPath>..\CPIMS.Net\CPIMS.Net.OLMIS.Core\bin\Debug\CPIMS.Net.OLMIS.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Excel, Version=2.0.1.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExcelDataReader_2.0.1.0\ExcelDataReader_2.0.1.0\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="GNWizardFrameWork">
+      <HintPath>..\..\..\..\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\GNWizardFrameWork.DLL</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExcelDataReader_2.0.1.0\ExcelDataReader_2.0.1.0\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.BZip2, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DotNetZip\Tools\Ionic.BZip2.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DotNetZip\Tools\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zlib, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DotNetZip\Tools\Ionic.Zlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Office.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\CPIMS.Net\CPIMS.Net.OLMIS.Core\bin\Debug\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress.3.5, Version=0.8.2.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EligibilityfixTool\EligibilityfixTool\bin\Debug\SharpCompress.3.5.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WinSCPnet, Version=1.2.6.5125, Culture=neutral, PublicKeyToken=2271ec4a3c56d0bf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WinSCPnet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APHIAMAINDB_TestDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APHIAMAINDB_TestDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdherence.Designer.vb">
+      <DependentUpon>frmAdherence.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdherence.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangePassword.Designer.vb">
+      <DependentUpon>frmChangePassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmChangePassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDateExtensions.Designer.vb">
+      <DependentUpon>frmDateExtensions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDateExtensions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOlmisUpdates.Designer.vb">
+      <DependentUpon>frmOlmisUpdates.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOlmisUpdates.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSummaryTable.Designer.vb">
+      <DependentUpon>frmSummaryTable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSummaryTable.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVL.Designer.vb">
+      <DependentUpon>frmVL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmVL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWards.Designer.vb">
+      <DependentUpon>frmWards.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWards.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHCBCClient.Designer.vb">
+      <DependentUpon>frmHCBCClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHCBCClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHHResponses.Designer.vb">
+      <DependentUpon>frmHHResponses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHHResponses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHHCodes.Designer.vb">
+      <DependentUpon>frmHHCodes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHHCodes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHHDomain.Designer.vb">
+      <DependentUpon>frmHHDomain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHHDomain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImmunizationStatus.Designer.vb">
+      <DependentUpon>frmImmunizationStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImmunizationStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCHVDuplicatesCleanup.Designer.vb">
+      <DependentUpon>frmCHVDuplicatesCleanup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCHVDuplicatesCleanup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCriticalEvents.Designer.vb">
+      <DependentUpon>frmCriticalEvents.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCriticalEvents.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportHHVulnerability.Designer.vb">
+      <DependentUpon>frmImportHHVulnerability.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportHHVulnerability.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCounties.Designer.vb">
+      <DependentUpon>frmCounties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCounties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FastExportingMethod.vb" />
+    <Compile Include="frmExcelReports.Designer.vb">
+      <DependentUpon>frmExcelReports.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmExcelReports.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClass.Designer.vb">
+      <DependentUpon>frmClass.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmClass.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDataSync.Designer.vb">
+      <DependentUpon>frmDataSync.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDataSync.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEligibilityCriteria.Designer.vb">
+      <DependentUpon>frmEligibilityCriteria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEligibilityCriteria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExportMaintenanceData.Designer.vb">
+      <DependentUpon>frmExportMaintenanceData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmExportMaintenanceData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportMaintenanceData.Designer.vb">
+      <DependentUpon>frmImportMaintenanceData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportMaintenanceData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintainClusters.Designer.vb">
+      <DependentUpon>frmMaintainClusters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintainClusters.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOVCDuplicateCleanup.Designer.vb">
+      <DependentUpon>frmOVCDuplicateCleanup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOVCDuplicateCleanup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOVCHouseHoldAssessment.Designer.vb">
+      <DependentUpon>frmOVCHouseHoldAssessment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOVCHouseHoldAssessment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchools.Designer.vb">
+      <DependentUpon>frmSchools.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSchools.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectCBO.Designer.vb">
+      <DependentUpon>frmSelectCBO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectCBO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserManagement.Designer.vb">
+      <DependentUpon>frmUserManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmValidationReports.Designer.vb">
+      <DependentUpon>frmValidationReports.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmValidationReports.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmploymenttype.Designer.vb">
+      <DependentUpon>frmEmploymenttype.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmploymenttype.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.vb">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmARTStatus.Designer.vb">
+      <DependentUpon>frmARTStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmARTStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCauseofDeath.Designer.vb">
+      <DependentUpon>frmCauseofDeath.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCauseofDeath.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCBO.Designer.vb">
+      <DependentUpon>frmCBO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCBO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCHW.Designer.vb">
+      <DependentUpon>frmCHW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCHW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClienttypes.Designer.vb">
+      <DependentUpon>frmClienttypes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmClienttypes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCoreServices.Designer.vb">
+      <DependentUpon>frmCoreServices.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCoreServices.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDistricts.Designer.vb">
+      <DependentUpon>frmDistricts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDistricts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientInfo.Designer.vb">
+      <DependentUpon>frmClientInfo.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDomain.Designer.vb">
+      <DependentUpon>frmDomain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDomain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFacilities.Designer.vb">
+      <DependentUpon>frmFacilities.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacilities.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFather.Designer.vb">
+      <DependentUpon>frmFather.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFather.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoal.Designer.vb">
+      <DependentUpon>frmGoal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGoal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGuardian.Designer.vb">
+      <DependentUpon>frmGuardian.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGuardian.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHidingReason.Designer.vb">
+      <DependentUpon>frmHidingReason.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHidingReason.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHivStatus.Designer.vb">
+      <DependentUpon>frmHivStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHivStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLocation.Designer.vb">
+      <DependentUpon>frmLocation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLocation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMother.Designer.vb">
+      <DependentUpon>frmMother.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMother.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNeedAssessment.Designer.vb">
+      <DependentUpon>frmNeedAssessment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmNeedAssessment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPriorityListing.Designer.vb">
+      <DependentUpon>frmPriorityListing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPriorityListing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPriorityNeeds.Designer.vb">
+      <DependentUpon>frmPriorityNeeds.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPriorityNeeds.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegister.Designer.vb">
+      <DependentUpon>frmRegister.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelationship.Designer.vb">
+      <DependentUpon>frmRelationship.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelationship.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchoolLevel.Designer.vb">
+      <DependentUpon>frmSchoolLevel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSchoolLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceandStatusMonitoring.Designer.vb">
+      <DependentUpon>frmServiceandStatusMonitoring.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceandStatusMonitoring.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceProviders.Designer.vb">
+      <DependentUpon>frmServiceProviders.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceProviders.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceStatus.Designer.vb">
+      <DependentUpon>frmServiceStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStatusandServiceVisit.Designer.vb">
+      <DependentUpon>frmStatusandServiceVisit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmStatusandServiceVisit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSubdomain.Designer.vb">
+      <DependentUpon>frmSubdomain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSubdomain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="functions.vb" />
+    <Compile Include="MDIMain.Designer.vb">
+      <DependentUpon>MDIMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MDIMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModMain.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RandomStringGenerator.vb" />
+    <Compile Include="SplashScreen.Designer.vb">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XMLDocumentSplitter.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdherence.resx">
+      <DependentUpon>frmAdherence.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDateExtensions.resx">
+      <DependentUpon>frmDateExtensions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOlmisUpdates.resx">
+      <DependentUpon>frmOlmisUpdates.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSummaryTable.resx">
+      <DependentUpon>frmSummaryTable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVL.resx">
+      <DependentUpon>frmVL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWards.resx">
+      <DependentUpon>frmWards.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHCBCClient.resx">
+      <DependentUpon>frmHCBCClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHHResponses.resx">
+      <DependentUpon>frmHHResponses.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHHCodes.resx">
+      <DependentUpon>frmHHCodes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHHDomain.resx">
+      <DependentUpon>frmHHDomain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImmunizationStatus.resx">
+      <DependentUpon>frmImmunizationStatus.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCHVDuplicatesCleanup.resx">
+      <DependentUpon>frmCHVDuplicatesCleanup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCriticalEvents.resx">
+      <DependentUpon>frmCriticalEvents.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportHHVulnerability.resx">
+      <DependentUpon>frmImportHHVulnerability.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCounties.resx">
+      <DependentUpon>frmCounties.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExcelReports.resx">
+      <DependentUpon>frmExcelReports.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClass.resx">
+      <DependentUpon>frmClass.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDataSync.resx">
+      <DependentUpon>frmDataSync.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEligibilityCriteria.resx">
+      <DependentUpon>frmEligibilityCriteria.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExportMaintenanceData.resx">
+      <DependentUpon>frmExportMaintenanceData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportMaintenanceData.resx">
+      <DependentUpon>frmImportMaintenanceData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintainClusters.resx">
+      <DependentUpon>frmMaintainClusters.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOVCDuplicateCleanup.resx">
+      <DependentUpon>frmOVCDuplicateCleanup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOVCHouseHoldAssessment.resx">
+      <DependentUpon>frmOVCHouseHoldAssessment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchools.resx">
+      <DependentUpon>frmSchools.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectCBO.resx">
+      <DependentUpon>frmSelectCBO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserManagement.resx">
+      <DependentUpon>frmUserManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmValidationReports.resx">
+      <DependentUpon>frmValidationReports.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmploymenttype.resx">
+      <DependentUpon>frmEmploymenttype.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPriorityNeeds.resx">
+      <DependentUpon>frmPriorityNeeds.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmARTStatus.resx">
+      <DependentUpon>frmARTStatus.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCauseofDeath.resx">
+      <DependentUpon>frmCauseofDeath.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCBO.resx">
+      <DependentUpon>frmCBO.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCHW.resx">
+      <DependentUpon>frmCHW.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClienttypes.resx">
+      <DependentUpon>frmClienttypes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCoreServices.resx">
+      <DependentUpon>frmCoreServices.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDistricts.resx">
+      <DependentUpon>frmDistricts.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientInfo.resx">
+      <DependentUpon>frmClientInfo.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDomain.resx">
+      <DependentUpon>frmDomain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFacilities.resx">
+      <DependentUpon>frmFacilities.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFather.resx">
+      <DependentUpon>frmFather.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGoal.resx">
+      <DependentUpon>frmGoal.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGuardian.resx">
+      <DependentUpon>frmGuardian.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHidingReason.resx">
+      <DependentUpon>frmHidingReason.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHivStatus.resx">
+      <DependentUpon>frmHivStatus.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLocation.resx">
+      <DependentUpon>frmLocation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMother.resx">
+      <DependentUpon>frmMother.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNeedAssessment.resx">
+      <DependentUpon>frmNeedAssessment.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPriorityListing.resx">
+      <DependentUpon>frmPriorityListing.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegister.resx">
+      <DependentUpon>frmRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelationship.resx">
+      <DependentUpon>frmRelationship.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchoolLevel.resx">
+      <DependentUpon>frmSchoolLevel.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceandStatusMonitoring.resx">
+      <DependentUpon>frmServiceandStatusMonitoring.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceProviders.resx">
+      <DependentUpon>frmServiceProviders.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceStatus.resx">
+      <DependentUpon>frmServiceStatus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSubdomain.resx">
+      <DependentUpon>frmSubdomain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIMain.resx">
+      <DependentUpon>MDIMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="APHIAMAINDB_TestDataSet.xsc">
+      <DependentUpon>APHIAMAINDB_TestDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="APHIAMAINDB_TestDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>APHIAMAINDB_TestDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="APHIAMAINDB_TestDataSet.xss">
+      <DependentUpon>APHIAMAINDB_TestDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\app_reports.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Sql.Server.Express.9.2">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2005 Express Edition SP2 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="aphiaplus.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\images\255.gif" />
+    <Content Include="bin\Debug\images\289 %281%29.gif" />
+    <Content Include="bin\Debug\images\289.gif" />
+    <Content Include="bin\Debug\images\319.gif" />
+    <Content Include="bin\Debug\images\320.gif" />
+    <Content Include="bin\Debug\images\358.gif" />
+    <Content Include="bin\Debug\images\374.gif" />
+    <Content Include="bin\Debug\images\381.gif" />
+    <Content Include="bin\Debug\images\382.gif" />
+    <Content Include="bin\Debug\images\39.gif" />
+    <Content Include="Resources\systemlogo.PNG" />
+    <None Include="bin\Debug\images\APHIAplusUSAIDlogo.jpg" />
+    <Content Include="bin\Debug\Ionic.Zip.dll" />
+    <Content Include="Images\1. APHIAplusUSAID logo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\APHIAplusUSAIDlogo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\systemlogo.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\320.gif" />
+    <None Include="My Project\app.manifest" />
+    <None Include="Resources\round_red_x_sign_4229.jpg" />
+    <None Include="Resources\green_round_tick_sign_42461.jpg" />
+    <None Include="Resources\green_round_tick_sign_4246.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

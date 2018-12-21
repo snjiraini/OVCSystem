@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical" MembersFormat="NameAndType">
+  <Class Name="OVCSystem.frmARTStatus">
+    <Position X="4" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAkAECAgAAEAACCAgAACAgQwEgAJAABQAIAAAQA=</HashCode>
+      <FileName>frmARTStatus.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmCauseofDeath">
+    <Position X="5.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEgECAgAAEAACCAgAACAgQwEgAJAgBQAIAAAAA=</HashCode>
+      <FileName>frmCauseofDeath.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmCBO">
+    <Position X="7.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAECAgAAFAAKCIoAACAgQwEgAJAABQAIAAAAA=</HashCode>
+      <FileName>frmCBO.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmCHVDuplicatesCleanup">
+    <Position X="9.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAjBgECACAiBINCDBAAECEQiGEQIABAAAAAgACAA=</HashCode>
+      <FileName>frmCHVDuplicatesCleanup.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmCHW">
+    <Position X="11" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACHQAMBPCAgAQAKADCUAAACBiB+JwApAEBEABAIAQI=</HashCode>
+      <FileName>frmCHW.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmClass">
+    <Position X="12.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAECAgACEAACCAgAACAgQwkgAJAABQQIAAACA=</HashCode>
+      <FileName>frmClass.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmClientInfo">
+    <Position X="0.5" Y="1.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>lwq5akPbffUscZMwX3iH4lYKdvT/9y37aCEUgLreNUY=</HashCode>
+      <FileName>frmClientInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmClienttypes">
+    <Position X="2.25" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEQEiAgABEQACCAgAACAgQwEgAJAABQAIAAAAA=</HashCode>
+      <FileName>frmClienttypes.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmCoreServices">
+    <Position X="4" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AGAIEAEAECAgAAEAACCAgAACAgQ4MgANAABQAIEBAAA=</HashCode>
+      <FileName>frmCoreServices.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmcounties">
+    <Position X="5.75" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAECAgAAEAQCCQgAACAgQyEgAJAABQAIAAAAA=</HashCode>
+      <FileName>frmCounties.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmCriticalEvents">
+    <Position X="7.5" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEAECAgAAEAECiAgAACAgQ4FgApAABQAIAAAIA=</HashCode>
+      <FileName>frmCriticalEvents.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmDataSync">
+    <Position X="9.25" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAjhIJ5EmSiAgQgCpMKAKBAKFkAwQGCVEDpiAAnIgDA=</HashCode>
+      <FileName>frmDataSync.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmDistricts">
+    <Position X="11" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EQAAAAEAkCAgAAFAACCAgAACAgQwEoAJAABQAIAAAAA=</HashCode>
+      <FileName>frmDistricts.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmDomain">
+    <Position X="12.75" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEAECAgAAEIACCAiQACAgS4FwAJIABwAIAAAIE=</HashCode>
+      <FileName>frmDomain.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmEligibilityCriteria">
+    <Position X="0.5" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAEGAgAAEAAKCAgAACAgRwEgAJAABQAIAAAAA=</HashCode>
+      <FileName>frmEligibilityCriteria.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmEmploymenttype">
+    <Position X="2.25" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAECggAAEAACCEgACCAgQwEgAJAABQAIAAAAA=</HashCode>
+      <FileName>frmEmploymenttype.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmExcelReports">
+    <Position X="4" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BYkAQABAGCAQJAJApCGBYgACACABKkAlQAAEAAAEEhI=</HashCode>
+      <FileName>frmExcelReports.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmExportMaintenanceData">
+    <Position X="5.75" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAABBAACmQgAECJACAAECCAAAAAQAQAAAAAACAQBA=</HashCode>
+      <FileName>frmExportMaintenanceData.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmFacilities">
+    <Position X="7.5" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAECAgAAEAACCAoAACAgQwEgAJAADQAIAAAAA=</HashCode>
+      <FileName>frmFacilities.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmFather">
+    <Position X="9.25" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>IBoEBAOQPGQgCQQAADCUAQACRnH8JwQrClJACBAIAAI=</HashCode>
+      <FileName>frmFather.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmGoal">
+    <Position X="11" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAEKAgAAEAACCAgAACAgQwEgAJAABQAIAAAAA=</HashCode>
+      <FileName>frmGoal.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmGuardian">
+    <Position X="12.75" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ABgEAkMQPCQgAQAAADCUAQACRhH7JwD5AlJAkBAIBAI=</HashCode>
+      <FileName>frmGuardian.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmHCBCClient">
+    <Position X="0.5" Y="3.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>bwrB+sPrcPPmMdUw+f+n/nsCFjz/dyyrAEQcgK5Y/3Y=</HashCode>
+      <FileName>frmHCBCClient.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmHHCodes">
+    <Position X="2.25" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAECAgAAERACCigAACAgQ4EgAJAABQAIAAAAE=</HashCode>
+      <FileName>frmHHCodes.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmHHDomain">
+    <Position X="4" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAECAgAAEAACCAiAACAgQwEgAJIABwAIAAAAE=</HashCode>
+      <FileName>frmHHDomain.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmHHResponses">
+    <Position X="5.75" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAEAECAgAAEAAKCCgCACAgQ4EwAJAABQAIAAAAA=</HashCode>
+      <FileName>frmHHResponses.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmHidingReason">
+    <Position X="7.5" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAkAEAECAgAAEAACCAgAACAgQwEgAJAABQAIACAAA=</HashCode>
+      <FileName>frmHidingReason.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmHivStatus">
+    <Position X="9.25" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAKEAECAgAAEAACCAgAACAgQwEgAJAABQAIAQAAA=</HashCode>
+      <FileName>frmHivStatus.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmImmunizationStatus">
+    <Position X="11" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAECAgQAEAACCAgAACAgQwEhAJAABQAIAAAAA=</HashCode>
+      <FileName>frmImmunizationStatus.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmImportHHVulnerability">
+    <Position X="12.75" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAOCgQAAECJECAAECCAEAAACgACAAAAAEAABA=</HashCode>
+      <FileName>frmImportHHVulnerability.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmImportMaintenanceData">
+    <Position X="0.5" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAABAGigQAAkCJECACECCAEAAACgAABgAAAGAABA=</HashCode>
+      <FileName>frmImportMaintenanceData.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmLocation">
+    <Position X="2.25" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACAAAEAECAgAAMAACCAqAACQgQwEgAJBABQAIIAAAA=</HashCode>
+      <FileName>frmLocation.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmMaintainClusters">
+    <Position X="4" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EAAFgEIgGqAgAQIAMGC8ojgCBnD/IgApAERBBJIAAAA=</HashCode>
+      <FileName>frmMaintainClusters.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmMother">
+    <Position X="5.75" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>MBgEAAOUPCQgGQSQAHCUAQACRiG/JwArItJACDAIAAI=</HashCode>
+      <FileName>frmMother.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmNeedAssessment">
+    <Position X="7.5" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EUAAgAIAEiAgAYABIACI4BCCRkIzIwIJJwgQhIKhAgA=</HashCode>
+      <FileName>frmNeedAssessment.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmOlmisUpdates">
+    <Position X="9.25" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEARAECAQAAAAAACAAAACEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>frmOlmisUpdates.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmOVCDuplicateCleanup">
+    <Position X="11" Y="4.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AgAABDFAEGAAAAIIJACACQAGIAAEAAAAAAAIAAQgAgA=</HashCode>
+      <FileName>frmOVCDuplicateCleanup.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmOVCHouseHoldAssessment">
+    <Position X="12.75" Y="4.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>ABgmgEKMGiEgExAAAbShAAJSRjj/d4AJg5FYAeD/Ihg=</HashCode>
+      <FileName>frmOVCHouseHoldAssessment.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmPriorityListing">
+    <Position X="0.5" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAEIAEAECAgAAEAACCAgAACAgQwEgAJAAJQAIAABAA=</HashCode>
+      <FileName>frmPriorityListing.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmPriorityNeeds">
+    <Position X="2.25" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QCAACAAAECAAAAAAAACAAAACAAAAIAkAAAAAAAgAAAA=</HashCode>
+      <FileName>frmPriorityNeeds.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmRegister">
+    <Position X="4" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAMCAgAACAACCAAAACAgA4BwApAAAAAAAAAAI=</HashCode>
+      <FileName>frmRegister.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmRelationship">
+    <Position X="5.75" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEAECAgAAEAACCAkAACAgQwEgAJAABQAIACAAA=</HashCode>
+      <FileName>frmRelationship.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmSchoolLevel">
+    <Position X="7.5" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAGAECAgAAEAACCAgAACAhQwEgAJAABQAYAAAAA=</HashCode>
+      <FileName>frmSchoolLevel.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmSchools">
+    <Position X="9.25" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAMAECAgAEEAACCQoAACAgQwMgAJAABQAIAAADA=</HashCode>
+      <FileName>frmSchools.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmSelectCBO">
+    <Position X="11" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAEAAgEiAAAgAAAgCGgACCAAAAohAAAAAAAAIAAAA=</HashCode>
+      <FileName>frmSelectCBO.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmServiceandStatusMonitoring">
+    <Position X="12.75" Y="5.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>ElEnwBM7fqEgIQIBgKqN4AJCx7D/dyE794AcIJPJoQY=</HashCode>
+      <FileName>frmServiceandStatusMonitoring.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmServiceProviders">
+    <Position X="0.5" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAEAECAgAAEAACCAgAACAgQwEgCJAQBQAIAAEAA=</HashCode>
+      <FileName>frmServiceProviders.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmServiceStatus">
+    <Position X="2.25" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAJYAAEBECMgAAEKACCAggAKAkQwVwCJAABQCICAAII=</HashCode>
+      <FileName>frmServiceStatus.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmStatusandServiceVisit">
+    <Position X="4" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>frmStatusandServiceVisit.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmSubdomain">
+    <Position X="5.75" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAEAECAgIgEAACCAgAACAgQwEgAJAABQAIEBAAA=</HashCode>
+      <FileName>frmSubdomain.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmUserManagement">
+    <Position X="7.5" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAEQEiAgAQGgACCEgAACBgQ4VgAJAABQBIIIAgA=</HashCode>
+      <FileName>frmUserManagement.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmValidationReports">
+    <Position X="9.25" Y="6.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAkCAAAAGCAAAAAAgACBAAACACQAIgAogAAgAAAEAAI=</HashCode>
+      <FileName>frmValidationReports.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.frmWards">
+    <Position X="11" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAkCAgAAFAACCAgAACAgQwEoAJAABQAIAAJAA=</HashCode>
+      <FileName>frmWards.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.AppSecurity">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAIAAAAAAAAQAAAEACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>functions.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.functions">
+    <Position X="12.75" Y="6.5" Width="2.75" />
+    <NestedTypes>
+      <Enum Name="OVCSystem.functions.DBActionType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>functions.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAGAIACAAAAAAAAAgAQACAAAAAAAAQAAABACAAQAAAQ=</HashCode>
+      <FileName>functions.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.FileOperations">
+    <Position X="2.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAEBAABAAAAAAAEAgABAAQAAQAAAAAEAAEAAAg=</HashCode>
+      <FileName>functions.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.LoginForm">
+    <Position X="0.5" Y="7.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQQAUiAAAACAAASAAAAiAAgAAgACCACBBAAAAAA=</HashCode>
+      <FileName>LoginForm.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.MDIMain">
+    <Position X="2.25" Y="7.5" Width="3.75" />
+    <NestedTypes>
+      <Delegate Name="OVCSystem.MDIMain.ChangeTextsSafe" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MDIMain.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="OVCSystem.MDIMain.DownloadCompleteSafe" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MDIMain.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="OVCSystem.MDIMain.OlmisUpdates" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MDIMain.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>6dCkT12gpC3CFmox4DeMouxCgycGVUFKQWFx7/bstiY=</HashCode>
+      <FileName>MDIMain.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.RandomStringGenerator">
+    <Position X="7.5" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAAAAAAAAA=</HashCode>
+      <FileName>RandomStringGenerator.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.SplashScreen">
+    <Position X="9.25" Y="7.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAABACAAAAAAAACAEAACAAAACAAAAgAAAAAAAAI=</HashCode>
+      <FileName>SplashScreen.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.XMLDocumentSplitter">
+    <Position X="11" Y="7.5" Width="2.5" />
+    <NestedTypes>
+      <Enum Name="OVCSystem.XMLDocumentSplitter.SplitTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>XMLDocumentSplitter.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAEIAAAAAAAAAAAAABADAEAYAAAAAEAAAAA=</HashCode>
+      <FileName>XMLDocumentSplitter.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.My.MyApplication">
+    <Position X="4" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OVCSystem.My.MySettings">
+    <Position X="5.75" Y="7.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEQAAAAAAQAABAAIAAABAABAAAAAAAAIAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="OVCSystem.XMLDocumentSplitHandler">
+    <Position X="0.5" Y="10" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>XMLDocumentSplitter.vb</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Module Name="OVCSystem.FastExportingMethod">
+    <Position X="0.5" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FastExportingMethod.vb</FileName>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="OVCSystem.ModMain">
+    <Position X="2.25" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>GSMAACAAAIAQAABAAIhAACBCQASICACRAACBASAogAA=</HashCode>
+      <FileName>ModMain.vb</FileName>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="OVCSystem.My.MySettingsProperty">
+    <Position X="4" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="OVCSystem.My.Resources.Resources">
+    <Position X="5.75" Y="8.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAQEAAAAEAAAIAAAgBEAAAAQAAQAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Module>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
