@@ -346,15 +346,7 @@ Public Class LoginForm
 
         SelectedConnectionString = "DefaultConnection"
 
-        'check if the system date has been messed with, by checking currentdate - most recent services date
-        Dim MyDBAction As New functions
-        Dim SqlAction As String = "SELECT top 1 dateofvisit from StatusAndServiceVisit order by dateofvisit desc"
-        Dim Mymaxdateofvisit As Date = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
 
-        If Date.Today < Mymaxdateofvisit Then
-            MsgBox("Please check your system date", MsgBoxStyle.Exclamation)
-            'End
-        End If
     End Sub
 
     Private Sub GetAllConnectionStrings()

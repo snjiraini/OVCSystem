@@ -3343,7 +3343,9 @@ Public Class frmServiceandStatusMonitoring
         End Try
     End Sub
 
+    Private Sub cboDistrict_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboDistrict.SelectedIndexChanged
 
+    End Sub
 
     Private Sub populateHIVStatus()
         Dim ErrorAction As New functions

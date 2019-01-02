@@ -140,19 +140,21 @@ Partial Class frmServiceandStatusMonitoring
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Location = New System.Drawing.Point(13, 13)
+        Me.TabControl1.Location = New System.Drawing.Point(35, 31)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(895, 681)
+        Me.TabControl1.Size = New System.Drawing.Size(2387, 1624)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.Panel2)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(10, 48)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(887, 655)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.TabPage1.Size = New System.Drawing.Size(2367, 1566)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Search Client"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -172,9 +174,10 @@ Partial Class frmServiceandStatusMonitoring
         Me.Panel2.Controls.Add(Me.Label9)
         Me.Panel2.Controls.Add(Me.txtsearchFname)
         Me.Panel2.Controls.Add(Me.Label8)
-        Me.Panel2.Location = New System.Drawing.Point(6, 6)
+        Me.Panel2.Location = New System.Drawing.Point(16, 14)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(875, 550)
+        Me.Panel2.Size = New System.Drawing.Size(2333, 1312)
         Me.Panel2.TabIndex = 1
         '
         'GroupBox8
@@ -185,58 +188,66 @@ Partial Class frmServiceandStatusMonitoring
         Me.GroupBox8.Controls.Add(Me.Label51)
         Me.GroupBox8.Controls.Add(Me.txtsearchchwfname)
         Me.GroupBox8.Controls.Add(Me.Label52)
-        Me.GroupBox8.Location = New System.Drawing.Point(389, 3)
+        Me.GroupBox8.Location = New System.Drawing.Point(1037, 7)
+        Me.GroupBox8.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(475, 56)
+        Me.GroupBox8.Padding = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.GroupBox8.Size = New System.Drawing.Size(1267, 134)
         Me.GroupBox8.TabIndex = 19
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "CHW Details"
         '
         'txtsearchchwmname
         '
-        Me.txtsearchchwmname.Location = New System.Drawing.Point(178, 28)
+        Me.txtsearchchwmname.Location = New System.Drawing.Point(475, 67)
+        Me.txtsearchchwmname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtsearchchwmname.Name = "txtsearchchwmname"
-        Me.txtsearchchwmname.Size = New System.Drawing.Size(122, 20)
+        Me.txtsearchchwmname.Size = New System.Drawing.Size(319, 38)
         Me.txtsearchchwmname.TabIndex = 8
         '
         'Label50
         '
         Me.Label50.AutoSize = True
-        Me.Label50.Location = New System.Drawing.Point(175, 14)
+        Me.Label50.Location = New System.Drawing.Point(467, 33)
+        Me.Label50.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(69, 13)
+        Me.Label50.Size = New System.Drawing.Size(182, 32)
         Me.Label50.TabIndex = 10
         Me.Label50.Text = "Middle Name"
         '
         'txtsearchchwsurname
         '
-        Me.txtsearchchwsurname.Location = New System.Drawing.Point(347, 28)
+        Me.txtsearchchwsurname.Location = New System.Drawing.Point(925, 67)
+        Me.txtsearchchwsurname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtsearchchwsurname.Name = "txtsearchchwsurname"
-        Me.txtsearchchwsurname.Size = New System.Drawing.Size(122, 20)
+        Me.txtsearchchwsurname.Size = New System.Drawing.Size(319, 38)
         Me.txtsearchchwsurname.TabIndex = 9
         '
         'Label51
         '
         Me.Label51.AutoSize = True
-        Me.Label51.Location = New System.Drawing.Point(344, 12)
+        Me.Label51.Location = New System.Drawing.Point(917, 29)
+        Me.Label51.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(49, 13)
+        Me.Label51.Size = New System.Drawing.Size(130, 32)
         Me.Label51.TabIndex = 6
         Me.Label51.Text = "Surname"
         '
         'txtsearchchwfname
         '
-        Me.txtsearchchwfname.Location = New System.Drawing.Point(6, 30)
+        Me.txtsearchchwfname.Location = New System.Drawing.Point(16, 72)
+        Me.txtsearchchwfname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtsearchchwfname.Name = "txtsearchchwfname"
-        Me.txtsearchchwfname.Size = New System.Drawing.Size(122, 20)
+        Me.txtsearchchwfname.Size = New System.Drawing.Size(319, 38)
         Me.txtsearchchwfname.TabIndex = 7
         '
         'Label52
         '
         Me.Label52.AutoSize = True
-        Me.Label52.Location = New System.Drawing.Point(3, 14)
+        Me.Label52.Location = New System.Drawing.Point(8, 33)
+        Me.Label52.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(57, 13)
+        Me.Label52.Size = New System.Drawing.Size(152, 32)
         Me.Label52.TabIndex = 5
         Me.Label52.Text = "First Name"
         '
@@ -260,7 +271,8 @@ Partial Class frmServiceandStatusMonitoring
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView1.Location = New System.Drawing.Point(10, 123)
+        Me.DataGridView1.Location = New System.Drawing.Point(27, 293)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.DataGridView1.Name = "DataGridView1"
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
@@ -270,7 +282,7 @@ Partial Class frmServiceandStatusMonitoring
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.Size = New System.Drawing.Size(865, 424)
+        Me.DataGridView1.Size = New System.Drawing.Size(2307, 1011)
         Me.DataGridView1.TabIndex = 14
         '
         'Column1
@@ -299,7 +311,7 @@ Partial Class frmServiceandStatusMonitoring
         Me.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.Column6.HeaderText = "OVCID"
         Me.Column6.Name = "Column6"
-        Me.Column6.Width = 65
+        Me.Column6.Width = 157
         '
         'Column8
         '
@@ -345,91 +357,102 @@ Partial Class frmServiceandStatusMonitoring
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(195, 22)
+        Me.Label3.Location = New System.Drawing.Point(520, 52)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(29, 13)
+        Me.Label3.Size = New System.Drawing.Size(76, 32)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "CBO"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(4, 22)
+        Me.Label1.Location = New System.Drawing.Point(11, 52)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.Size = New System.Drawing.Size(102, 32)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "District"
         '
         'cboCBO
         '
         Me.cboCBO.FormattingEnabled = True
-        Me.cboCBO.Location = New System.Drawing.Point(198, 38)
+        Me.cboCBO.Location = New System.Drawing.Point(528, 91)
+        Me.cboCBO.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.cboCBO.Name = "cboCBO"
-        Me.cboCBO.Size = New System.Drawing.Size(185, 21)
+        Me.cboCBO.Size = New System.Drawing.Size(487, 39)
         Me.cboCBO.TabIndex = 10
         '
         'cboDistrict
         '
         Me.cboDistrict.FormattingEnabled = True
-        Me.cboDistrict.Location = New System.Drawing.Point(7, 38)
+        Me.cboDistrict.Location = New System.Drawing.Point(19, 91)
+        Me.cboDistrict.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.cboDistrict.Name = "cboDistrict"
-        Me.cboDistrict.Size = New System.Drawing.Size(185, 21)
+        Me.cboDistrict.Size = New System.Drawing.Size(487, 39)
         Me.cboDistrict.TabIndex = 8
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(736, 94)
+        Me.btnSearch.Location = New System.Drawing.Point(1963, 224)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(122, 23)
+        Me.btnSearch.Size = New System.Drawing.Size(325, 55)
         Me.btnSearch.TabIndex = 6
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
         'txtsearchMname
         '
-        Me.txtsearchMname.Location = New System.Drawing.Point(198, 93)
+        Me.txtsearchMname.Location = New System.Drawing.Point(528, 222)
+        Me.txtsearchMname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtsearchMname.Name = "txtsearchMname"
-        Me.txtsearchMname.Size = New System.Drawing.Size(185, 20)
+        Me.txtsearchMname.Size = New System.Drawing.Size(487, 38)
         Me.txtsearchMname.TabIndex = 5
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(195, 79)
+        Me.Label10.Location = New System.Drawing.Point(520, 188)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(69, 13)
+        Me.Label10.Size = New System.Drawing.Size(182, 32)
         Me.Label10.TabIndex = 4
         Me.Label10.Text = "Middle Name"
         '
         'txtsearchSurname
         '
-        Me.txtsearchSurname.Location = New System.Drawing.Point(389, 93)
+        Me.txtsearchSurname.Location = New System.Drawing.Point(1037, 222)
+        Me.txtsearchSurname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtsearchSurname.Name = "txtsearchSurname"
-        Me.txtsearchSurname.Size = New System.Drawing.Size(185, 20)
+        Me.txtsearchSurname.Size = New System.Drawing.Size(487, 38)
         Me.txtsearchSurname.TabIndex = 3
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(386, 77)
+        Me.Label9.Location = New System.Drawing.Point(1029, 184)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(49, 13)
+        Me.Label9.Size = New System.Drawing.Size(130, 32)
         Me.Label9.TabIndex = 2
         Me.Label9.Text = "Surname"
         '
         'txtsearchFname
         '
-        Me.txtsearchFname.Location = New System.Drawing.Point(7, 93)
+        Me.txtsearchFname.Location = New System.Drawing.Point(19, 222)
+        Me.txtsearchFname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtsearchFname.Name = "txtsearchFname"
-        Me.txtsearchFname.Size = New System.Drawing.Size(185, 20)
+        Me.txtsearchFname.Size = New System.Drawing.Size(487, 38)
         Me.txtsearchFname.TabIndex = 1
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(4, 77)
+        Me.Label8.Location = New System.Drawing.Point(11, 184)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(57, 13)
+        Me.Label8.Size = New System.Drawing.Size(152, 32)
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "First Name"
         '
@@ -440,10 +463,11 @@ Partial Class frmServiceandStatusMonitoring
         Me.TabPage2.Controls.Add(Me.btnEdit)
         Me.TabPage2.Controls.Add(Me.btnpost)
         Me.TabPage2.Controls.Add(Me.BtnExit)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(10, 48)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(887, 655)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.TabPage2.Size = New System.Drawing.Size(2367, 1566)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Status and Service Monitoring"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -470,9 +494,10 @@ Partial Class frmServiceandStatusMonitoring
         Me.Panel1.Controls.Add(Me.TreeView1)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Enabled = False
-        Me.Panel1.Location = New System.Drawing.Point(3, 6)
+        Me.Panel1.Location = New System.Drawing.Point(8, 14)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(878, 575)
+        Me.Panel1.Size = New System.Drawing.Size(2341, 1371)
         Me.Panel1.TabIndex = 74
         '
         'chkHasCert
@@ -481,9 +506,10 @@ Partial Class frmServiceandStatusMonitoring
         Me.chkHasCert.Checked = True
         Me.chkHasCert.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkHasCert.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkHasCert.Location = New System.Drawing.Point(771, 542)
+        Me.chkHasCert.Location = New System.Drawing.Point(2056, 1292)
+        Me.chkHasCert.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.chkHasCert.Name = "chkHasCert"
-        Me.chkHasCert.Size = New System.Drawing.Size(91, 17)
+        Me.chkHasCert.Size = New System.Drawing.Size(229, 36)
         Me.chkHasCert.TabIndex = 92
         Me.chkHasCert.Text = "Has Birth Cert"
         Me.chkHasCert.UseVisualStyleBackColor = True
@@ -492,9 +518,10 @@ Partial Class frmServiceandStatusMonitoring
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(577, 522)
+        Me.Label24.Location = New System.Drawing.Point(1539, 1245)
+        Me.Label24.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(68, 13)
+        Me.Label24.Size = New System.Drawing.Size(184, 32)
         Me.Label24.TabIndex = 91
         Me.Label24.Text = "Immunization"
         Me.Label24.Visible = False
@@ -502,18 +529,20 @@ Partial Class frmServiceandStatusMonitoring
         'cboImmunization
         '
         Me.cboImmunization.FormattingEnabled = True
-        Me.cboImmunization.Location = New System.Drawing.Point(580, 538)
+        Me.cboImmunization.Location = New System.Drawing.Point(1547, 1283)
+        Me.cboImmunization.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.cboImmunization.Name = "cboImmunization"
-        Me.cboImmunization.Size = New System.Drawing.Size(185, 21)
+        Me.cboImmunization.Size = New System.Drawing.Size(487, 39)
         Me.cboImmunization.TabIndex = 90
         Me.cboImmunization.Visible = False
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(382, 522)
+        Me.Label23.Location = New System.Drawing.Point(1019, 1245)
+        Me.Label23.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(58, 13)
+        Me.Label23.Size = New System.Drawing.Size(149, 32)
         Me.Label23.TabIndex = 89
         Me.Label23.Text = "HIV Status"
         Me.Label23.Visible = False
@@ -521,18 +550,20 @@ Partial Class frmServiceandStatusMonitoring
         'cboHIVStatus
         '
         Me.cboHIVStatus.FormattingEnabled = True
-        Me.cboHIVStatus.Location = New System.Drawing.Point(385, 538)
+        Me.cboHIVStatus.Location = New System.Drawing.Point(1027, 1283)
+        Me.cboHIVStatus.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.cboHIVStatus.Name = "cboHIVStatus"
-        Me.cboHIVStatus.Size = New System.Drawing.Size(185, 21)
+        Me.cboHIVStatus.Size = New System.Drawing.Size(487, 39)
         Me.cboHIVStatus.TabIndex = 88
         Me.cboHIVStatus.Visible = False
         '
         'lstCriticalEvents
         '
         Me.lstCriticalEvents.FormattingEnabled = True
-        Me.lstCriticalEvents.Location = New System.Drawing.Point(669, 261)
+        Me.lstCriticalEvents.Location = New System.Drawing.Point(1784, 622)
+        Me.lstCriticalEvents.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.lstCriticalEvents.Name = "lstCriticalEvents"
-        Me.lstCriticalEvents.Size = New System.Drawing.Size(185, 169)
+        Me.lstCriticalEvents.Size = New System.Drawing.Size(487, 367)
         Me.lstCriticalEvents.TabIndex = 87
         Me.lstCriticalEvents.Visible = False
         '
@@ -540,9 +571,10 @@ Partial Class frmServiceandStatusMonitoring
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(666, 242)
+        Me.Label22.Location = New System.Drawing.Point(1776, 577)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(112, 17)
+        Me.Label22.Size = New System.Drawing.Size(250, 39)
         Me.Label22.TabIndex = 86
         Me.Label22.Text = "Critical Events"
         Me.Label22.Visible = False
@@ -552,24 +584,27 @@ Partial Class frmServiceandStatusMonitoring
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.Color.Blue
-        Me.Label21.Location = New System.Drawing.Point(3, 214)
+        Me.Label21.Location = New System.Drawing.Point(8, 510)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(95, 17)
+        Me.Label21.Size = New System.Drawing.Size(213, 39)
         Me.Label21.TabIndex = 84
         Me.Label21.Text = "Child Status"
         '
         'lstpriorityListing
         '
-        Me.lstpriorityListing.Location = New System.Drawing.Point(385, 258)
+        Me.lstpriorityListing.Location = New System.Drawing.Point(1027, 615)
+        Me.lstpriorityListing.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.lstpriorityListing.Name = "lstpriorityListing"
-        Me.lstpriorityListing.Size = New System.Drawing.Size(278, 177)
+        Me.lstpriorityListing.Size = New System.Drawing.Size(735, 417)
         Me.lstpriorityListing.TabIndex = 83
         '
         'txtNumofVisits
         '
-        Me.txtNumofVisits.Location = New System.Drawing.Point(672, 481)
+        Me.txtNumofVisits.Location = New System.Drawing.Point(1792, 1147)
+        Me.txtNumofVisits.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtNumofVisits.Name = "txtNumofVisits"
-        Me.txtNumofVisits.Size = New System.Drawing.Size(93, 20)
+        Me.txtNumofVisits.Size = New System.Drawing.Size(241, 38)
         Me.txtNumofVisits.TabIndex = 82
         Me.txtNumofVisits.Text = "0"
         Me.txtNumofVisits.Visible = False
@@ -577,9 +612,10 @@ Partial Class frmServiceandStatusMonitoring
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(521, 484)
+        Me.Label2.Location = New System.Drawing.Point(1389, 1154)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(142, 13)
+        Me.Label2.Size = New System.Drawing.Size(377, 32)
         Me.Label2.TabIndex = 81
         Me.Label2.Text = "Number of House Hold Visits"
         Me.Label2.Visible = False
@@ -589,9 +625,10 @@ Partial Class frmServiceandStatusMonitoring
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.ForeColor = System.Drawing.Color.Blue
-        Me.Label19.Location = New System.Drawing.Point(382, 216)
+        Me.Label19.Location = New System.Drawing.Point(1019, 515)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(107, 17)
+        Me.Label19.Size = New System.Drawing.Size(236, 39)
         Me.Label19.TabIndex = 80
         Me.Label19.Text = "Month of Visit"
         Me.Label19.Visible = False
@@ -601,9 +638,10 @@ Partial Class frmServiceandStatusMonitoring
         Me.lnkServicemode.AutoSize = True
         Me.lnkServicemode.Enabled = False
         Me.lnkServicemode.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lnkServicemode.Location = New System.Drawing.Point(318, 238)
+        Me.lnkServicemode.Location = New System.Drawing.Point(848, 568)
+        Me.lnkServicemode.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.lnkServicemode.Name = "lnkServicemode"
-        Me.lnkServicemode.Size = New System.Drawing.Size(61, 15)
+        Me.lnkServicemode.Size = New System.Drawing.Size(136, 33)
         Me.lnkServicemode.TabIndex = 79
         Me.lnkServicemode.TabStop = True
         Me.lnkServicemode.Text = "Services"
@@ -613,9 +651,10 @@ Partial Class frmServiceandStatusMonitoring
         Me.lnkmonitorstatus.AutoSize = True
         Me.lnkmonitorstatus.Enabled = False
         Me.lnkmonitorstatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lnkmonitorstatus.Location = New System.Drawing.Point(5, 242)
+        Me.lnkmonitorstatus.Location = New System.Drawing.Point(13, 577)
+        Me.lnkmonitorstatus.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.lnkmonitorstatus.Name = "lnkmonitorstatus"
-        Me.lnkmonitorstatus.Size = New System.Drawing.Size(83, 15)
+        Me.lnkmonitorstatus.Size = New System.Drawing.Size(185, 33)
         Me.lnkmonitorstatus.TabIndex = 78
         Me.lnkmonitorstatus.TabStop = True
         Me.lnkmonitorstatus.Text = "Assessment"
@@ -624,33 +663,37 @@ Partial Class frmServiceandStatusMonitoring
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(382, 238)
+        Me.Label17.Location = New System.Drawing.Point(1019, 568)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(103, 17)
+        Me.Label17.Size = New System.Drawing.Size(227, 39)
         Me.Label17.TabIndex = 77
         Me.Label17.Text = "Priority Need"
         '
         'dtpDateofVisit
         '
-        Me.dtpDateofVisit.Location = New System.Drawing.Point(669, 213)
+        Me.dtpDateofVisit.Location = New System.Drawing.Point(1784, 508)
+        Me.dtpDateofVisit.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.dtpDateofVisit.Name = "dtpDateofVisit"
-        Me.dtpDateofVisit.Size = New System.Drawing.Size(185, 20)
+        Me.dtpDateofVisit.Size = New System.Drawing.Size(487, 38)
         Me.dtpDateofVisit.TabIndex = 74
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(573, 216)
+        Me.Label18.Location = New System.Drawing.Point(1528, 515)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(64, 13)
+        Me.Label18.Size = New System.Drawing.Size(168, 32)
         Me.Label18.TabIndex = 75
         Me.Label18.Text = "Date of Visit"
         '
         'TreeView1
         '
-        Me.TreeView1.Location = New System.Drawing.Point(3, 258)
+        Me.TreeView1.Location = New System.Drawing.Point(8, 615)
+        Me.TreeView1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.TreeView1.Name = "TreeView1"
-        Me.TreeView1.Size = New System.Drawing.Size(376, 312)
+        Me.TreeView1.Size = New System.Drawing.Size(996, 738)
         Me.TreeView1.TabIndex = 73
         '
         'Panel3
@@ -660,9 +703,10 @@ Partial Class frmServiceandStatusMonitoring
         Me.Panel3.Controls.Add(Me.GroupBox1)
         Me.Panel3.Controls.Add(Me.txtCBO)
         Me.Panel3.Controls.Add(Me.Label4)
-        Me.Panel3.Location = New System.Drawing.Point(2, 4)
+        Me.Panel3.Location = New System.Drawing.Point(5, 10)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(875, 188)
+        Me.Panel3.Size = New System.Drawing.Size(2333, 448)
         Me.Panel3.TabIndex = 72
         '
         'CHW
@@ -673,58 +717,66 @@ Partial Class frmServiceandStatusMonitoring
         Me.CHW.Controls.Add(Me.Label15)
         Me.CHW.Controls.Add(Me.txtchwfname)
         Me.CHW.Controls.Add(Me.Label16)
-        Me.CHW.Location = New System.Drawing.Point(3, 137)
+        Me.CHW.Location = New System.Drawing.Point(8, 327)
+        Me.CHW.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.CHW.Name = "CHW"
-        Me.CHW.Size = New System.Drawing.Size(869, 48)
+        Me.CHW.Padding = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.CHW.Size = New System.Drawing.Size(2317, 114)
         Me.CHW.TabIndex = 62
         Me.CHW.TabStop = False
         Me.CHW.Text = "CHW"
         '
         'txtchwmname
         '
-        Me.txtchwmname.Location = New System.Drawing.Point(380, 21)
+        Me.txtchwmname.Location = New System.Drawing.Point(1013, 50)
+        Me.txtchwmname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtchwmname.Name = "txtchwmname"
-        Me.txtchwmname.Size = New System.Drawing.Size(185, 20)
+        Me.txtchwmname.Size = New System.Drawing.Size(487, 38)
         Me.txtchwmname.TabIndex = 17
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(305, 28)
+        Me.Label14.Location = New System.Drawing.Point(813, 67)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(69, 13)
+        Me.Label14.Size = New System.Drawing.Size(182, 32)
         Me.Label14.TabIndex = 16
         Me.Label14.Text = "Middle Name"
         '
         'txtchwsname
         '
-        Me.txtchwsname.Location = New System.Drawing.Point(664, 19)
+        Me.txtchwsname.Location = New System.Drawing.Point(1771, 45)
+        Me.txtchwsname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtchwsname.Name = "txtchwsname"
-        Me.txtchwsname.Size = New System.Drawing.Size(185, 20)
+        Me.txtchwsname.Size = New System.Drawing.Size(487, 38)
         Me.txtchwsname.TabIndex = 15
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(609, 26)
+        Me.Label15.Location = New System.Drawing.Point(1624, 62)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(49, 13)
+        Me.Label15.Size = New System.Drawing.Size(130, 32)
         Me.Label15.TabIndex = 14
         Me.Label15.Text = "Surname"
         '
         'txtchwfname
         '
-        Me.txtchwfname.Location = New System.Drawing.Point(61, 25)
+        Me.txtchwfname.Location = New System.Drawing.Point(163, 60)
+        Me.txtchwfname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtchwfname.Name = "txtchwfname"
-        Me.txtchwfname.Size = New System.Drawing.Size(185, 20)
+        Me.txtchwfname.Size = New System.Drawing.Size(487, 38)
         Me.txtchwfname.TabIndex = 13
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(-2, 32)
+        Me.Label16.Location = New System.Drawing.Point(-5, 76)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(57, 13)
+        Me.Label16.Size = New System.Drawing.Size(152, 32)
         Me.Label16.TabIndex = 12
         Me.Label16.Text = "First Name"
         '
@@ -736,58 +788,66 @@ Partial Class frmServiceandStatusMonitoring
         Me.GroupBox2.Controls.Add(Me.Label12)
         Me.GroupBox2.Controls.Add(Me.txtparentfname)
         Me.GroupBox2.Controls.Add(Me.Label13)
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 83)
+        Me.GroupBox2.Location = New System.Drawing.Point(8, 198)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(869, 48)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.GroupBox2.Size = New System.Drawing.Size(2317, 114)
         Me.GroupBox2.TabIndex = 61
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Guardian\Parent"
         '
         'txtparentmname
         '
-        Me.txtparentmname.Location = New System.Drawing.Point(380, 19)
+        Me.txtparentmname.Location = New System.Drawing.Point(1013, 45)
+        Me.txtparentmname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtparentmname.Name = "txtparentmname"
-        Me.txtparentmname.Size = New System.Drawing.Size(185, 20)
+        Me.txtparentmname.Size = New System.Drawing.Size(487, 38)
         Me.txtparentmname.TabIndex = 17
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(305, 26)
+        Me.Label11.Location = New System.Drawing.Point(813, 62)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(69, 13)
+        Me.Label11.Size = New System.Drawing.Size(182, 32)
         Me.Label11.TabIndex = 16
         Me.Label11.Text = "Middle Name"
         '
         'txtparentsname
         '
-        Me.txtparentsname.Location = New System.Drawing.Point(664, 19)
+        Me.txtparentsname.Location = New System.Drawing.Point(1771, 45)
+        Me.txtparentsname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtparentsname.Name = "txtparentsname"
-        Me.txtparentsname.Size = New System.Drawing.Size(185, 20)
+        Me.txtparentsname.Size = New System.Drawing.Size(487, 38)
         Me.txtparentsname.TabIndex = 15
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(609, 26)
+        Me.Label12.Location = New System.Drawing.Point(1624, 62)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(49, 13)
+        Me.Label12.Size = New System.Drawing.Size(130, 32)
         Me.Label12.TabIndex = 14
         Me.Label12.Text = "Surname"
         '
         'txtparentfname
         '
-        Me.txtparentfname.Location = New System.Drawing.Point(61, 25)
+        Me.txtparentfname.Location = New System.Drawing.Point(163, 60)
+        Me.txtparentfname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtparentfname.Name = "txtparentfname"
-        Me.txtparentfname.Size = New System.Drawing.Size(185, 20)
+        Me.txtparentfname.Size = New System.Drawing.Size(487, 38)
         Me.txtparentfname.TabIndex = 13
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(-2, 32)
+        Me.Label13.Location = New System.Drawing.Point(-5, 76)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(57, 13)
+        Me.Label13.Size = New System.Drawing.Size(152, 32)
         Me.Label13.TabIndex = 12
         Me.Label13.Text = "First Name"
         '
@@ -799,74 +859,84 @@ Partial Class frmServiceandStatusMonitoring
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.txtchildfname)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 32)
+        Me.GroupBox1.Location = New System.Drawing.Point(8, 76)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(869, 48)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.GroupBox1.Size = New System.Drawing.Size(2317, 114)
         Me.GroupBox1.TabIndex = 60
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Child"
         '
         'txtchildmname
         '
-        Me.txtchildmname.Location = New System.Drawing.Point(380, 21)
+        Me.txtchildmname.Location = New System.Drawing.Point(1013, 50)
+        Me.txtchildmname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtchildmname.Name = "txtchildmname"
-        Me.txtchildmname.Size = New System.Drawing.Size(185, 20)
+        Me.txtchildmname.Size = New System.Drawing.Size(487, 38)
         Me.txtchildmname.TabIndex = 17
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(305, 28)
+        Me.Label5.Location = New System.Drawing.Point(813, 67)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(69, 13)
+        Me.Label5.Size = New System.Drawing.Size(182, 32)
         Me.Label5.TabIndex = 16
         Me.Label5.Text = "Middle Name"
         '
         'txtchildsname
         '
-        Me.txtchildsname.Location = New System.Drawing.Point(664, 19)
+        Me.txtchildsname.Location = New System.Drawing.Point(1771, 45)
+        Me.txtchildsname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtchildsname.Name = "txtchildsname"
-        Me.txtchildsname.Size = New System.Drawing.Size(185, 20)
+        Me.txtchildsname.Size = New System.Drawing.Size(487, 38)
         Me.txtchildsname.TabIndex = 15
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(609, 26)
+        Me.Label6.Location = New System.Drawing.Point(1624, 62)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(49, 13)
+        Me.Label6.Size = New System.Drawing.Size(130, 32)
         Me.Label6.TabIndex = 14
         Me.Label6.Text = "Surname"
         '
         'txtchildfname
         '
-        Me.txtchildfname.Location = New System.Drawing.Point(61, 25)
+        Me.txtchildfname.Location = New System.Drawing.Point(163, 60)
+        Me.txtchildfname.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtchildfname.Name = "txtchildfname"
-        Me.txtchildfname.Size = New System.Drawing.Size(185, 20)
+        Me.txtchildfname.Size = New System.Drawing.Size(487, 38)
         Me.txtchildfname.TabIndex = 13
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(-2, 32)
+        Me.Label7.Location = New System.Drawing.Point(-5, 76)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(57, 13)
+        Me.Label7.Size = New System.Drawing.Size(152, 32)
         Me.Label7.TabIndex = 12
         Me.Label7.Text = "First Name"
         '
         'txtCBO
         '
-        Me.txtCBO.Location = New System.Drawing.Point(116, 9)
+        Me.txtCBO.Location = New System.Drawing.Point(309, 21)
+        Me.txtCBO.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.txtCBO.Name = "txtCBO"
-        Me.txtCBO.Size = New System.Drawing.Size(452, 20)
+        Me.txtCBO.Size = New System.Drawing.Size(1199, 38)
         Me.txtCBO.TabIndex = 1
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(13, 16)
+        Me.Label4.Location = New System.Drawing.Point(35, 38)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(72, 13)
+        Me.Label4.Size = New System.Drawing.Size(189, 32)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Name of CBO"
         '
@@ -874,17 +944,19 @@ Partial Class frmServiceandStatusMonitoring
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(9, 222)
+        Me.Label20.Location = New System.Drawing.Point(24, 529)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(0, 29)
+        Me.Label20.Size = New System.Drawing.Size(0, 69)
         Me.Label20.TabIndex = 73
         '
         'btnEdit
         '
         Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(579, 585)
+        Me.btnEdit.Location = New System.Drawing.Point(1544, 1395)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(87, 26)
+        Me.btnEdit.Size = New System.Drawing.Size(232, 62)
         Me.btnEdit.TabIndex = 72
         Me.btnEdit.Text = "&Edit"
         Me.btnEdit.UseVisualStyleBackColor = True
@@ -892,18 +964,20 @@ Partial Class frmServiceandStatusMonitoring
         'btnpost
         '
         Me.btnpost.Enabled = False
-        Me.btnpost.Location = New System.Drawing.Point(677, 585)
+        Me.btnpost.Location = New System.Drawing.Point(1805, 1395)
+        Me.btnpost.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.btnpost.Name = "btnpost"
-        Me.btnpost.Size = New System.Drawing.Size(87, 26)
+        Me.btnpost.Size = New System.Drawing.Size(232, 62)
         Me.btnpost.TabIndex = 62
         Me.btnpost.Text = "&Save"
         Me.btnpost.UseVisualStyleBackColor = True
         '
         'BtnExit
         '
-        Me.BtnExit.Location = New System.Drawing.Point(770, 585)
+        Me.BtnExit.Location = New System.Drawing.Point(2053, 1395)
+        Me.BtnExit.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.BtnExit.Name = "BtnExit"
-        Me.BtnExit.Size = New System.Drawing.Size(87, 26)
+        Me.BtnExit.Size = New System.Drawing.Size(232, 62)
         Me.BtnExit.TabIndex = 63
         Me.BtnExit.Text = "&Close"
         Me.BtnExit.UseVisualStyleBackColor = True
@@ -911,10 +985,11 @@ Partial Class frmServiceandStatusMonitoring
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.DataGridView2)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Location = New System.Drawing.Point(10, 48)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(887, 655)
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.TabPage3.Size = New System.Drawing.Size(2367, 1566)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Monitoring History"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -939,7 +1014,8 @@ Partial Class frmServiceandStatusMonitoring
         DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle5
-        Me.DataGridView2.Location = New System.Drawing.Point(6, 6)
+        Me.DataGridView2.Location = New System.Drawing.Point(16, 14)
+        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.DataGridView2.Name = "DataGridView2"
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
@@ -949,7 +1025,7 @@ Partial Class frmServiceandStatusMonitoring
         DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView2.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
-        Me.DataGridView2.Size = New System.Drawing.Size(437, 490)
+        Me.DataGridView2.Size = New System.Drawing.Size(1165, 1168)
         Me.DataGridView2.TabIndex = 34
         '
         'DataGridViewTextBoxColumn1
@@ -978,10 +1054,11 @@ Partial Class frmServiceandStatusMonitoring
         '
         'frmServiceandStatusMonitoring
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 31.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(929, 706)
+        Me.ClientSize = New System.Drawing.Size(2477, 1684)
         Me.Controls.Add(Me.TabControl1)
+        Me.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.Name = "frmServiceandStatusMonitoring"
         Me.Text = "CSI Priority Needs"
         Me.TabControl1.ResumeLayout(False)

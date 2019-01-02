@@ -146,51 +146,44 @@ Public Class MDIMain
 
         Try
 
-            'first disable all menus
-            Dim menues As New List(Of ToolStripItem)
-            For Each t As ToolStripItem In Me.MenuStrip.Items
-                GetMenues(t, menues)
-            Next
+            ''first disable all menus
+            'Dim menues As New List(Of ToolStripItem)
+            'For Each t As ToolStripItem In Me.MenuStrip.Items
+            '    GetMenues(t, menues)
+            'Next
 
-            For Each t As ToolStripItem In menues
-                t.Enabled = False
-            Next
+            'For Each t As ToolStripItem In menues
+            '    t.Enabled = False
+            'Next
 
-            'enable menus depending on user rights
-            Dim mySqlAction As String = "select * from userrights where username = '" & strusername.ToString & _
+            ''enable menus depending on user rights
+            Dim mySqlAction As String = "select * from userrights where username = '" & strusername.ToString &
             "' and canaccess = 'True'"
             Dim MyDBAction As New functions
             'Dim MyDatable As New Data.DataTable
             Dim mydecryptedpass As String = ""
-            'MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+            ''MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
 
-            Dim cmd As New SqlCommand(mySqlAction, conn)
-            conn.Open()
-            Dim myreader As SqlDataReader = cmd.ExecuteReader()
+            'Dim cmd As New SqlCommand(mySqlAction, conn)
+            'conn.Open()
+            'Dim myreader As SqlDataReader = cmd.ExecuteReader()
 
-            'If MyDatable.Rows.Count > 0 Then
-            '    For K = 0 To MyDatable.Rows.Count - 1
-            Do While myreader.Read
-                For Each t As ToolStripItem In menues
-                    If myreader("menuid").ToString = t.Name Then
-                        t.Enabled = True
-                    End If
+            ''If MyDatable.Rows.Count > 0 Then
+            ''    For K = 0 To MyDatable.Rows.Count - 1
+            'Do While myreader.Read
+            '    For Each t As ToolStripItem In menues
+            '        If myreader("menuid").ToString = t.Name Then
+            '            t.Enabled = True
+            '        End If
 
-                Next
-            Loop
+            '    Next
+            'Loop
 
             '    Next
             'End If
 
 
 
-            'If UCase(AppSettings("IsMaintenance").ToString) = "TRUE" Then
-            '    MaintenanceMenu.Enabled = True
-            '    Tools.Enabled = True
-            'Else
-            '    MaintenanceMenu.Enabled = False
-            '    Tools.Enabled = False
-            'End If
 
             'backrgound image
             Me.BackgroundImage = System.Drawing.Image.FromFile(Application.StartupPath & _
@@ -199,7 +192,7 @@ Public Class MDIMain
 
             'write on the status bar
             StatusStrip.Items.Add("User Name: " & strusername.ToString & "          SessionID: " & strsession.ToString &
-            "          Machine Name: " & strmachinename & "          Partner Name: " & strimplementingpartner.ToString.ToUpper)
+            "          Machine Name: " & strmachinename & "          Partner Name: --") ' & strimplementingpartner.ToString.ToUpper
 
             'save session details in database for audit trail--
             'Dim mySqlAction As String = ""
@@ -210,12 +203,7 @@ Public Class MDIMain
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
             '-----
 
-            'Read EXE compilation date and display it
-            Dim strDate As String
-            Dim fName As String
-            fName = Application.StartupPath & "\OVCSystem.exe"
-            strDate = File.GetLastWriteTime(fName)
-            CompileDateToolStripMenuItem.Text = Format(CDate(strDate), "dd-MMM-yyyy")
+
 
             'VNavPane1.Height = Me.Height - 110
 
@@ -236,7 +224,7 @@ Public Class MDIMain
 
     End Sub
 
-    Private Sub DataSyncToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DataSync.Click
+    Private Sub DataSyncToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         ' Create a new instance of the child form.
         Dim ChildForm As New frmDataSync
         ' Make it a child of this MDI form before showing it.
@@ -275,7 +263,7 @@ Public Class MDIMain
     End Sub
 
 
-    Private Sub CompileDateToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CompileDateToolStripMenuItem.Click
+    Private Sub CompileDateToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
 
@@ -676,6 +664,15 @@ Public Class MDIMain
         ChildForm.Show()
     End Sub
 
+    Private Sub VSLAListing_Click(sender As Object, e As EventArgs) Handles VSLAListing.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmVSLAListing
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
 
+        m_ChildFormNumber += 1
+        ChildForm.Text = "VSLA Listing" '"Window " & m_ChildFormNumber
 
+        ChildForm.Show()
+    End Sub
 End Class
