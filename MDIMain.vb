@@ -50,7 +50,7 @@ Public Class MDIMain
                 Exit Sub
             End If
             ' Create a new instance of the child form.
-            clientchildform = New frmClientInfo
+            clientchildform = New frmOVCInfo
             ' Make it a child of this MDI form before showing it.
             'clientchildform.MdiParent = Me
 
@@ -186,7 +186,7 @@ Public Class MDIMain
 
 
             'backrgound image
-            Me.BackgroundImage = System.Drawing.Image.FromFile(Application.StartupPath & _
+            Me.BackgroundImage = System.Drawing.Image.FromFile(Application.StartupPath &
                 "\images\systemlogo.png")
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
 
@@ -195,11 +195,10 @@ Public Class MDIMain
             "          Machine Name: " & strmachinename & "          Partner Name: --") ' & strimplementingpartner.ToString.ToUpper
 
             'save session details in database for audit trail--
-            'Dim mySqlAction As String = ""
-            'Dim MyDBAction As New functions
-            mySqlAction = "Insert Into audittrail(sessionid,username,machinename,timein) " & _
-            " values('" & strsession.ToString & "','" & strusername.ToString & "','" & strmachinename.ToString & _
-            "','" & Date.Now & "')"
+
+            mySqlAction = "Insert Into audittrail(sessionid,username,machinename,timein) " &
+            " values('" & strsession.ToString & "','" & strusername.ToString & "','" & strmachinename.ToString &
+            "'," & Date.Now.ToShortDateString & ")"
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
             '-----
 
@@ -672,6 +671,90 @@ Public Class MDIMain
 
         m_ChildFormNumber += 1
         ChildForm.Text = "VSLA Listing" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub VSLAmembership_Click(sender As Object, e As EventArgs) Handles VSLAmembership.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmVsla_membership
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "VSLA Membership" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub ValueChains_Click(sender As Object, e As EventArgs) Handles ValueChains.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmValueChainsListings
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "ValueChains Listing" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub StarterKits_Click(sender As Object, e As EventArgs) Handles StarterKits.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmStarterKitListing
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "StarterKit Listing" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub TrainingsListing_Click(sender As Object, e As EventArgs) Handles TrainingsListing.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmTrainingListing
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "Training Listing" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub CaregiverStarterKits_Click(sender As Object, e As EventArgs) Handles CaregiverStarterKits.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmCaregiverStarterKits
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "Caregiver StarterKits" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub CaregiverValueChains_Click(sender As Object, e As EventArgs) Handles CaregiverValueChains.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmCaregiverValueChains
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "Caregiver ValueChains" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub TrainingAttendance_Click(sender As Object, e As EventArgs) Handles TrainingAttendance.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmTrainingAttendance
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "Training Attendance" '"Window " & m_ChildFormNumber
 
         ChildForm.Show()
     End Sub

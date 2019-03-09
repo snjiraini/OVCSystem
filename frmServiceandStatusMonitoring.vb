@@ -1196,7 +1196,7 @@ Public Class frmServiceandStatusMonitoring
             End If
 
             If Longitudinal_bcert = True Or Longitudinal_hivstatus = True Then
-                Dim formbiodata As New frmClientInfo()
+                Dim formbiodata As New frmOVCInfo()
                 ' Start message pump by using ShowDialog()
                 formbiodata.Text = "Form1A Longitudinal Update"
                 formbiodata.ShowDialog()

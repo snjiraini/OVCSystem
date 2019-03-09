@@ -127,17 +127,17 @@ Public Class LoginForm
                 strextensionexpiry = myAppCrypto.decryptString(myarraylist1.Item(9).ToString)
 
                 'do a quick calculation to determine if extension of data entry is expired, and if so, revert back to defaults
-                If DateDiff(DateInterval.Day, CDate(strdateofExtension.ToString), Date.Today) <= CInt(strextensionexpiry.ToString) Then
-                    strregistrationdefault = strregistrationextension
-                    strexitsdefault = strexitsextension
-                    strdatadefault = strdataextension
-                    strdatabacklogdefault = strdatabacklogextension
+                'If DateDiff(DateInterval.Day, CDate(strdateofExtension.ToString), Date.Today) <= CInt(strextensionexpiry.ToString) Then
+                '    strregistrationdefault = strregistrationextension
+                '    strexitsdefault = strexitsextension
+                '    strdatadefault = strdataextension
+                '    strdatabacklogdefault = strdatabacklogextension
 
-                    Dim strdateofexpiry As String = DateAdd(DateInterval.Day, CInt(strextensionexpiry.ToString), CDate(strdateofExtension.ToString))
-                    Dim strdaystoexpiry As String = DateDiff(DateInterval.Day, CDate(DateAdd(DateInterval.Day, CInt(strextensionexpiry.ToString), CDate(strdateofExtension.ToString))), Date.Today)
-                    MsgBox("Your extension for [backlog entries] will expire on " & strdateofexpiry & vbCr &
-                          strdaystoexpiry & " days to go.", MsgBoxStyle.Exclamation)
-                End If
+                '    Dim strdateofexpiry As String = DateAdd(DateInterval.Day, CInt(strextensionexpiry.ToString), CDate(strdateofExtension.ToString))
+                '    Dim strdaystoexpiry As String = DateDiff(DateInterval.Day, CDate(DateAdd(DateInterval.Day, CInt(strextensionexpiry.ToString), CDate(strdateofExtension.ToString))), Date.Today)
+                '    MsgBox("Your extension for [backlog entries] will expire on " & strdateofexpiry & vbCr &
+                '          strdaystoexpiry & " days to go.", MsgBoxStyle.Exclamation)
+                'End If
 
 
                 'can this guy be able to delete OVC data

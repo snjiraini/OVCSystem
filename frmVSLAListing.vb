@@ -83,20 +83,6 @@ Public Class frmVSLAListing
         End Try
     End Sub
 
-    Private Sub lnkNew_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkNew.LinkClicked
-        Panel1.Enabled = True
-        btnpost.Enabled = True
-        BtnDelete.Enabled = False
-        BtnEdit.Enabled = False
-        txtVSLAID.Focus()
-        txtName.Text = ""
-        txtVSLAID.Text = ""
-        cbocounty.SelectedIndex = -1
-        cbowards.SelectedIndex = -1
-        dtpDateRegistered.Value = Date.Today
-
-    End Sub
-
     Private Sub btnpost_Click(sender As Object, e As EventArgs) Handles btnpost.Click
         Dim ErrorAction As New functions
         Try
@@ -151,7 +137,7 @@ Public Class frmVSLAListing
 
     End Sub
 
-    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -185,8 +171,26 @@ Public Class frmVSLAListing
             BtnDelete.Enabled = True
         Catch ex As Exception
             MsgBox(ex.Message, vbExclamation)
-            ErrorAction.WriteToErrorLogFile("CBO", "GridCellClick", ex.Message) ''---Write error to error log file
+            ErrorAction.WriteToErrorLogFile("VSLA Listing", "GridCellClick", ex.Message) ''---Write error to error log file
 
         End Try
+    End Sub
+
+    Private Sub BtnEdit_Click_1(sender As Object, e As EventArgs) Handles BtnEdit.Click
+
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+
+    End Sub
+
+    Private Sub lnkNew_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkNew.LinkClicked
+        Panel1.Enabled = True
+        btnpost.Enabled = True
+    End Sub
+
+    Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
+        Me.Close()
+
     End Sub
 End Class

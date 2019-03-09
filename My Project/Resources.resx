@@ -117,29 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="320" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\320.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1. OVCSystemUSAID logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\1. OVCSystemUSAID logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OVCSystemUSAIDlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\OVCSystemUSAIDlogo.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="green_round_tick_sign_42461" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\green_round_tick_sign_42461.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="app_reports" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\app_reports.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1. OVCSystemUSAID logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\1. OVCSystemUSAID logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="320" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\320.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="systemlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\systemlogo.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="green_round_tick_sign_4246" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\green_round_tick_sign_4246.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="round_red_x_sign_4229" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\round_red_x_sign_4229.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="green_round_tick_sign_4246" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\green_round_tick_sign_4246.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="systemlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\systemlogo.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OVCSystemUSAIDlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\OVCSystemUSAIDlogo.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="page01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\page01.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

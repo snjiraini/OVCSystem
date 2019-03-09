@@ -36,7 +36,7 @@ Module ModMain
     Public hcbcid As String = 0
 
     'This had to be here so tht I can call this instance of this form from any page e.g linking parent from father form
-    Public clientchildform As frmClientInfo
+    Public clientchildform As frmOVCInfo
     Public mdiform As MDIMain
     Public m_RegistrationFormNumber As Integer
     Public m_ChildFormNumber As Integer

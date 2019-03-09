@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmVsla_membership
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmCaregiverValueChains
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmVsla_membership
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -28,22 +28,18 @@ Partial Class frmVsla_membership
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lnkNew = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.dtpDateLeft = New System.Windows.Forms.DateTimePicker()
+        Me.dtpDatelinked = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.dtpDateJoined = New System.Windows.Forms.DateTimePicker()
-        Me.chkMemberLeft = New System.Windows.Forms.CheckBox()
-        Me.cboVSLA = New System.Windows.Forms.ComboBox()
+        Me.cboValuechain = New System.Windows.Forms.ComboBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtcpimsid = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -74,7 +70,6 @@ Partial Class frmVsla_membership
         Me.txtsearchcaregivername = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,16 +85,16 @@ Partial Class frmVsla_membership
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Location = New System.Drawing.Point(13, 14)
+        Me.TabControl1.Location = New System.Drawing.Point(2, 9)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1366, 898)
-        Me.TabControl1.TabIndex = 2
+        Me.TabControl1.Size = New System.Drawing.Size(1368, 671)
+        Me.TabControl1.TabIndex = 5
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.Label5)
+        Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.DataGridView2)
         Me.TabPage1.Controls.Add(Me.btnDelete)
         Me.TabPage1.Controls.Add(Me.lnkNew)
@@ -111,45 +106,46 @@ Partial Class frmVsla_membership
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TabPage1.Size = New System.Drawing.Size(1358, 865)
+        Me.TabPage1.Size = New System.Drawing.Size(1360, 638)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Caregiver Info"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(8, 266)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(435, 29)
+        Me.Label4.TabIndex = 64
+        Me.Label4.Text = "ValueChains linked to this Caregiver"
+        '
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column12, Me.Column7, Me.Column8, Me.Column10, Me.Column11})
-        Me.DataGridView2.Location = New System.Drawing.Point(8, 378)
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column10, Me.Column8, Me.Column11})
+        Me.DataGridView2.Location = New System.Drawing.Point(8, 298)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 28
-        Me.DataGridView2.Size = New System.Drawing.Size(1049, 460)
+        Me.DataGridView2.Size = New System.Drawing.Size(1049, 330)
         Me.DataGridView2.TabIndex = 63
         '
         'Column2
         '
-        Me.Column2.HeaderText = "vsla_membership_id"
+        Me.Column2.HeaderText = "ovc_caregiver_starterkit_id"
         Me.Column2.Name = "Column2"
-        '
-        'Column12
-        '
-        Me.Column12.HeaderText = "vsla_name"
-        Me.Column12.Name = "Column12"
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "DateJoined"
-        Me.Column7.Name = "Column7"
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "MemberLeft"
-        Me.Column8.Name = "Column8"
         '
         'Column10
         '
-        Me.Column10.HeaderText = "DateLeft"
+        Me.Column10.HeaderText = "ValueChain"
         Me.Column10.Name = "Column10"
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Date Linked"
+        Me.Column8.Name = "Column8"
         '
         'Column11
         '
@@ -161,7 +157,7 @@ Partial Class frmVsla_membership
         Me.btnDelete.BackColor = System.Drawing.Color.LightSteelBlue
         Me.btnDelete.Enabled = False
         Me.btnDelete.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.Location = New System.Drawing.Point(1080, 195)
+        Me.btnDelete.Location = New System.Drawing.Point(1132, 195)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(130, 55)
@@ -183,12 +179,9 @@ Partial Class frmVsla_membership
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.dtpDateLeft)
+        Me.GroupBox1.Controls.Add(Me.dtpDatelinked)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.dtpDateJoined)
-        Me.GroupBox1.Controls.Add(Me.chkMemberLeft)
-        Me.GroupBox1.Controls.Add(Me.cboVSLA)
+        Me.GroupBox1.Controls.Add(Me.cboValuechain)
         Me.GroupBox1.Controls.Add(Me.Label14)
         Me.GroupBox1.Controls.Add(Me.txtcpimsid)
         Me.GroupBox1.Controls.Add(Me.Label7)
@@ -200,77 +193,47 @@ Partial Class frmVsla_membership
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox1.Size = New System.Drawing.Size(1049, 264)
+        Me.GroupBox1.Size = New System.Drawing.Size(1049, 202)
         Me.GroupBox1.TabIndex = 38
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "The Client"
         '
-        'Label4
+        'dtpDatelinked
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(548, 194)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(119, 17)
-        Me.Label4.TabIndex = 61
-        Me.Label4.Text = "Date Left VSLA"
-        Me.Label4.Visible = False
-        '
-        'dtpDateLeft
-        '
-        Me.dtpDateLeft.Location = New System.Drawing.Point(551, 218)
-        Me.dtpDateLeft.Name = "dtpDateLeft"
-        Me.dtpDateLeft.Size = New System.Drawing.Size(278, 26)
-        Me.dtpDateLeft.TabIndex = 60
-        Me.dtpDateLeft.Visible = False
+        Me.dtpDatelinked.Location = New System.Drawing.Point(455, 118)
+        Me.dtpDatelinked.Name = "dtpDatelinked"
+        Me.dtpDatelinked.Size = New System.Drawing.Size(478, 26)
+        Me.dtpDatelinked.TabIndex = 58
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(548, 93)
+        Me.Label2.Location = New System.Drawing.Point(452, 97)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(139, 17)
-        Me.Label2.TabIndex = 59
-        Me.Label2.Text = "Date Joined VSLA"
+        Me.Label2.Size = New System.Drawing.Size(95, 17)
+        Me.Label2.TabIndex = 57
+        Me.Label2.Text = "Date Linked"
         '
-        'dtpDateJoined
+        'cboValuechain
         '
-        Me.dtpDateJoined.Location = New System.Drawing.Point(551, 116)
-        Me.dtpDateJoined.Name = "dtpDateJoined"
-        Me.dtpDateJoined.Size = New System.Drawing.Size(278, 26)
-        Me.dtpDateJoined.TabIndex = 58
-        '
-        'chkMemberLeft
-        '
-        Me.chkMemberLeft.AutoSize = True
-        Me.chkMemberLeft.Location = New System.Drawing.Point(551, 165)
-        Me.chkMemberLeft.Name = "chkMemberLeft"
-        Me.chkMemberLeft.Size = New System.Drawing.Size(171, 24)
-        Me.chkMemberLeft.TabIndex = 57
-        Me.chkMemberLeft.Text = "Member Left VSLA"
-        Me.chkMemberLeft.UseVisualStyleBackColor = True
-        '
-        'cboVSLA
-        '
-        Me.cboVSLA.FormattingEnabled = True
-        Me.cboVSLA.Location = New System.Drawing.Point(551, 54)
-        Me.cboVSLA.Name = "cboVSLA"
-        Me.cboVSLA.Size = New System.Drawing.Size(278, 28)
-        Me.cboVSLA.TabIndex = 56
+        Me.cboValuechain.FormattingEnabled = True
+        Me.cboValuechain.Location = New System.Drawing.Point(455, 54)
+        Me.cboValuechain.Name = "cboValuechain"
+        Me.cboValuechain.Size = New System.Drawing.Size(555, 28)
+        Me.cboValuechain.TabIndex = 56
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(548, 34)
+        Me.Label14.Location = New System.Drawing.Point(452, 34)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(47, 17)
+        Me.Label14.Size = New System.Drawing.Size(90, 17)
         Me.Label14.TabIndex = 28
-        Me.Label14.Text = "VSLA"
+        Me.Label14.Text = "ValueChain"
         '
         'txtcpimsid
         '
@@ -321,7 +284,7 @@ Partial Class frmVsla_membership
         Me.btnpost.BackColor = System.Drawing.Color.LightSteelBlue
         Me.btnpost.Enabled = False
         Me.btnpost.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnpost.Location = New System.Drawing.Point(1080, 121)
+        Me.btnpost.Location = New System.Drawing.Point(1132, 121)
         Me.btnpost.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpost.Name = "btnpost"
         Me.btnpost.Size = New System.Drawing.Size(130, 55)
@@ -333,7 +296,7 @@ Partial Class frmVsla_membership
         '
         Me.BtnExit.BackColor = System.Drawing.Color.Red
         Me.BtnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnExit.Location = New System.Drawing.Point(1080, 266)
+        Me.BtnExit.Location = New System.Drawing.Point(1132, 266)
         Me.BtnExit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnExit.Name = "BtnExit"
         Me.BtnExit.Size = New System.Drawing.Size(130, 55)
@@ -346,7 +309,7 @@ Partial Class frmVsla_membership
         Me.BtnEdit.BackColor = System.Drawing.Color.LightSteelBlue
         Me.BtnEdit.Enabled = False
         Me.BtnEdit.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnEdit.Location = New System.Drawing.Point(1080, 56)
+        Me.BtnEdit.Location = New System.Drawing.Point(1132, 56)
         Me.BtnEdit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(130, 55)
@@ -361,7 +324,7 @@ Partial Class frmVsla_membership
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TabPage3.Size = New System.Drawing.Size(1358, 865)
+        Me.TabPage3.Size = New System.Drawing.Size(1360, 638)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Search Client"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -382,7 +345,7 @@ Partial Class frmVsla_membership
         Me.Panel2.Location = New System.Drawing.Point(10, 11)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1341, 833)
+        Me.Panel2.Size = New System.Drawing.Size(1341, 813)
         Me.Panel2.TabIndex = 0
         '
         'Label3
@@ -493,7 +456,7 @@ Partial Class frmVsla_membership
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView1.Location = New System.Drawing.Point(4, 180)
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 173)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DataGridView1.Name = "DataGridView1"
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -504,7 +467,7 @@ Partial Class frmVsla_membership
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.Size = New System.Drawing.Size(1329, 648)
+        Me.DataGridView1.Size = New System.Drawing.Size(1329, 458)
         Me.DataGridView1.TabIndex = 6
         '
         'Column1
@@ -571,26 +534,14 @@ Partial Class frmVsla_membership
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(8, 346)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(372, 29)
-        Me.Label5.TabIndex = 65
-        Me.Label5.Text = "VSLAs joined by this Caregiver"
-        '
-        'frmVsla_membership
+        'frmCaregiverValueChains
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1378, 918)
+        Me.ClientSize = New System.Drawing.Size(1377, 682)
         Me.Controls.Add(Me.TabControl1)
-        Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.Name = "frmVsla_membership"
-        Me.Text = "frmVsla_membership"
+        Me.Name = "frmCaregiverValueChains"
+        Me.Text = "frmCaregiverValueChains"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
@@ -610,6 +561,19 @@ Partial Class frmVsla_membership
 
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents Label4 As Label
+    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents btnDelete As Button
+    Friend WithEvents lnkNew As LinkLabel
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents dtpDatelinked As DateTimePicker
+    Friend WithEvents Label2 As Label
+    Friend WithEvents cboValuechain As ComboBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtcpimsid As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txtcaregivernames As TextBox
     Friend WithEvents btnpost As Button
     Friend WithEvents BtnExit As Button
     Friend WithEvents BtnEdit As Button
@@ -634,27 +598,9 @@ Partial Class frmVsla_membership
     Friend WithEvents btnSearch As Button
     Friend WithEvents txtsearchcaregivername As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents dtpDateLeft As DateTimePicker
-    Friend WithEvents Label2 As Label
-    Friend WithEvents dtpDateJoined As DateTimePicker
-    Friend WithEvents chkMemberLeft As CheckBox
-    Friend WithEvents cboVSLA As ComboBox
-    Friend WithEvents Label14 As Label
-    Friend WithEvents txtcpimsid As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents txtcaregivernames As TextBox
-    Friend WithEvents lnkNew As LinkLabel
-    Friend WithEvents btnDelete As Button
-    Friend WithEvents ErrorProvider1 As ErrorProvider
-    Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column12 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents Column11 As DataGridViewLinkColumn
-    Friend WithEvents Label5 As Label
+    Friend WithEvents ErrorProvider1 As ErrorProvider
 End Class

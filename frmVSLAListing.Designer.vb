@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmVSLAListing
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,55 +20,82 @@ Partial Class frmVSLAListing
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.lnkNew = New System.Windows.Forms.LinkLabel()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.cbocounty = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cbowards = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dtpDateRegistered = New System.Windows.Forms.DateTimePicker()
         Me.Column5 = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.lnkNew = New System.Windows.Forms.LinkLabel()
         Me.btnpost = New System.Windows.Forms.Button()
         Me.BtnExit = New System.Windows.Forms.Button()
-        Me.BtnDelete = New System.Windows.Forms.Button()
-        Me.BtnEdit = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.cbocounty = New System.Windows.Forms.ComboBox()
-        Me.dtpDateRegistered = New System.Windows.Forms.DateTimePicker()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.cbowards = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.txtVSLAID = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.BtnDelete = New System.Windows.Forms.Button()
+        Me.BtnEdit = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'lnkNew
+        'cbocounty
         '
-        Me.lnkNew.AutoSize = True
-        Me.lnkNew.Location = New System.Drawing.Point(17, 9)
-        Me.lnkNew.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
-        Me.lnkNew.Name = "lnkNew"
-        Me.lnkNew.Size = New System.Drawing.Size(129, 32)
-        Me.lnkNew.TabIndex = 44
-        Me.lnkNew.TabStop = True
-        Me.lnkNew.Text = "Add New"
+        Me.cbocounty.FormattingEnabled = True
+        Me.cbocounty.Location = New System.Drawing.Point(245, 94)
+        Me.cbocounty.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.cbocounty.Name = "cbocounty"
+        Me.cbocounty.Size = New System.Drawing.Size(236, 28)
+        Me.cbocounty.TabIndex = 39
         '
-        'DataGridView1
+        'Label5
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column6, Me.Column5})
-        Me.DataGridView1.Location = New System.Drawing.Point(25, 403)
-        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1448, 572)
-        Me.DataGridView1.TabIndex = 43
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(56, 190)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(126, 20)
+        Me.Label5.TabIndex = 37
+        Me.Label5.Text = "Date Registered"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(56, 95)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(59, 20)
+        Me.Label4.TabIndex = 36
+        Me.Label4.Text = "County"
+        '
+        'cbowards
+        '
+        Me.cbowards.FormattingEnabled = True
+        Me.cbowards.Location = New System.Drawing.Point(245, 138)
+        Me.cbowards.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.cbowards.Name = "cbowards"
+        Me.cbowards.Size = New System.Drawing.Size(236, 28)
+        Me.cbowards.TabIndex = 35
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(56, 138)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(47, 20)
+        Me.Label3.TabIndex = 34
+        Me.Label3.Text = "Ward"
         '
         'Column1
         '
@@ -95,53 +122,50 @@ Partial Class frmVSLAListing
         Me.Column6.HeaderText = "DateRegistered"
         Me.Column6.Name = "Column6"
         '
+        'dtpDateRegistered
+        '
+        Me.dtpDateRegistered.Location = New System.Drawing.Point(245, 190)
+        Me.dtpDateRegistered.Margin = New System.Windows.Forms.Padding(2)
+        Me.dtpDateRegistered.Name = "dtpDateRegistered"
+        Me.dtpDateRegistered.Size = New System.Drawing.Size(236, 26)
+        Me.dtpDateRegistered.TabIndex = 38
+        '
         'Column5
         '
         Me.Column5.HeaderText = "Select"
         Me.Column5.Name = "Column5"
         '
+        'lnkNew
+        '
+        Me.lnkNew.AutoSize = True
+        Me.lnkNew.Location = New System.Drawing.Point(8, 9)
+        Me.lnkNew.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lnkNew.Name = "lnkNew"
+        Me.lnkNew.Size = New System.Drawing.Size(73, 20)
+        Me.lnkNew.TabIndex = 58
+        Me.lnkNew.TabStop = True
+        Me.lnkNew.Text = "Add New"
+        '
         'btnpost
         '
         Me.btnpost.Enabled = False
-        Me.btnpost.Location = New System.Drawing.Point(1241, 195)
-        Me.btnpost.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.btnpost.Location = New System.Drawing.Point(943, 149)
+        Me.btnpost.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpost.Name = "btnpost"
-        Me.btnpost.Size = New System.Drawing.Size(232, 63)
-        Me.btnpost.TabIndex = 41
+        Me.btnpost.Size = New System.Drawing.Size(130, 41)
+        Me.btnpost.TabIndex = 55
         Me.btnpost.Text = "&Save"
         Me.btnpost.UseVisualStyleBackColor = True
         '
         'BtnExit
         '
-        Me.BtnExit.Location = New System.Drawing.Point(1241, 284)
-        Me.BtnExit.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.BtnExit.Location = New System.Drawing.Point(943, 206)
+        Me.BtnExit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnExit.Name = "BtnExit"
-        Me.BtnExit.Size = New System.Drawing.Size(232, 63)
-        Me.BtnExit.TabIndex = 42
+        Me.BtnExit.Size = New System.Drawing.Size(130, 41)
+        Me.BtnExit.TabIndex = 56
         Me.BtnExit.Text = "&Close"
         Me.BtnExit.UseVisualStyleBackColor = True
-        '
-        'BtnDelete
-        '
-        Me.BtnDelete.Enabled = False
-        Me.BtnDelete.Location = New System.Drawing.Point(1241, 117)
-        Me.BtnDelete.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(232, 63)
-        Me.BtnDelete.TabIndex = 40
-        Me.BtnDelete.Text = "&Delete"
-        Me.BtnDelete.UseVisualStyleBackColor = True
-        '
-        'BtnEdit
-        '
-        Me.BtnEdit.Enabled = False
-        Me.BtnEdit.Location = New System.Drawing.Point(1241, 41)
-        Me.BtnEdit.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
-        Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(232, 63)
-        Me.BtnEdit.TabIndex = 39
-        Me.BtnEdit.Text = "&Edit"
-        Me.BtnEdit.UseVisualStyleBackColor = True
         '
         'Panel1
         '
@@ -158,93 +182,38 @@ Partial Class frmVSLAListing
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Enabled = False
-        Me.Panel1.Location = New System.Drawing.Point(25, 47)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.Panel1.Location = New System.Drawing.Point(12, 31)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1165, 342)
-        Me.Panel1.TabIndex = 38
-        '
-        'cbocounty
-        '
-        Me.cbocounty.FormattingEnabled = True
-        Me.cbocounty.Location = New System.Drawing.Point(435, 145)
-        Me.cbocounty.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
-        Me.cbocounty.Name = "cbocounty"
-        Me.cbocounty.Size = New System.Drawing.Size(417, 39)
-        Me.cbocounty.TabIndex = 39
-        '
-        'dtpDateRegistered
-        '
-        Me.dtpDateRegistered.Location = New System.Drawing.Point(435, 295)
-        Me.dtpDateRegistered.Name = "dtpDateRegistered"
-        Me.dtpDateRegistered.Size = New System.Drawing.Size(417, 38)
-        Me.dtpDateRegistered.TabIndex = 38
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(99, 295)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(220, 32)
-        Me.Label5.TabIndex = 37
-        Me.Label5.Text = "Date Registered"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(99, 148)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(105, 32)
-        Me.Label4.TabIndex = 36
-        Me.Label4.Text = "County"
-        '
-        'cbowards
-        '
-        Me.cbowards.FormattingEnabled = True
-        Me.cbowards.Location = New System.Drawing.Point(435, 214)
-        Me.cbowards.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
-        Me.cbowards.Name = "cbowards"
-        Me.cbowards.Size = New System.Drawing.Size(417, 39)
-        Me.cbowards.TabIndex = 35
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(99, 214)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(82, 32)
-        Me.Label3.TabIndex = 34
-        Me.Label3.Text = "Ward"
+        Me.Panel1.Size = New System.Drawing.Size(655, 221)
+        Me.Panel1.TabIndex = 52
         '
         'txtName
         '
         Me.txtName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtName.Location = New System.Drawing.Point(435, 83)
-        Me.txtName.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.txtName.Location = New System.Drawing.Point(245, 54)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(417, 38)
+        Me.txtName.Size = New System.Drawing.Size(236, 26)
         Me.txtName.TabIndex = 5
         '
         'txtVSLAID
         '
         Me.txtVSLAID.Enabled = False
-        Me.txtVSLAID.Location = New System.Drawing.Point(435, 19)
-        Me.txtVSLAID.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.txtVSLAID.Location = New System.Drawing.Point(245, 12)
+        Me.txtVSLAID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtVSLAID.Name = "txtVSLAID"
         Me.txtVSLAID.ReadOnly = True
-        Me.txtVSLAID.Size = New System.Drawing.Size(417, 38)
+        Me.txtVSLAID.Size = New System.Drawing.Size(236, 26)
         Me.txtVSLAID.TabIndex = 4
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(99, 83)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
+        Me.Label2.Location = New System.Drawing.Point(56, 54)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(170, 32)
+        Me.Label2.Size = New System.Drawing.Size(97, 20)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "VSLA Name"
         '
@@ -252,56 +221,89 @@ Partial Class frmVSLAListing
         '
         Me.Label1.AccessibleRole = System.Windows.Forms.AccessibleRole.None
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(99, 19)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
+        Me.Label1.Location = New System.Drawing.Point(56, 12)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(122, 32)
+        Me.Label1.Size = New System.Drawing.Size(72, 20)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "VSLA ID"
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column6, Me.Column5})
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 261)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(1061, 369)
+        Me.DataGridView1.TabIndex = 57
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Enabled = False
+        Me.BtnDelete.Location = New System.Drawing.Point(943, 98)
+        Me.BtnDelete.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(130, 41)
+        Me.BtnDelete.TabIndex = 54
+        Me.BtnDelete.Text = "&Delete"
+        Me.BtnDelete.UseVisualStyleBackColor = True
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Enabled = False
+        Me.BtnEdit.Location = New System.Drawing.Point(943, 49)
+        Me.BtnEdit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(130, 41)
+        Me.BtnEdit.TabIndex = 53
+        Me.BtnEdit.Text = "&Edit"
+        Me.BtnEdit.UseVisualStyleBackColor = True
+        '
         'frmVSLAListing
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 31.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1505, 991)
+        Me.ClientSize = New System.Drawing.Size(1086, 644)
         Me.Controls.Add(Me.lnkNew)
-        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.btnpost)
         Me.Controls.Add(Me.BtnExit)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.BtnDelete)
         Me.Controls.Add(Me.BtnEdit)
-        Me.Controls.Add(Me.Panel1)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmVSLAListing"
         Me.Text = "frmVSLAListing"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents lnkNew As LinkLabel
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents btnpost As Button
-    Friend WithEvents BtnExit As Button
-    Friend WithEvents BtnDelete As Button
-    Friend WithEvents BtnEdit As Button
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents cbocounty As ComboBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents cbowards As ComboBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents txtName As TextBox
-    Friend WithEvents txtVSLAID As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewLinkColumn
     Friend WithEvents dtpDateRegistered As DateTimePicker
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents cbowards As ComboBox
-    Friend WithEvents cbocounty As ComboBox
+    Friend WithEvents Column5 As DataGridViewLinkColumn
+    Friend WithEvents lnkNew As LinkLabel
+    Friend WithEvents btnpost As Button
+    Friend WithEvents BtnExit As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents txtName As TextBox
+    Friend WithEvents txtVSLAID As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents BtnDelete As Button
+    Friend WithEvents BtnEdit As Button
 End Class
