@@ -16,7 +16,10 @@ Public Class frmCaregiverStarterKits
         Try
 
             'populate the combobox
-            Dim mySqlAction As String = "select distinct county from OVCRegistrationDetails  order by county asc"
+            Dim mySqlAction As String = "select ROW_NUMBER() OVER(ORDER BY county ASC) AS county_id, county " &
+                                       " from " &
+                                        "(select distinct county from OVCRegistrationDetails where len(county)> 1) tbl_county " &
+                                        "order by county asc"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
@@ -26,7 +29,7 @@ Public Class frmCaregiverStarterKits
                 .Items.Clear()
                 .DataSource = MyDatable
                 .DisplayMember = "County"
-                .ValueMember = 0
+                .ValueMember = "county_id"
                 .SelectedIndex = -1 ' This line makes the combo default value to be blank
             End With
 
@@ -44,7 +47,6 @@ Public Class frmCaregiverStarterKits
             Dim mySqlAction As String = "SELECT [starterkit_id] " &
                                           ", [starterkit_name] " &
                                           ",[valuechain_id] " &
-                                          ",[starterkit_type] " &
                                       "FROM [dbo].[starterkit_list] " &
                                       "order by [starterkit_name]"
             Dim MyDBAction As New functions
@@ -69,7 +71,7 @@ Public Class frmCaregiverStarterKits
     Private Sub cbosearchcounty_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbosearchcounty.SelectedValueChanged
         Try
             'If cboDistrict.Text.Trim.Length <> 0 Or cboDistrict.Text <> "System.Data.DataRowView" Then
-            If IsNumeric(cbosearchcounty.SelectedIndex) = True Then
+            If IsNumeric(cbosearchcounty.SelectedIndex) = True AndAlso cbosearchcounty.SelectedIndex > 0 Then
 
                 populatesearchCBO(cbosearchcounty.Text.ToString)
                 populatesearchWard(cbosearchcounty.Text.ToString)
@@ -85,7 +87,10 @@ Public Class frmCaregiverStarterKits
         Try
 
             'populate the combobox
-            Dim mySqlAction As String = "select distinct cbo_id,cbo from OVCRegistrationDetails where county = '" & mycounty.ToString & "' order by cbo asc"
+            Dim mySqlAction As String = "select ROW_NUMBER() OVER(ORDER BY cbo ASC) AS cbo_id, cbo,county " &
+                                        "from " &
+                                        "(select distinct cbo,county from OVCRegistrationDetails) tbl_cbo  " &
+                                        "where county = '" & mycounty.ToString & "' order by cbo asc"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
@@ -134,11 +139,14 @@ Public Class frmCaregiverStarterKits
             'populate the datagrid with all the data
             Dim mySqlAction As String = "SELECT distinct caregiver_id,caregiver_names,county,cbo,ward,chv_names  from OVCRegistrationDetails where 1 = 1"
 
-            If IsNumeric(cbosearchcounty.SelectedValue) Then
+            If cbosearchcounty.Text.ToString.Length <> 0 Then
                 mySqlAction = mySqlAction & " AND OVCRegistrationDetails.county = '" & cbosearchcounty.Text & "'"
             End If
-            If IsNumeric(cbosearchcbo.SelectedValue) Then
-                mySqlAction = mySqlAction & " AND OVCRegistrationDetails.cbo_id = '" & cbosearchcbo.SelectedValue & "'"
+            If cbosearchward.Text.ToString.Length <> 0 Then
+                mySqlAction = mySqlAction & " AND OVCRegistrationDetails.ward = '" & cbosearchward.Text & "'"
+            End If
+            If cbosearchcbo.Text.ToString.Length <> 0 Then
+                mySqlAction = mySqlAction & " AND OVCRegistrationDetails.cbo = '" & cbosearchcbo.Text.ToString & "'"
             End If
             If txtsearchchvname.Text.ToString.Length <> 0 Then
                 mySqlAction = mySqlAction & " AND (OVCRegistrationDetails.chv_names like '%" & txtsearchchvname.Text.ToString & "%')"
@@ -167,7 +175,7 @@ Public Class frmCaregiverStarterKits
                     mychvnames = MyDatable.Rows(K).Item("chv_names").ToString
 
 
-                    DataGridView1.Rows.Add(mycpimsid, mychvnames, mycbo, Mycounty, myward, "Select")
+                    DataGridView1.Rows.Add(mycpimsid, mycaregivernames, mychvnames, mycbo, Mycounty, myward, "Select")
                 Next
             Else 'if there are no rows returned
                 MsgBox("Search query returned no results", MsgBoxStyle.Exclamation)
@@ -221,7 +229,7 @@ Public Class frmCaregiverStarterKits
             'populate the datagrid with all the data
             Dim mySqlAction As String = "SELECT distinct  ovc_caregiver_starterkit.ovc_caregiver_starterkit_id, OVCRegistrationDetails.caregiver_names, " &
                                            " starterkit_list.starterkit_name, ovc_caregiver_starterkit.starterkit_id, ovc_caregiver_starterkit.date_provided,  " &
-                                            "valuechain_List.valuechain_name " &
+                                            "valuechain_List.valuechain_name,ovc_caregiver_starterkit.starterkit_cost " &
                                             "FROM   ovc_caregiver_starterkit INNER JOIN " &
                                             "OVCRegistrationDetails ON ovc_caregiver_starterkit.ovc_or_caregiver_id = OVCRegistrationDetails.caregiver_id  " &
                                             "INNER JOIN starterkit_list On ovc_caregiver_starterkit.starterkit_id = starterkit_list.starterkit_id  " &
@@ -229,7 +237,7 @@ Public Class frmCaregiverStarterKits
                                             "where OVCRegistrationDetails.caregiver_id  = '" & txtcpimsid.Text.ToString & "'"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
-            Dim mycaregiverstarterkitid, mystarterkit, myvaluechain, mydateprovided As String
+            Dim mycaregiverstarterkitid, mystarterkit, myvaluechain, mydateprovided, mystarterkitcost As String
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             DataGridView2.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
@@ -239,8 +247,8 @@ Public Class frmCaregiverStarterKits
                     mystarterkit = MyDatable.Rows(K).Item("starterkit_name").ToString
                     myvaluechain = MyDatable.Rows(K).Item("valuechain_name").ToString
                     mydateprovided = MyDatable.Rows(K).Item("date_provided").ToString
-
-                    DataGridView2.Rows.Add(mycaregiverstarterkitid, mystarterkit, myvaluechain, mydateprovided, "Select")
+                    mystarterkitcost = MyDatable.Rows(K).Item("starterkit_cost").ToString
+                    DataGridView2.Rows.Add(mycaregiverstarterkitid, mystarterkit, myvaluechain, mydateprovided, mystarterkitcost, "Select")
                 Next
             End If
         Catch ex As Exception
@@ -313,12 +321,14 @@ Public Class frmCaregiverStarterKits
                                   " ([ovc_or_caregiver_id] " &
                                   " ,[persons_type] " &
                                   " ,[starterkit_id] " &
-                                  " ,[date_provided]) " &
+                                  " ,[date_provided] " &
+                                  " ,[starterkit_cost] )" &
                              "VALUES " &
                                   " ('" & txtcpimsid.Text.ToString & "' " &
                                    ",'CAREGIVER' " &
                                   " ,'" & cboStarterKit.SelectedValue.ToString & "' " &
-                                   ",'" & dtpDateprovided.Value & "')"
+                                   ",'" & dtpDateprovided.Value & "' " &
+                                   ",'" & txtstarterkitcost.Text.ToString & "')"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
             MsgBox("Record saved successfully.", MsgBoxStyle.Information)
@@ -348,7 +358,11 @@ Public Class frmCaregiverStarterKits
                 MsgBox("Please select some value to continue", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, Me.Text)
                 dtpDateprovided.Focus()
                 Return False
-
+            ElseIf IsNumeric(txtstarterkitcost.Text) = False Then
+                ErrorProvider1.SetError(txtstarterkitcost, "Please enter a numeric cost to continue")
+                MsgBox("Please enter a numeric cost to continue", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, Me.Text)
+                txtstarterkitcost.Focus()
+                Return False
             End If
 
             'IF all controls have been validated, return true
@@ -378,7 +392,7 @@ Public Class frmCaregiverStarterKits
             Dim MyDatable As New Data.DataTable
             mysqlaction = "SELECT distinct  ovc_caregiver_starterkit.ovc_caregiver_starterkit_id,ovc_caregiver_starterkit.ovc_or_caregiver_id, OVCRegistrationDetails.caregiver_names, " &
                                            " starterkit_list.starterkit_name, ovc_caregiver_starterkit.starterkit_id, ovc_caregiver_starterkit.date_provided,  " &
-                                            "valuechain_List.valuechain_name " &
+                                            "valuechain_List.valuechain_name,ovc_caregiver_starterkit.starterkit_cost " &
                                             "FROM   ovc_caregiver_starterkit INNER JOIN " &
                                             "OVCRegistrationDetails ON ovc_caregiver_starterkit.ovc_or_caregiver_id = OVCRegistrationDetails.caregiver_id  " &
                                             "INNER JOIN starterkit_list On ovc_caregiver_starterkit.starterkit_id = starterkit_list.starterkit_id  " &
@@ -391,7 +405,7 @@ Public Class frmCaregiverStarterKits
                 txtcaregivernames.Text = MyDatable.Rows(0).Item("caregiver_names").ToString
                 cboStarterKit.SelectedValue = MyDatable.Rows(0).Item("starterkit_id").ToString
                 dtpDateprovided.Value = MyDatable.Rows(0).Item("date_provided").ToString
-
+                txtstarterkitcost.Text = MyDatable.Rows(0).Item("starterkit_cost").ToString
                 'initialize the record identifier
                 str_caregiver_starterkit_id = MyDatable.Rows(0).Item("ovc_caregiver_starterkit_id").ToString
 
@@ -420,6 +434,7 @@ Public Class frmCaregiverStarterKits
                               " SET " &
                                  " [starterkit_id] = '" & cboStarterKit.SelectedValue.ToString & "' " &
                                  " ,[date_provided] = '" & dtpDateprovided.Value & "' " &
+                                 " ,[starterkit_cost] = '" & txtstarterkitcost.Text.ToString & "' " &
                              "WHERE ovc_caregiver_starterkit_id = '" & str_caregiver_starterkit_id & "'"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Update)
@@ -441,4 +456,5 @@ Public Class frmCaregiverStarterKits
     Private Sub cbosearchcounty_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcounty.SelectedIndexChanged
 
     End Sub
+
 End Class

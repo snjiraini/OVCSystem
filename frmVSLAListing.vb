@@ -97,14 +97,19 @@ Public Class frmVSLAListing
            ",[ward_id] " &
            ",[ward] " &
            ",[county_id] " &
-           ",[county]) " &
+           ",[county] " &
+           ",[chairperson] " &
+           ",[chairperson_phonenumber]) " &
             "VALUES " &
            "( '" & txtName.Text.ToString & "'," &
           "'" & dtpDateRegistered.Value & "'," &
-          " " & cbowards.SelectedValue.ToString & "," &
+          " '" & cbowards.SelectedValue.ToString & "'," &
           " '" & cbowards.Text.ToString & "'," &
           " '" & cbocounty.SelectedValue.ToString & "'," &
-           "'" & cbocounty.Text.ToString & "')   "
+           "'" & cbocounty.Text.ToString & "'," &
+           "'" & txtchairpersonname.Text.ToString & "'," &
+           "'" & txtchairpersonnumber.Text.ToString & "')   "
+
 
 
 
@@ -163,7 +168,8 @@ Public Class frmVSLAListing
                 cbocounty.SelectedValue = MyDatable.Rows(0).Item("county_ID").ToString
                 cbowards.SelectedValue = MyDatable.Rows(0).Item("ward_ID").ToString
                 dtpDateRegistered.Value = MyDatable.Rows(0).Item("registration_date").ToString
-
+                txtchairpersonname.Text = MyDatable.Rows(0).Item("chairperson").ToString
+                txtchairpersonnumber.Text = MyDatable.Rows(0).Item("chairperson_phonenumber").ToString
             End If
 
             Panel1.Enabled = True
@@ -177,7 +183,35 @@ Public Class frmVSLAListing
     End Sub
 
     Private Sub BtnEdit_Click_1(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        Dim ErrorAction As New functions
+        Try
 
+            'update record
+            Dim mySqlAction As String = ""
+            Dim MyDBAction As New functions
+            mySqlAction = "UPDATE [dbo].[vsla_list] " &
+                               "SET [vsla_name] = '" & txtName.Text.ToString & "' " &
+                                 " ,[registration_date] = '" & dtpDateRegistered.Value & "' " &
+                                  ",[ward_id] = '" & cbowards.SelectedValue.ToString & "' " &
+                                 " ,[ward] = '" & cbowards.Text.ToString & "' " &
+                                 " ,[county_id] = '" & cbocounty.SelectedValue.ToString & "' " &
+                                 " ,[county] = '" & cbocounty.Text.ToString & "' " &
+                                  ",[chairperson] = '" & txtchairpersonname.Text.ToString & "' " &
+                                 " ,[chairperson_phonenumber] = '" & txtName.Text.ToString & "' " &
+                             "WHERE vslaid = '" & txtVSLAID.Text.ToString & "'"
+
+            MyDBAction.DBAction(mySqlAction, functions.DBActionType.Update)
+            MsgBox("Record updated successfully.", MsgBoxStyle.Information)
+
+            fillgrid()
+
+            Panel1.Enabled = False
+            BtnEdit.Enabled = False
+            BtnDelete.Enabled = False
+        Catch ex As Exception
+            ErrorAction.WriteToErrorLogFile("VSLAListing", "Edit", ex.Message) ''---Write error to error log file
+
+        End Try
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click

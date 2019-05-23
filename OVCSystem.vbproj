@@ -129,6 +129,9 @@
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2012.2.608.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2012.2.608.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="TelerikCommon, Version=2012.2.608.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="WinSCPnet, Version=1.2.6.5125, Culture=neutral, PublicKeyToken=2271ec4a3c56d0bf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\WinSCPnet.dll</HintPath>
@@ -156,12 +159,6 @@
       <DependentUpon>frmCaregiverValueChains.vb</DependentUpon>
     </Compile>
     <Compile Include="frmCaregiverValueChains.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCasePlans.Designer.vb">
-      <DependentUpon>frmCasePlans.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmCasePlans.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmChangePassword.Designer.vb">
@@ -213,12 +210,6 @@
     <Compile Include="frmOVCInfo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSelectCBO.Designer.vb">
-      <DependentUpon>frmSelectCBO.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmSelectCBO.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmStarterKitListing.Designer.vb">
       <DependentUpon>frmStarterKitListing.vb</DependentUpon>
     </Compile>
@@ -267,18 +258,6 @@
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCBO.Designer.vb">
-      <DependentUpon>frmCBO.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmCBO.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmServiceandStatusMonitoring.Designer.vb">
-      <DependentUpon>frmServiceandStatusMonitoring.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmServiceandStatusMonitoring.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="functions.vb" />
     <Compile Include="MDIMain.Designer.vb">
       <DependentUpon>MDIMain.vb</DependentUpon>
@@ -318,9 +297,6 @@
     <EmbeddedResource Include="frmCaregiverValueChains.resx">
       <DependentUpon>frmCaregiverValueChains.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCasePlans.resx">
-      <DependentUpon>frmCasePlans.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmChangePassword.resx">
       <DependentUpon>frmChangePassword.vb</DependentUpon>
     </EmbeddedResource>
@@ -344,9 +320,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOVCInfo.resx">
       <DependentUpon>frmOVCInfo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSelectCBO.resx">
-      <DependentUpon>frmSelectCBO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStarterKitListing.resx">
       <DependentUpon>frmStarterKitListing.vb</DependentUpon>
@@ -372,13 +345,6 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCBO.resx">
-      <DependentUpon>frmCBO.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmServiceandStatusMonitoring.resx">
-      <DependentUpon>frmServiceandStatusMonitoring.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MDIMain.resx">
       <DependentUpon>MDIMain.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -398,7 +364,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -26,6 +26,7 @@ Partial Class frmCaregiverStarterKits
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -34,10 +35,13 @@ Partial Class frmCaregiverStarterKits
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lnkNew = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtstarterkitcost = New System.Windows.Forms.TextBox()
         Me.dtpDateprovided = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cboStarterKit = New System.Windows.Forms.ComboBox()
@@ -63,6 +67,7 @@ Partial Class frmCaregiverStarterKits
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -116,7 +121,7 @@ Partial Class frmCaregiverStarterKits
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(8, 266)
+        Me.Label4.Location = New System.Drawing.Point(4, 311)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(443, 29)
@@ -126,11 +131,11 @@ Partial Class frmCaregiverStarterKits
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column7, Me.Column10, Me.Column8, Me.Column11})
-        Me.DataGridView2.Location = New System.Drawing.Point(7, 300)
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column7, Me.Column10, Me.Column8, Me.Column12, Me.Column11})
+        Me.DataGridView2.Location = New System.Drawing.Point(7, 343)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 28
-        Me.DataGridView2.Size = New System.Drawing.Size(1049, 526)
+        Me.DataGridView2.Size = New System.Drawing.Size(1049, 483)
         Me.DataGridView2.TabIndex = 63
         '
         'Column2
@@ -152,6 +157,14 @@ Partial Class frmCaregiverStarterKits
         '
         Me.Column8.HeaderText = "Date Provided"
         Me.Column8.Name = "Column8"
+        '
+        'Column12
+        '
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.Column12.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Column12.HeaderText = "Starterkit Cost"
+        Me.Column12.Name = "Column12"
         '
         'Column11
         '
@@ -185,6 +198,8 @@ Partial Class frmCaregiverStarterKits
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.txtstarterkitcost)
         Me.GroupBox1.Controls.Add(Me.dtpDateprovided)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.cboStarterKit)
@@ -199,10 +214,31 @@ Partial Class frmCaregiverStarterKits
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox1.Size = New System.Drawing.Size(1049, 202)
+        Me.GroupBox1.Size = New System.Drawing.Size(1049, 230)
         Me.GroupBox1.TabIndex = 38
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "The Client"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(26, 153)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(112, 17)
+        Me.Label5.TabIndex = 60
+        Me.Label5.Text = "Starterkit Cost"
+        '
+        'txtstarterkitcost
+        '
+        Me.txtstarterkitcost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtstarterkitcost.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtstarterkitcost.Location = New System.Drawing.Point(26, 176)
+        Me.txtstarterkitcost.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtstarterkitcost.Name = "txtstarterkitcost"
+        Me.txtstarterkitcost.Size = New System.Drawing.Size(192, 26)
+        Me.txtstarterkitcost.TabIndex = 59
         '
         'dtpDateprovided
         '
@@ -381,7 +417,7 @@ Partial Class frmCaregiverStarterKits
         Me.GroupBox8.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox8.Name = "GroupBox8"
         Me.GroupBox8.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox8.Size = New System.Drawing.Size(729, 86)
+        Me.GroupBox8.Size = New System.Drawing.Size(667, 86)
         Me.GroupBox8.TabIndex = 18
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "CHW Details"
@@ -444,36 +480,36 @@ Partial Class frmCaregiverStarterKits
         '
         'DataGridView1
         '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column9, Me.Column3, Me.Column4, Me.Column6, Me.Column5})
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column9, Me.Column13, Me.Column3, Me.Column4, Me.Column6, Me.Column5})
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.Location = New System.Drawing.Point(4, 180)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.Size = New System.Drawing.Size(1329, 616)
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridView1.Size = New System.Drawing.Size(1123, 584)
         Me.DataGridView1.TabIndex = 6
         '
         'Column1
@@ -485,6 +521,11 @@ Partial Class frmCaregiverStarterKits
         '
         Me.Column9.HeaderText = "CareGiverName"
         Me.Column9.Name = "Column9"
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "CHVNames"
+        Me.Column13.Name = "Column13"
         '
         'Column3
         '
@@ -513,7 +554,7 @@ Partial Class frmCaregiverStarterKits
         Me.btnSearch.Location = New System.Drawing.Point(1163, 135)
         Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(170, 35)
+        Me.btnSearch.Size = New System.Drawing.Size(108, 35)
         Me.btnSearch.TabIndex = 5
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = True
@@ -546,6 +587,7 @@ Partial Class frmCaregiverStarterKits
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1371, 875)
         Me.Controls.Add(Me.TabControl1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "frmCaregiverStarterKits"
         Me.Text = "frmCaregiverStarterKits"
         Me.TabControl1.ResumeLayout(False)
@@ -595,12 +637,6 @@ Partial Class frmCaregiverStarterKits
     Friend WithEvents cbosearchcbo As ComboBox
     Friend WithEvents cbosearchcounty As ComboBox
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column9 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewLinkColumn
     Friend WithEvents btnSearch As Button
     Friend WithEvents txtsearchcaregivername As TextBox
     Friend WithEvents Label8 As Label
@@ -609,5 +645,15 @@ Partial Class frmCaregiverStarterKits
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
     Friend WithEvents Column11 As DataGridViewLinkColumn
+    Friend WithEvents Label5 As Label
+    Friend WithEvents txtstarterkitcost As TextBox
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewLinkColumn
 End Class

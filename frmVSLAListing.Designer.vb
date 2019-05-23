@@ -38,6 +38,10 @@ Partial Class frmVSLAListing
         Me.btnpost = New System.Windows.Forms.Button()
         Me.BtnExit = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.txtchairpersonnumber = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtchairpersonname = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.txtVSLAID = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -55,13 +59,13 @@ Partial Class frmVSLAListing
         Me.cbocounty.Location = New System.Drawing.Point(245, 94)
         Me.cbocounty.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cbocounty.Name = "cbocounty"
-        Me.cbocounty.Size = New System.Drawing.Size(236, 28)
+        Me.cbocounty.Size = New System.Drawing.Size(338, 28)
         Me.cbocounty.TabIndex = 39
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(56, 190)
+        Me.Label5.Location = New System.Drawing.Point(41, 190)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(126, 20)
@@ -71,7 +75,7 @@ Partial Class frmVSLAListing
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(56, 95)
+        Me.Label4.Location = New System.Drawing.Point(41, 95)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(59, 20)
@@ -84,13 +88,13 @@ Partial Class frmVSLAListing
         Me.cbowards.Location = New System.Drawing.Point(245, 138)
         Me.cbowards.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cbowards.Name = "cbowards"
-        Me.cbowards.Size = New System.Drawing.Size(236, 28)
+        Me.cbowards.Size = New System.Drawing.Size(338, 28)
         Me.cbowards.TabIndex = 35
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(56, 138)
+        Me.Label3.Location = New System.Drawing.Point(41, 138)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(47, 20)
@@ -171,6 +175,10 @@ Partial Class frmVSLAListing
         '
         Me.Panel1.AccessibleName = ""
         Me.Panel1.AccessibleRole = System.Windows.Forms.AccessibleRole.None
+        Me.Panel1.Controls.Add(Me.txtchairpersonnumber)
+        Me.Panel1.Controls.Add(Me.Label7)
+        Me.Panel1.Controls.Add(Me.txtchairpersonname)
+        Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.cbocounty)
         Me.Panel1.Controls.Add(Me.dtpDateRegistered)
         Me.Panel1.Controls.Add(Me.Label5)
@@ -185,8 +193,46 @@ Partial Class frmVSLAListing
         Me.Panel1.Location = New System.Drawing.Point(12, 31)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(655, 221)
+        Me.Panel1.Size = New System.Drawing.Size(655, 301)
         Me.Panel1.TabIndex = 52
+        '
+        'txtchairpersonnumber
+        '
+        Me.txtchairpersonnumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtchairpersonnumber.Location = New System.Drawing.Point(245, 270)
+        Me.txtchairpersonnumber.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtchairpersonnumber.Name = "txtchairpersonnumber"
+        Me.txtchairpersonnumber.Size = New System.Drawing.Size(236, 26)
+        Me.txtchairpersonnumber.TabIndex = 43
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(41, 270)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(201, 20)
+        Me.Label7.TabIndex = 42
+        Me.Label7.Text = "Chairperson PhoneNumber"
+        '
+        'txtchairpersonname
+        '
+        Me.txtchairpersonname.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtchairpersonname.Location = New System.Drawing.Point(245, 234)
+        Me.txtchairpersonname.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtchairpersonname.Name = "txtchairpersonname"
+        Me.txtchairpersonname.Size = New System.Drawing.Size(338, 26)
+        Me.txtchairpersonname.TabIndex = 41
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(41, 234)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(139, 20)
+        Me.Label6.TabIndex = 40
+        Me.Label6.Text = "Chairperson name"
         '
         'txtName
         '
@@ -194,7 +240,7 @@ Partial Class frmVSLAListing
         Me.txtName.Location = New System.Drawing.Point(245, 54)
         Me.txtName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(236, 26)
+        Me.txtName.Size = New System.Drawing.Size(338, 26)
         Me.txtName.TabIndex = 5
         '
         'txtVSLAID
@@ -210,7 +256,7 @@ Partial Class frmVSLAListing
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(56, 54)
+        Me.Label2.Location = New System.Drawing.Point(41, 54)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(97, 20)
@@ -221,7 +267,7 @@ Partial Class frmVSLAListing
         '
         Me.Label1.AccessibleRole = System.Windows.Forms.AccessibleRole.None
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(56, 12)
+        Me.Label1.Location = New System.Drawing.Point(41, 12)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(72, 20)
@@ -232,7 +278,7 @@ Partial Class frmVSLAListing
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column6, Me.Column5})
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 261)
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 342)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(1061, 369)
@@ -264,7 +310,7 @@ Partial Class frmVSLAListing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1086, 644)
+        Me.ClientSize = New System.Drawing.Size(1086, 716)
         Me.Controls.Add(Me.lnkNew)
         Me.Controls.Add(Me.btnpost)
         Me.Controls.Add(Me.BtnExit)
@@ -306,4 +352,8 @@ Partial Class frmVSLAListing
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents BtnDelete As Button
     Friend WithEvents BtnEdit As Button
+    Friend WithEvents txtchairpersonnumber As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents txtchairpersonname As TextBox
+    Friend WithEvents Label6 As Label
 End Class

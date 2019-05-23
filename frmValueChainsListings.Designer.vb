@@ -30,12 +30,15 @@ Partial Class frmValueChainsListings
         Me.btnpost = New System.Windows.Forms.Button()
         Me.BtnExit = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cbovaluechaintype = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.BtnDelete = New System.Windows.Forms.Button()
-        Me.BtnEdit = New System.Windows.Forms.Button()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.BtnDelete = New System.Windows.Forms.Button()
+        Me.BtnEdit = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -116,6 +119,8 @@ Partial Class frmValueChainsListings
         '
         Me.Panel1.AccessibleName = ""
         Me.Panel1.AccessibleRole = System.Windows.Forms.AccessibleRole.None
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.cbovaluechaintype)
         Me.Panel1.Controls.Add(Me.txtName)
         Me.Panel1.Controls.Add(Me.txtValueChainID)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -127,15 +132,53 @@ Partial Class frmValueChainsListings
         Me.Panel1.Size = New System.Drawing.Size(655, 221)
         Me.Panel1.TabIndex = 45
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(56, 101)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(129, 20)
+        Me.Label3.TabIndex = 7
+        Me.Label3.Text = "ValueChain Type"
+        '
+        'cbovaluechaintype
+        '
+        Me.cbovaluechaintype.FormattingEnabled = True
+        Me.cbovaluechaintype.Location = New System.Drawing.Point(245, 98)
+        Me.cbovaluechaintype.Name = "cbovaluechaintype"
+        Me.cbovaluechaintype.Size = New System.Drawing.Size(236, 28)
+        Me.cbovaluechaintype.TabIndex = 6
+        '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column5})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column5})
         Me.DataGridView1.Location = New System.Drawing.Point(17, 263)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(897, 369)
         Me.DataGridView1.TabIndex = 50
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "ValueChain ID"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "ValueChain Name"
+        Me.Column2.Name = "Column2"
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "ValueChain Type"
+        Me.Column3.Name = "Column3"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Select"
+        Me.Column5.Name = "Column5"
         '
         'BtnDelete
         '
@@ -158,21 +201,6 @@ Partial Class frmValueChainsListings
         Me.BtnEdit.TabIndex = 46
         Me.BtnEdit.Text = "&Edit"
         Me.BtnEdit.UseVisualStyleBackColor = True
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "ValueChain ID"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "ValueChain Name"
-        Me.Column2.Name = "Column2"
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Select"
-        Me.Column5.Name = "Column5"
         '
         'frmValueChainsListings
         '
@@ -206,7 +234,10 @@ Partial Class frmValueChainsListings
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents BtnDelete As Button
     Friend WithEvents BtnEdit As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents cbovaluechaintype As ComboBox
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewLinkColumn
 End Class

@@ -15,11 +15,14 @@ Public Class frmVsla_membership
             'populate the datagrid with all the data
             Dim mySqlAction As String = "SELECT distinct caregiver_id,caregiver_names,county,cbo,ward,chv_names  from OVCRegistrationDetails where 1 = 1"
 
-            If IsNumeric(cbosearchcounty.SelectedValue) Then
+            If cbosearchcounty.Text.ToString.Length <> 0 Then
                 mySqlAction = mySqlAction & " AND OVCRegistrationDetails.county = '" & cbosearchcounty.Text & "'"
             End If
-            If IsNumeric(cbosearchcbo.SelectedValue) Then
-                mySqlAction = mySqlAction & " AND OVCRegistrationDetails.cbo_id = '" & cbosearchcbo.SelectedValue & "'"
+            If cbosearchward.Text.ToString.Length <> 0 Then
+                mySqlAction = mySqlAction & " AND OVCRegistrationDetails.ward = '" & cbosearchward.Text & "'"
+            End If
+            If cbosearchcbo.Text.ToString.Length <> 0 Then
+                mySqlAction = mySqlAction & " AND OVCRegistrationDetails.cbo = '" & cbosearchcbo.Text.ToString & "'"
             End If
             If txtsearchchvname.Text.ToString.Length <> 0 Then
                 mySqlAction = mySqlAction & " AND (OVCRegistrationDetails.chv_names like '%" & txtsearchchvname.Text.ToString & "%')"
@@ -48,7 +51,7 @@ Public Class frmVsla_membership
                     mychvnames = MyDatable.Rows(K).Item("chv_names").ToString
 
 
-                    DataGridView1.Rows.Add(mycpimsid, mychvnames, mycbo, Mycounty, myward, "Select")
+                    DataGridView1.Rows.Add(mycpimsid, mycaregivernames, mychvnames, mycbo, Mycounty, myward, "Select")
                 Next
             Else 'if there are no rows returned
                 MsgBox("Search query returned no results", MsgBoxStyle.Exclamation)
@@ -118,7 +121,10 @@ Public Class frmVsla_membership
         Try
 
             'populate the combobox
-            Dim mySqlAction As String = "select distinct cbo_id,cbo from OVCRegistrationDetails where county = '" & mycounty.ToString & "' order by cbo asc"
+            Dim mySqlAction As String = "select ROW_NUMBER() OVER(ORDER BY cbo ASC) AS cbo_id, cbo,county " &
+                                        "from " &
+                                        "(select distinct cbo,county from OVCRegistrationDetails) tbl_cbo  " &
+                                        "where county = '" & mycounty.ToString & "' order by cbo asc"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
@@ -445,5 +451,9 @@ Public Class frmVsla_membership
             ErrorAction.WriteToErrorLogFile("vslamembership", "GridCellClick", ex.Message) ''---Write error to error log file
 
         End Try
+    End Sub
+
+    Private Sub cbosearchcounty_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcounty.SelectedIndexChanged
+
     End Sub
 End Class

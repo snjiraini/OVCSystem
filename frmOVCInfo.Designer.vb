@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmOVCInfo
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,11 @@ Partial Class frmOVCInfo
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -34,8 +34,6 @@ Partial Class frmOVCInfo
         Me.dtpDateofExit = New System.Windows.Forms.DateTimePicker()
         Me.Label39 = New System.Windows.Forms.Label()
         Me.chkExit = New System.Windows.Forms.CheckBox()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.dtpDateofRegistration = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.txtcaregiverhivstatus = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
@@ -64,18 +62,13 @@ Partial Class frmOVCInfo
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cbodisabilitytype = New System.Windows.Forms.ComboBox()
         Me.txtgender = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtward = New System.Windows.Forms.TextBox()
         Me.txtchvnames = New System.Windows.Forms.TextBox()
         Me.txtcbo = New System.Windows.Forms.TextBox()
         Me.txtcounty = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.txtAge = New System.Windows.Forms.TextBox()
-        Me.Label58 = New System.Windows.Forms.Label()
-        Me.txtNCPWDnum = New System.Windows.Forms.TextBox()
-        Me.chkOVCDisabled = New System.Windows.Forms.CheckBox()
         Me.Label57 = New System.Windows.Forms.Label()
         Me.txtbcertnumber = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -116,6 +109,34 @@ Partial Class frmOVCInfo
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.txtsearchovcname = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.dtpScreeningDate = New System.Windows.Forms.DateTimePicker()
+        Me.cboScreeningOutcome = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.dtpDateofTesting = New System.Windows.Forms.DateTimePicker()
+        Me.cboTestingOutcome = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.cbodisabilitytype = New System.Windows.Forms.ComboBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label58 = New System.Windows.Forms.Label()
+        Me.txtNCPWDnum = New System.Windows.Forms.TextBox()
+        Me.chkOVCDisabled = New System.Windows.Forms.CheckBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.dtpDateofDisabilityAssessment = New System.Windows.Forms.DateTimePicker()
+        Me.cboDiagnosis = New System.Windows.Forms.ComboBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.cboIntervention = New System.Windows.Forms.ComboBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.txtNCPWDContacts = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.cboRehabCentre = New System.Windows.Forms.ComboBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.dtpDateofRegistration = New System.Windows.Forms.DateTimePicker()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -128,6 +149,7 @@ Partial Class frmOVCInfo
         Me.Panel2.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -138,7 +160,7 @@ Partial Class frmOVCInfo
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1630, 774)
+        Me.TabControl1.Size = New System.Drawing.Size(1606, 945)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
@@ -151,7 +173,7 @@ Partial Class frmOVCInfo
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TabPage1.Size = New System.Drawing.Size(1622, 741)
+        Me.TabPage1.Size = New System.Drawing.Size(1598, 912)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Client Info"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -161,9 +183,8 @@ Partial Class frmOVCInfo
         Me.Panel1.AccessibleName = ""
         Me.Panel1.AccessibleRole = System.Windows.Forms.AccessibleRole.None
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.GroupBox4)
         Me.Panel1.Controls.Add(Me.GroupBox7)
-        Me.Panel1.Controls.Add(Me.Label42)
-        Me.Panel1.Controls.Add(Me.dtpDateofRegistration)
         Me.Panel1.Controls.Add(Me.GroupBox5)
         Me.Panel1.Controls.Add(Me.GroupBox3)
         Me.Panel1.Controls.Add(Me.GroupBox2)
@@ -171,7 +192,7 @@ Partial Class frmOVCInfo
         Me.Panel1.Location = New System.Drawing.Point(4, 10)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1461, 715)
+        Me.Panel1.Size = New System.Drawing.Size(1430, 889)
         Me.Panel1.TabIndex = 1
         '
         'GroupBox7
@@ -183,7 +204,7 @@ Partial Class frmOVCInfo
         Me.GroupBox7.Controls.Add(Me.Label39)
         Me.GroupBox7.Controls.Add(Me.chkExit)
         Me.GroupBox7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox7.Location = New System.Drawing.Point(537, 512)
+        Me.GroupBox7.Location = New System.Drawing.Point(964, 722)
         Me.GroupBox7.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox7.Name = "GroupBox7"
         Me.GroupBox7.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -249,27 +270,6 @@ Partial Class frmOVCInfo
         Me.chkExit.Text = "Exit Client"
         Me.chkExit.UseVisualStyleBackColor = True
         '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.Location = New System.Drawing.Point(993, 639)
-        Me.Label42.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(154, 17)
-        Me.Label42.TabIndex = 61
-        Me.Label42.Text = "Date of Registration"
-        '
-        'dtpDateofRegistration
-        '
-        Me.dtpDateofRegistration.Enabled = False
-        Me.dtpDateofRegistration.Location = New System.Drawing.Point(1194, 628)
-        Me.dtpDateofRegistration.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.dtpDateofRegistration.Name = "dtpDateofRegistration"
-        Me.dtpDateofRegistration.Size = New System.Drawing.Size(255, 26)
-        Me.dtpDateofRegistration.TabIndex = 0
-        '
         'GroupBox5
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.Moccasin
@@ -280,11 +280,11 @@ Partial Class frmOVCInfo
         Me.GroupBox5.Controls.Add(Me.Label25)
         Me.GroupBox5.Controls.Add(Me.txtcaregivernames)
         Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(537, 12)
+        Me.GroupBox5.Location = New System.Drawing.Point(493, 13)
         Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox5.Size = New System.Drawing.Size(910, 192)
+        Me.GroupBox5.Size = New System.Drawing.Size(450, 201)
         Me.GroupBox5.TabIndex = 1
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "CareGiver"
@@ -293,17 +293,17 @@ Partial Class frmOVCInfo
         '
         Me.txtcaregiverhivstatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtcaregiverhivstatus.Enabled = False
-        Me.txtcaregiverhivstatus.Location = New System.Drawing.Point(217, 89)
+        Me.txtcaregiverhivstatus.Location = New System.Drawing.Point(188, 107)
         Me.txtcaregiverhivstatus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtcaregiverhivstatus.Name = "txtcaregiverhivstatus"
-        Me.txtcaregiverhivstatus.Size = New System.Drawing.Size(237, 26)
+        Me.txtcaregiverhivstatus.Size = New System.Drawing.Size(234, 26)
         Me.txtcaregiverhivstatus.TabIndex = 38
         '
         'Label29
         '
         Me.Label29.AutoSize = True
         Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label29.Location = New System.Drawing.Point(8, 141)
+        Me.Label29.Location = New System.Drawing.Point(12, 158)
         Me.Label29.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(23, 17)
@@ -314,17 +314,17 @@ Partial Class frmOVCInfo
         '
         Me.txtcaregiverID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtcaregiverID.Enabled = False
-        Me.txtcaregiverID.Location = New System.Drawing.Point(217, 143)
+        Me.txtcaregiverID.Location = New System.Drawing.Point(188, 163)
         Me.txtcaregiverID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtcaregiverID.Name = "txtcaregiverID"
-        Me.txtcaregiverID.Size = New System.Drawing.Size(293, 26)
+        Me.txtcaregiverID.Size = New System.Drawing.Size(234, 26)
         Me.txtcaregiverID.TabIndex = 35
         '
         'Label23
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(9, 89)
+        Me.Label23.Location = New System.Drawing.Point(12, 111)
         Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(159, 17)
@@ -335,7 +335,7 @@ Partial Class frmOVCInfo
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(8, 34)
+        Me.Label25.Location = New System.Drawing.Point(12, 33)
         Me.Label25.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(124, 17)
@@ -346,15 +346,23 @@ Partial Class frmOVCInfo
         '
         Me.txtcaregivernames.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtcaregivernames.Enabled = False
-        Me.txtcaregivernames.Location = New System.Drawing.Point(217, 30)
+        Me.txtcaregivernames.Location = New System.Drawing.Point(12, 53)
         Me.txtcaregivernames.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtcaregivernames.Name = "txtcaregivernames"
-        Me.txtcaregivernames.Size = New System.Drawing.Size(524, 26)
+        Me.txtcaregivernames.Size = New System.Drawing.Size(410, 26)
         Me.txtcaregivernames.TabIndex = 23
         '
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox3.Controls.Add(Me.cboTestingOutcome)
+        Me.GroupBox3.Controls.Add(Me.Label13)
+        Me.GroupBox3.Controls.Add(Me.Label12)
+        Me.GroupBox3.Controls.Add(Me.dtpDateofTesting)
+        Me.GroupBox3.Controls.Add(Me.cboScreeningOutcome)
+        Me.GroupBox3.Controls.Add(Me.Label10)
+        Me.GroupBox3.Controls.Add(Me.Label9)
+        Me.GroupBox3.Controls.Add(Me.dtpScreeningDate)
         Me.GroupBox3.Controls.Add(Me.txtimmunization)
         Me.GroupBox3.Controls.Add(Me.txtfacility)
         Me.GroupBox3.Controls.Add(Me.txtartstatus)
@@ -368,20 +376,20 @@ Partial Class frmOVCInfo
         Me.GroupBox3.Controls.Add(Me.Label22)
         Me.GroupBox3.Controls.Add(Me.Label17)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(537, 215)
+        Me.GroupBox3.Location = New System.Drawing.Point(493, 231)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox3.Size = New System.Drawing.Size(450, 272)
+        Me.GroupBox3.Size = New System.Drawing.Size(450, 478)
         Me.GroupBox3.TabIndex = 41
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Health"
+        Me.GroupBox3.Text = "Health - HIV"
         '
         'txtimmunization
         '
         Me.txtimmunization.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtimmunization.Enabled = False
-        Me.txtimmunization.Location = New System.Drawing.Point(194, 237)
+        Me.txtimmunization.Location = New System.Drawing.Point(185, 227)
         Me.txtimmunization.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtimmunization.Name = "txtimmunization"
         Me.txtimmunization.Size = New System.Drawing.Size(237, 26)
@@ -391,7 +399,7 @@ Partial Class frmOVCInfo
         '
         Me.txtfacility.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtfacility.Enabled = False
-        Me.txtfacility.Location = New System.Drawing.Point(121, 112)
+        Me.txtfacility.Location = New System.Drawing.Point(115, 104)
         Me.txtfacility.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtfacility.Name = "txtfacility"
         Me.txtfacility.Size = New System.Drawing.Size(307, 26)
@@ -401,7 +409,7 @@ Partial Class frmOVCInfo
         '
         Me.txtartstatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtartstatus.Enabled = False
-        Me.txtartstatus.Location = New System.Drawing.Point(191, 70)
+        Me.txtartstatus.Location = New System.Drawing.Point(185, 63)
         Me.txtartstatus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtartstatus.Name = "txtartstatus"
         Me.txtartstatus.Size = New System.Drawing.Size(237, 26)
@@ -411,7 +419,7 @@ Partial Class frmOVCInfo
         '
         Me.txthivstatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txthivstatus.Enabled = False
-        Me.txthivstatus.Location = New System.Drawing.Point(191, 22)
+        Me.txthivstatus.Location = New System.Drawing.Point(185, 22)
         Me.txthivstatus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txthivstatus.Name = "txthivstatus"
         Me.txthivstatus.Size = New System.Drawing.Size(237, 26)
@@ -421,7 +429,7 @@ Partial Class frmOVCInfo
         '
         Me.Label59.AutoSize = True
         Me.Label59.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label59.Location = New System.Drawing.Point(12, 189)
+        Me.Label59.Location = New System.Drawing.Point(16, 197)
         Me.Label59.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(99, 17)
@@ -434,7 +442,7 @@ Partial Class frmOVCInfo
         Me.txtcccnumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtcccnumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtcccnumber.Enabled = False
-        Me.txtcccnumber.Location = New System.Drawing.Point(194, 189)
+        Me.txtcccnumber.Location = New System.Drawing.Point(185, 186)
         Me.txtcccnumber.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtcccnumber.Name = "txtcccnumber"
         Me.txtcccnumber.Size = New System.Drawing.Size(237, 26)
@@ -445,7 +453,7 @@ Partial Class frmOVCInfo
         '
         Me.Label56.AutoSize = True
         Me.Label56.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label56.Location = New System.Drawing.Point(12, 161)
+        Me.Label56.Location = New System.Drawing.Point(16, 157)
         Me.Label56.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(123, 17)
@@ -456,7 +464,7 @@ Partial Class frmOVCInfo
         'dtpDateofLinkage
         '
         Me.dtpDateofLinkage.Enabled = False
-        Me.dtpDateofLinkage.Location = New System.Drawing.Point(194, 157)
+        Me.dtpDateofLinkage.Location = New System.Drawing.Point(185, 145)
         Me.dtpDateofLinkage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.dtpDateofLinkage.Name = "dtpDateofLinkage"
         Me.dtpDateofLinkage.Size = New System.Drawing.Size(237, 26)
@@ -467,7 +475,7 @@ Partial Class frmOVCInfo
         '
         Me.Label54.AutoSize = True
         Me.Label54.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label54.Location = New System.Drawing.Point(12, 231)
+        Me.Label54.Location = New System.Drawing.Point(16, 237)
         Me.Label54.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label54.Name = "Label54"
         Me.Label54.Size = New System.Drawing.Size(102, 17)
@@ -478,7 +486,7 @@ Partial Class frmOVCInfo
         '
         Me.Label44.AutoSize = True
         Me.Label44.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label44.Location = New System.Drawing.Point(12, 117)
+        Me.Label44.Location = New System.Drawing.Point(16, 117)
         Me.Label44.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(59, 17)
@@ -489,7 +497,7 @@ Partial Class frmOVCInfo
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(12, 37)
+        Me.Label22.Location = New System.Drawing.Point(16, 37)
         Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(84, 17)
@@ -500,7 +508,7 @@ Partial Class frmOVCInfo
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(12, 83)
+        Me.Label17.Location = New System.Drawing.Point(16, 77)
         Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(90, 17)
@@ -518,11 +526,11 @@ Partial Class frmOVCInfo
         Me.GroupBox2.Controls.Add(Me.Label48)
         Me.GroupBox2.Controls.Add(Me.Label16)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(996, 215)
+        Me.GroupBox2.Location = New System.Drawing.Point(963, 13)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox2.Size = New System.Drawing.Size(451, 272)
+        Me.GroupBox2.Size = New System.Drawing.Size(451, 201)
         Me.GroupBox2.TabIndex = 40
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Education"
@@ -531,7 +539,7 @@ Partial Class frmOVCInfo
         '
         Me.txtclass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtclass.Enabled = False
-        Me.txtclass.Location = New System.Drawing.Point(198, 197)
+        Me.txtclass.Location = New System.Drawing.Point(12, 163)
         Me.txtclass.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtclass.Name = "txtclass"
         Me.txtclass.Size = New System.Drawing.Size(237, 26)
@@ -541,7 +549,7 @@ Partial Class frmOVCInfo
         '
         Me.txtschoolname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtschoolname.Enabled = False
-        Me.txtschoolname.Location = New System.Drawing.Point(9, 155)
+        Me.txtschoolname.Location = New System.Drawing.Point(11, 111)
         Me.txtschoolname.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtschoolname.Name = "txtschoolname"
         Me.txtschoolname.Size = New System.Drawing.Size(418, 26)
@@ -551,7 +559,7 @@ Partial Class frmOVCInfo
         '
         Me.txtschoollevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtschoollevel.Enabled = False
-        Me.txtschoollevel.Location = New System.Drawing.Point(193, 70)
+        Me.txtschoollevel.Location = New System.Drawing.Point(12, 53)
         Me.txtschoollevel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtschoollevel.Name = "txtschoollevel"
         Me.txtschoollevel.Size = New System.Drawing.Size(237, 26)
@@ -561,7 +569,7 @@ Partial Class frmOVCInfo
         '
         Me.Label49.AutoSize = True
         Me.Label49.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label49.Location = New System.Drawing.Point(9, 200)
+        Me.Label49.Location = New System.Drawing.Point(9, 143)
         Me.Label49.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label49.Name = "Label49"
         Me.Label49.Size = New System.Drawing.Size(47, 17)
@@ -572,7 +580,7 @@ Partial Class frmOVCInfo
         '
         Me.Label48.AutoSize = True
         Me.Label48.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label48.Location = New System.Drawing.Point(9, 118)
+        Me.Label48.Location = New System.Drawing.Point(9, 89)
         Me.Label48.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(103, 17)
@@ -583,7 +591,7 @@ Partial Class frmOVCInfo
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(9, 70)
+        Me.Label16.Location = New System.Drawing.Point(8, 33)
         Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(101, 17)
@@ -593,18 +601,15 @@ Partial Class frmOVCInfo
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox1.Controls.Add(Me.cbodisabilitytype)
+        Me.GroupBox1.Controls.Add(Me.Label42)
+        Me.GroupBox1.Controls.Add(Me.dtpDateofRegistration)
         Me.GroupBox1.Controls.Add(Me.txtgender)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.txtward)
         Me.GroupBox1.Controls.Add(Me.txtchvnames)
         Me.GroupBox1.Controls.Add(Me.txtcbo)
         Me.GroupBox1.Controls.Add(Me.txtcounty)
-        Me.GroupBox1.Controls.Add(Me.Label11)
         Me.GroupBox1.Controls.Add(Me.txtAge)
-        Me.GroupBox1.Controls.Add(Me.Label58)
-        Me.GroupBox1.Controls.Add(Me.txtNCPWDnum)
-        Me.GroupBox1.Controls.Add(Me.chkOVCDisabled)
         Me.GroupBox1.Controls.Add(Me.Label57)
         Me.GroupBox1.Controls.Add(Me.txtbcertnumber)
         Me.GroupBox1.Controls.Add(Me.Label6)
@@ -624,26 +629,17 @@ Partial Class frmOVCInfo
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox1.Size = New System.Drawing.Size(500, 681)
+        Me.GroupBox1.Size = New System.Drawing.Size(453, 681)
         Me.GroupBox1.TabIndex = 37
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "The Client"
-        '
-        'cbodisabilitytype
-        '
-        Me.cbodisabilitytype.FormattingEnabled = True
-        Me.cbodisabilitytype.Location = New System.Drawing.Point(198, 372)
-        Me.cbodisabilitytype.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.cbodisabilitytype.Name = "cbodisabilitytype"
-        Me.cbodisabilitytype.Size = New System.Drawing.Size(234, 28)
-        Me.cbodisabilitytype.TabIndex = 59
         '
         'txtgender
         '
         Me.txtgender.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtgender.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtgender.Enabled = False
-        Me.txtgender.Location = New System.Drawing.Point(197, 135)
+        Me.txtgender.Location = New System.Drawing.Point(267, 155)
         Me.txtgender.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtgender.Name = "txtgender"
         Me.txtgender.Size = New System.Drawing.Size(167, 26)
@@ -653,7 +649,7 @@ Partial Class frmOVCInfo
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(26, 224)
+        Me.Label2.Location = New System.Drawing.Point(30, 275)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(36, 17)
@@ -665,7 +661,7 @@ Partial Class frmOVCInfo
         Me.txtward.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtward.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtward.Enabled = False
-        Me.txtward.Location = New System.Drawing.Point(197, 530)
+        Me.txtward.Location = New System.Drawing.Point(197, 500)
         Me.txtward.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtward.Name = "txtward"
         Me.txtward.Size = New System.Drawing.Size(237, 26)
@@ -676,7 +672,7 @@ Partial Class frmOVCInfo
         Me.txtchvnames.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtchvnames.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtchvnames.Enabled = False
-        Me.txtchvnames.Location = New System.Drawing.Point(26, 603)
+        Me.txtchvnames.Location = New System.Drawing.Point(26, 563)
         Me.txtchvnames.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtchvnames.Name = "txtchvnames"
         Me.txtchvnames.Size = New System.Drawing.Size(405, 26)
@@ -687,7 +683,7 @@ Partial Class frmOVCInfo
         Me.txtcbo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtcbo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtcbo.Enabled = False
-        Me.txtcbo.Location = New System.Drawing.Point(197, 483)
+        Me.txtcbo.Location = New System.Drawing.Point(197, 437)
         Me.txtcbo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtcbo.Name = "txtcbo"
         Me.txtcbo.Size = New System.Drawing.Size(237, 26)
@@ -698,77 +694,30 @@ Partial Class frmOVCInfo
         Me.txtcounty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtcounty.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtcounty.Enabled = False
-        Me.txtcounty.Location = New System.Drawing.Point(197, 434)
+        Me.txtcounty.Location = New System.Drawing.Point(197, 374)
         Me.txtcounty.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtcounty.Name = "txtcounty"
         Me.txtcounty.Size = New System.Drawing.Size(237, 26)
         Me.txtcounty.TabIndex = 53
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Enabled = False
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(26, 372)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(134, 17)
-        Me.Label11.TabIndex = 50
-        Me.Label11.Text = "Type of Disability"
         '
         'txtAge
         '
         Me.txtAge.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAge.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtAge.Enabled = False
-        Me.txtAge.Location = New System.Drawing.Point(197, 224)
+        Me.txtAge.Location = New System.Drawing.Point(352, 266)
         Me.txtAge.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtAge.Name = "txtAge"
         Me.txtAge.ReadOnly = True
         Me.txtAge.Size = New System.Drawing.Size(79, 26)
         Me.txtAge.TabIndex = 48
         '
-        'Label58
-        '
-        Me.Label58.AutoSize = True
-        Me.Label58.Enabled = False
-        Me.Label58.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label58.Location = New System.Drawing.Point(167, 321)
-        Me.Label58.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(73, 17)
-        Me.Label58.TabIndex = 47
-        Me.Label58.Text = "NCPWD#"
-        '
-        'txtNCPWDnum
-        '
-        Me.txtNCPWDnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtNCPWDnum.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtNCPWDnum.Enabled = False
-        Me.txtNCPWDnum.Location = New System.Drawing.Point(267, 323)
-        Me.txtNCPWDnum.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.txtNCPWDnum.Name = "txtNCPWDnum"
-        Me.txtNCPWDnum.Size = New System.Drawing.Size(167, 26)
-        Me.txtNCPWDnum.TabIndex = 46
-        '
-        'chkOVCDisabled
-        '
-        Me.chkOVCDisabled.AutoSize = True
-        Me.chkOVCDisabled.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkOVCDisabled.Location = New System.Drawing.Point(26, 321)
-        Me.chkOVCDisabled.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chkOVCDisabled.Name = "chkOVCDisabled"
-        Me.chkOVCDisabled.Size = New System.Drawing.Size(156, 24)
-        Me.chkOVCDisabled.TabIndex = 45
-        Me.chkOVCDisabled.Text = "OVC is disabled"
-        Me.chkOVCDisabled.UseVisualStyleBackColor = True
-        '
         'Label57
         '
         Me.Label57.AutoSize = True
         Me.Label57.Enabled = False
         Me.Label57.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label57.Location = New System.Drawing.Point(167, 281)
+        Me.Label57.Location = New System.Drawing.Point(194, 311)
         Me.Label57.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label57.Name = "Label57"
         Me.Label57.Size = New System.Drawing.Size(55, 17)
@@ -780,7 +729,7 @@ Partial Class frmOVCInfo
         Me.txtbcertnumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtbcertnumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtbcertnumber.Enabled = False
-        Me.txtbcertnumber.Location = New System.Drawing.Point(267, 275)
+        Me.txtbcertnumber.Location = New System.Drawing.Point(267, 311)
         Me.txtbcertnumber.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtbcertnumber.Name = "txtbcertnumber"
         Me.txtbcertnumber.Size = New System.Drawing.Size(167, 26)
@@ -790,7 +739,7 @@ Partial Class frmOVCInfo
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(26, 434)
+        Me.Label6.Location = New System.Drawing.Point(26, 384)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(58, 17)
@@ -801,7 +750,7 @@ Partial Class frmOVCInfo
         '
         Me.Label40.AutoSize = True
         Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label40.Location = New System.Drawing.Point(26, 534)
+        Me.Label40.Location = New System.Drawing.Point(26, 510)
         Me.Label40.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(46, 17)
@@ -812,7 +761,7 @@ Partial Class frmOVCInfo
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(26, 579)
+        Me.Label15.Location = New System.Drawing.Point(26, 546)
         Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(85, 17)
@@ -823,7 +772,7 @@ Partial Class frmOVCInfo
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(26, 486)
+        Me.Label14.Location = New System.Drawing.Point(26, 447)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(40, 17)
@@ -834,7 +783,7 @@ Partial Class frmOVCInfo
         '
         Me.txtOVCid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtOVCid.Enabled = False
-        Me.txtOVCid.Location = New System.Drawing.Point(197, 30)
+        Me.txtOVCid.Location = New System.Drawing.Point(197, 29)
         Me.txtOVCid.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtOVCid.Name = "txtOVCid"
         Me.txtOVCid.ReadOnly = True
@@ -867,7 +816,7 @@ Partial Class frmOVCInfo
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(26, 143)
+        Me.Label4.Location = New System.Drawing.Point(26, 164)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(62, 17)
@@ -879,7 +828,7 @@ Partial Class frmOVCInfo
         Me.txtovcnames.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtovcnames.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtovcnames.Enabled = False
-        Me.txtovcnames.Location = New System.Drawing.Point(26, 95)
+        Me.txtovcnames.Location = New System.Drawing.Point(26, 92)
         Me.txtovcnames.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtovcnames.Name = "txtovcnames"
         Me.txtovcnames.Size = New System.Drawing.Size(408, 26)
@@ -888,7 +837,7 @@ Partial Class frmOVCInfo
         'dtpDateofBirth
         '
         Me.dtpDateofBirth.Enabled = False
-        Me.dtpDateofBirth.Location = New System.Drawing.Point(198, 186)
+        Me.dtpDateofBirth.Location = New System.Drawing.Point(197, 218)
         Me.dtpDateofBirth.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.dtpDateofBirth.Name = "dtpDateofBirth"
         Me.dtpDateofBirth.Size = New System.Drawing.Size(237, 26)
@@ -898,7 +847,7 @@ Partial Class frmOVCInfo
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(26, 186)
+        Me.Label5.Location = New System.Drawing.Point(23, 227)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(100, 17)
@@ -909,7 +858,7 @@ Partial Class frmOVCInfo
         '
         Me.chkHasCert.AutoSize = True
         Me.chkHasCert.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkHasCert.Location = New System.Drawing.Point(26, 274)
+        Me.chkHasCert.Location = New System.Drawing.Point(8, 304)
         Me.chkHasCert.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.chkHasCert.Name = "chkHasCert"
         Me.chkHasCert.Size = New System.Drawing.Size(144, 24)
@@ -922,7 +871,7 @@ Partial Class frmOVCInfo
         Me.btnpost.BackColor = System.Drawing.Color.LightSteelBlue
         Me.btnpost.Enabled = False
         Me.btnpost.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnpost.Location = New System.Drawing.Point(1479, 368)
+        Me.btnpost.Location = New System.Drawing.Point(1454, 368)
         Me.btnpost.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpost.Name = "btnpost"
         Me.btnpost.Size = New System.Drawing.Size(130, 55)
@@ -934,7 +883,7 @@ Partial Class frmOVCInfo
         '
         Me.BtnExit.BackColor = System.Drawing.Color.Red
         Me.BtnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnExit.Location = New System.Drawing.Point(1479, 434)
+        Me.BtnExit.Location = New System.Drawing.Point(1454, 434)
         Me.BtnExit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnExit.Name = "BtnExit"
         Me.BtnExit.Size = New System.Drawing.Size(130, 55)
@@ -947,7 +896,7 @@ Partial Class frmOVCInfo
         Me.BtnEdit.BackColor = System.Drawing.Color.LightSteelBlue
         Me.BtnEdit.Enabled = False
         Me.BtnEdit.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnEdit.Location = New System.Drawing.Point(1479, 303)
+        Me.BtnEdit.Location = New System.Drawing.Point(1454, 303)
         Me.BtnEdit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(130, 55)
@@ -1076,35 +1025,35 @@ Partial Class frmOVCInfo
         '
         'DataGridView1
         '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column6, Me.Column8, Me.Column9, Me.Column5})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridView1.Location = New System.Drawing.Point(4, 180)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridView1.Size = New System.Drawing.Size(1570, 529)
         Me.DataGridView1.TabIndex = 6
         '
@@ -1178,23 +1127,348 @@ Partial Class frmOVCInfo
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "OVC Name"
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(16, 277)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(139, 17)
+        Me.Label9.TabIndex = 68
+        Me.Label9.Text = "Date of Screening"
+        Me.Label9.Visible = False
+        '
+        'dtpScreeningDate
+        '
+        Me.dtpScreeningDate.Enabled = False
+        Me.dtpScreeningDate.Location = New System.Drawing.Point(185, 268)
+        Me.dtpScreeningDate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpScreeningDate.Name = "dtpScreeningDate"
+        Me.dtpScreeningDate.Size = New System.Drawing.Size(237, 26)
+        Me.dtpScreeningDate.TabIndex = 67
+        Me.dtpScreeningDate.Visible = False
+        '
+        'cboScreeningOutcome
+        '
+        Me.cboScreeningOutcome.FormattingEnabled = True
+        Me.cboScreeningOutcome.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
+        Me.cboScreeningOutcome.Location = New System.Drawing.Point(188, 309)
+        Me.cboScreeningOutcome.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboScreeningOutcome.Name = "cboScreeningOutcome"
+        Me.cboScreeningOutcome.Size = New System.Drawing.Size(234, 28)
+        Me.cboScreeningOutcome.TabIndex = 70
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Enabled = False
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(16, 317)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(150, 17)
+        Me.Label10.TabIndex = 69
+        Me.Label10.Text = "Screening Outcome"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(16, 357)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(120, 17)
+        Me.Label12.TabIndex = 72
+        Me.Label12.Text = "Date of Testing"
+        Me.Label12.Visible = False
+        '
+        'dtpDateofTesting
+        '
+        Me.dtpDateofTesting.Enabled = False
+        Me.dtpDateofTesting.Location = New System.Drawing.Point(185, 352)
+        Me.dtpDateofTesting.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpDateofTesting.Name = "dtpDateofTesting"
+        Me.dtpDateofTesting.Size = New System.Drawing.Size(237, 26)
+        Me.dtpDateofTesting.TabIndex = 71
+        Me.dtpDateofTesting.Visible = False
+        '
+        'cboTestingOutcome
+        '
+        Me.cboTestingOutcome.FormattingEnabled = True
+        Me.cboTestingOutcome.Items.AddRange(New Object() {"Positive", "Negative", "Not Known"})
+        Me.cboTestingOutcome.Location = New System.Drawing.Point(188, 393)
+        Me.cboTestingOutcome.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboTestingOutcome.Name = "cboTestingOutcome"
+        Me.cboTestingOutcome.Size = New System.Drawing.Size(234, 28)
+        Me.cboTestingOutcome.TabIndex = 74
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Enabled = False
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(16, 397)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(131, 17)
+        Me.Label13.TabIndex = 73
+        Me.Label13.Text = "Testing Outcome"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox4.Controls.Add(Me.cboRehabCentre)
+        Me.GroupBox4.Controls.Add(Me.Label26)
+        Me.GroupBox4.Controls.Add(Me.TextBox1)
+        Me.GroupBox4.Controls.Add(Me.Label24)
+        Me.GroupBox4.Controls.Add(Me.txtNCPWDContacts)
+        Me.GroupBox4.Controls.Add(Me.Label21)
+        Me.GroupBox4.Controls.Add(Me.cboIntervention)
+        Me.GroupBox4.Controls.Add(Me.Label20)
+        Me.GroupBox4.Controls.Add(Me.cboDiagnosis)
+        Me.GroupBox4.Controls.Add(Me.Label19)
+        Me.GroupBox4.Controls.Add(Me.Label18)
+        Me.GroupBox4.Controls.Add(Me.dtpDateofDisabilityAssessment)
+        Me.GroupBox4.Controls.Add(Me.cbodisabilitytype)
+        Me.GroupBox4.Controls.Add(Me.Label11)
+        Me.GroupBox4.Controls.Add(Me.Label58)
+        Me.GroupBox4.Controls.Add(Me.txtNCPWDnum)
+        Me.GroupBox4.Controls.Add(Me.chkOVCDisabled)
+        Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox4.Location = New System.Drawing.Point(964, 234)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox4.Size = New System.Drawing.Size(450, 478)
+        Me.GroupBox4.TabIndex = 63
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Health - Disability"
+        '
+        'cbodisabilitytype
+        '
+        Me.cbodisabilitytype.FormattingEnabled = True
+        Me.cbodisabilitytype.Location = New System.Drawing.Point(177, 93)
+        Me.cbodisabilitytype.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbodisabilitytype.Name = "cbodisabilitytype"
+        Me.cbodisabilitytype.Size = New System.Drawing.Size(234, 28)
+        Me.cbodisabilitytype.TabIndex = 64
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Enabled = False
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(6, 104)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(134, 17)
+        Me.Label11.TabIndex = 63
+        Me.Label11.Text = "Type of Disability"
+        '
+        'Label58
+        '
+        Me.Label58.AutoSize = True
+        Me.Label58.Enabled = False
+        Me.Label58.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label58.Location = New System.Drawing.Point(8, 67)
+        Me.Label58.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(73, 17)
+        Me.Label58.TabIndex = 62
+        Me.Label58.Text = "NCPWD#"
+        '
+        'txtNCPWDnum
+        '
+        Me.txtNCPWDnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtNCPWDnum.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtNCPWDnum.Enabled = False
+        Me.txtNCPWDnum.Location = New System.Drawing.Point(177, 58)
+        Me.txtNCPWDnum.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtNCPWDnum.Name = "txtNCPWDnum"
+        Me.txtNCPWDnum.Size = New System.Drawing.Size(167, 26)
+        Me.txtNCPWDnum.TabIndex = 61
+        '
+        'chkOVCDisabled
+        '
+        Me.chkOVCDisabled.AutoSize = True
+        Me.chkOVCDisabled.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkOVCDisabled.Location = New System.Drawing.Point(11, 24)
+        Me.chkOVCDisabled.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkOVCDisabled.Name = "chkOVCDisabled"
+        Me.chkOVCDisabled.Size = New System.Drawing.Size(156, 24)
+        Me.chkOVCDisabled.TabIndex = 60
+        Me.chkOVCDisabled.Text = "OVC is disabled"
+        Me.chkOVCDisabled.UseVisualStyleBackColor = True
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(8, 155)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(152, 17)
+        Me.Label18.TabIndex = 66
+        Me.Label18.Text = "Date of Assessment"
+        Me.Label18.Visible = False
+        '
+        'dtpDateofDisabilityAssessment
+        '
+        Me.dtpDateofDisabilityAssessment.Enabled = False
+        Me.dtpDateofDisabilityAssessment.Location = New System.Drawing.Point(177, 143)
+        Me.dtpDateofDisabilityAssessment.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpDateofDisabilityAssessment.Name = "dtpDateofDisabilityAssessment"
+        Me.dtpDateofDisabilityAssessment.Size = New System.Drawing.Size(237, 26)
+        Me.dtpDateofDisabilityAssessment.TabIndex = 65
+        Me.dtpDateofDisabilityAssessment.Visible = False
+        '
+        'cboDiagnosis
+        '
+        Me.cboDiagnosis.FormattingEnabled = True
+        Me.cboDiagnosis.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
+        Me.cboDiagnosis.Location = New System.Drawing.Point(177, 186)
+        Me.cboDiagnosis.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboDiagnosis.Name = "cboDiagnosis"
+        Me.cboDiagnosis.Size = New System.Drawing.Size(234, 28)
+        Me.cboDiagnosis.TabIndex = 72
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Enabled = False
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(5, 194)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(79, 17)
+        Me.Label19.TabIndex = 71
+        Me.Label19.Text = "Diagnosis"
+        '
+        'cboIntervention
+        '
+        Me.cboIntervention.FormattingEnabled = True
+        Me.cboIntervention.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
+        Me.cboIntervention.Location = New System.Drawing.Point(177, 227)
+        Me.cboIntervention.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboIntervention.Name = "cboIntervention"
+        Me.cboIntervention.Size = New System.Drawing.Size(234, 28)
+        Me.cboIntervention.TabIndex = 74
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Enabled = False
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(5, 235)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(94, 17)
+        Me.Label20.TabIndex = 73
+        Me.Label20.Text = "Intervention"
+        '
+        'txtNCPWDContacts
+        '
+        Me.txtNCPWDContacts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtNCPWDContacts.Enabled = False
+        Me.txtNCPWDContacts.Location = New System.Drawing.Point(177, 262)
+        Me.txtNCPWDContacts.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtNCPWDContacts.Name = "txtNCPWDContacts"
+        Me.txtNCPWDContacts.Size = New System.Drawing.Size(237, 26)
+        Me.txtNCPWDContacts.TabIndex = 76
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.Location = New System.Drawing.Point(8, 272)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(132, 17)
+        Me.Label21.TabIndex = 75
+        Me.Label21.Text = "NCPWD Contacts"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Enabled = False
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(5, 314)
+        Me.Label24.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(111, 17)
+        Me.Label24.TabIndex = 77
+        Me.Label24.Text = "Other Support"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox1.Enabled = False
+        Me.TextBox1.Location = New System.Drawing.Point(174, 309)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(237, 26)
+        Me.TextBox1.TabIndex = 78
+        '
+        'cboRehabCentre
+        '
+        Me.cboRehabCentre.FormattingEnabled = True
+        Me.cboRehabCentre.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
+        Me.cboRehabCentre.Location = New System.Drawing.Point(177, 357)
+        Me.cboRehabCentre.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboRehabCentre.Name = "cboRehabCentre"
+        Me.cboRehabCentre.Size = New System.Drawing.Size(234, 28)
+        Me.cboRehabCentre.TabIndex = 80
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Enabled = False
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(5, 365)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(108, 17)
+        Me.Label26.TabIndex = 79
+        Me.Label26.Text = "Rehab Centre"
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label42.Location = New System.Drawing.Point(23, 624)
+        Me.Label42.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(154, 17)
+        Me.Label42.TabIndex = 63
+        Me.Label42.Text = "Date of Registration"
+        '
+        'dtpDateofRegistration
+        '
+        Me.dtpDateofRegistration.Enabled = False
+        Me.dtpDateofRegistration.Location = New System.Drawing.Point(179, 617)
+        Me.dtpDateofRegistration.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpDateofRegistration.Name = "dtpDateofRegistration"
+        Me.dtpDateofRegistration.Size = New System.Drawing.Size(255, 26)
+        Me.dtpDateofRegistration.TabIndex = 62
+        '
         'frmOVCInfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(1689, 1018)
+        Me.ClientSize = New System.Drawing.Size(1626, 965)
         Me.Controls.Add(Me.TabControl1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmOVCInfo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmOVCInfo"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
@@ -1211,6 +1485,8 @@ Partial Class frmOVCInfo
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox8.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1223,8 +1499,6 @@ Partial Class frmOVCInfo
     Friend WithEvents dtpDateofExit As DateTimePicker
     Friend WithEvents Label39 As Label
     Friend WithEvents chkExit As CheckBox
-    Friend WithEvents Label42 As Label
-    Friend WithEvents dtpDateofRegistration As DateTimePicker
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents Label29 As Label
     Friend WithEvents txtcaregiverID As TextBox
@@ -1246,9 +1520,6 @@ Partial Class frmOVCInfo
     Friend WithEvents Label16 As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents txtAge As TextBox
-    Friend WithEvents Label58 As Label
-    Friend WithEvents txtNCPWDnum As TextBox
-    Friend WithEvents chkOVCDisabled As CheckBox
     Friend WithEvents Label57 As Label
     Friend WithEvents txtbcertnumber As TextBox
     Friend WithEvents Label6 As Label
@@ -1279,7 +1550,6 @@ Partial Class frmOVCInfo
     Friend WithEvents btnSearch As Button
     Friend WithEvents txtsearchovcname As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents Label11 As Label
     Friend WithEvents txtward As TextBox
     Friend WithEvents txtchvnames As TextBox
     Friend WithEvents txtcbo As TextBox
@@ -1305,5 +1575,32 @@ Partial Class frmOVCInfo
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewLinkColumn
     Friend WithEvents txtgender As TextBox
+    Friend WithEvents cboTestingOutcome As ComboBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents dtpDateofTesting As DateTimePicker
+    Friend WithEvents cboScreeningOutcome As ComboBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents dtpScreeningDate As DateTimePicker
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents cboDiagnosis As ComboBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents dtpDateofDisabilityAssessment As DateTimePicker
     Friend WithEvents cbodisabilitytype As ComboBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label58 As Label
+    Friend WithEvents txtNCPWDnum As TextBox
+    Friend WithEvents chkOVCDisabled As CheckBox
+    Friend WithEvents cboRehabCentre As ComboBox
+    Friend WithEvents Label26 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label24 As Label
+    Friend WithEvents txtNCPWDContacts As TextBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents cboIntervention As ComboBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label42 As Label
+    Friend WithEvents dtpDateofRegistration As DateTimePicker
 End Class

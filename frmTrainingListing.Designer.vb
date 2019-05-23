@@ -106,7 +106,7 @@ Partial Class frmTrainingListing
         '
         Me.txtfacilitator.Location = New System.Drawing.Point(245, 95)
         Me.txtfacilitator.Name = "txtfacilitator"
-        Me.txtfacilitator.Size = New System.Drawing.Size(325, 26)
+        Me.txtfacilitator.Size = New System.Drawing.Size(386, 26)
         Me.txtfacilitator.TabIndex = 41
         '
         'cboTypeOfTraining
@@ -115,7 +115,7 @@ Partial Class frmTrainingListing
         Me.cboTypeOfTraining.Location = New System.Drawing.Point(245, 56)
         Me.cboTypeOfTraining.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cboTypeOfTraining.Name = "cboTypeOfTraining"
-        Me.cboTypeOfTraining.Size = New System.Drawing.Size(236, 28)
+        Me.cboTypeOfTraining.Size = New System.Drawing.Size(386, 28)
         Me.cboTypeOfTraining.TabIndex = 40
         '
         'dtpDateofTraining
@@ -152,7 +152,7 @@ Partial Class frmTrainingListing
         Me.cbowards.Location = New System.Drawing.Point(245, 138)
         Me.cbowards.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cbowards.Name = "cbowards"
-        Me.cbowards.Size = New System.Drawing.Size(236, 28)
+        Me.cbowards.Size = New System.Drawing.Size(386, 28)
         Me.cbowards.TabIndex = 35
         '
         'Label3

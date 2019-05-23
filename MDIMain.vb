@@ -103,17 +103,7 @@ Public Class MDIMain
 
 
 
-    Private Sub ToolStripCBO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        ' Create a new instance of the child form.
-        Dim ChildForm As New frmCBO
-        ' Make it a child of this MDI form before showing it.
-        ChildForm.MdiParent = Me
 
-        m_ChildFormNumber += 1
-        ChildForm.Text = "CBO" '"Window " & m_ChildFormNumber
-
-        ChildForm.Show()
-    End Sub
 
 
 
