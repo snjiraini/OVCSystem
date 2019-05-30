@@ -748,4 +748,16 @@ Public Class MDIMain
 
         ChildForm.Show()
     End Sub
+
+    Private Sub ImportCPIMSData_Click(sender As Object, e As EventArgs) Handles ImportCPIMSData.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmDataSync
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "Import CPIMS Data" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
 End Class

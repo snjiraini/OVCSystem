@@ -13,12 +13,16 @@ Imports Ionic.Zlib
 'Imports SharpCompress.Archive
 Imports System.Configuration
 Imports System.ComponentModel
+Imports Excel
+Imports System.Reflection
+Imports System.Text.RegularExpressions
+Imports CPIMS.Net.OLMIS.Core.Services
 
 Public Class frmDataSync
 
     Private m_XMLSplitter As New XMLDocumentSplitter()
     Private Sub btnExportData_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportData.Click
-        
+
 
         'If you click the button when worker is still fetching results, cancel the click event
         If Exportworker.IsBusy = True Then
@@ -81,7 +85,7 @@ Public Class frmDataSync
         Try
             'Check to see if Export has NEVER been done before. 
             Dim MyDBAction As New functions
-            
+
             If NormalExport() = True Then
                 ZipExports(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy"), My.Computer.Name)
             End If
@@ -112,7 +116,7 @@ Public Class frmDataSync
                 zip.Comment = "This zip was created at " & System.DateTime.Now.ToString("G")
                 zip.MaxOutputSegmentSize = 2 * 1024 * 1024   '' 2mb
                 zip.Save(zipname & "-" & Format(Date.Now, "dd-MMM-yyyy") & ".zip")
-                MsgBox(zip.NumberOfSegmentsForMostRecentSave & " Export files generated, all starting with the names: " & _
+                MsgBox(zip.NumberOfSegmentsForMostRecentSave & " Export files generated, all starting with the names: " &
                     My.Computer.Name & "-" & Format(Date.Now, "dd-MMM-yyyy") & ".zip,.z01,.z02 e.t.c")
             End Using
 
@@ -1168,1334 +1172,1334 @@ Public Class frmDataSync
         'Try
         Dim i As Integer ' simple counter to update progress for background worker
 
-            'create a folder for today's exports
-            ' Determine whether the directory exists.
-            If Directory.Exists(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy")) = False Then
-                Dim di As DirectoryInfo = Directory.CreateDirectory(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy"))
-            Else
-                'delete it
-                My.Computer.FileSystem.DeleteDirectory(Application.StartupPath & "\Exports\" & _
-                Format(Date.Now, "dd-MMM-yyyy"), FileIO.DeleteDirectoryOption.DeleteAllContents)
+        'create a folder for today's exports
+        ' Determine whether the directory exists.
+        If Directory.Exists(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy")) = False Then
+            Dim di As DirectoryInfo = Directory.CreateDirectory(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy"))
+        Else
+            'delete it
+            My.Computer.FileSystem.DeleteDirectory(Application.StartupPath & "\Exports\" &
+            Format(Date.Now, "dd-MMM-yyyy"), FileIO.DeleteDirectoryOption.DeleteAllContents)
 
-                'then create it
-                Dim di As DirectoryInfo = Directory.CreateDirectory(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy"))
+            'then create it
+            Dim di As DirectoryInfo = Directory.CreateDirectory(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy"))
+        End If
+
+        strReportProgress = "Prepare Exports folder"
+        Exportworker.ReportProgress(i + 1)
+
+        Dim loop_counter As Integer = 0
+        Dim MyDBAction As New functions
+        Dim MyDatable As New Data.DataTable
+        Dim mySqlAction As String
+
+        '1. export clientdetails
+        Dim sqlscalarAction As String = ""
+        Dim count_scalar, num_loops As Double
+        Dim record_range_count As Double = 200000
+
+
+        strReportProgress = "Exporting Clientdetals"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = " select count (*) from " &
+                        " (select * from clientdetails) tbl"
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
             End If
 
-            strReportProgress = "Prepare Exports folder"
-            Exportworker.ReportProgress(i + 1)
-
-            Dim loop_counter As Integer = 0
-            Dim MyDBAction As New functions
-            Dim MyDatable As New Data.DataTable
-            Dim mySqlAction As String
-
-            '1. export clientdetails
-            Dim sqlscalarAction As String = ""
-            Dim count_scalar, num_loops As Double
-            Dim record_range_count As Double = 200000
+            'fetch records within specific range
+            mySqlAction = "select * from (select *, ROW_NUMBER() over (order by ovcId asc) as RowId " &
+                                         " from clientdetails ) clientdetails " &
+                              " where RowId between " & start_record & " and " & last_record & " " &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('ClientDetails')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("clientdetails")
 
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
 
-            strReportProgress = "Exporting Clientdetals"
-            Exportworker.ReportProgress(i + 1)
 
-            'a. Count number of records to export
-            sqlscalarAction = " select count (*) from " & _
-                            " (select * from clientdetails) tbl"
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
 
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+        '2. export clientlongitudinaldetails
+        strReportProgress = "Exporting Client Longitudinal details"
+        Exportworker.ReportProgress(i + 1)
 
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
+        'a. Count number of records to export
+        sqlscalarAction = " select count (*) from " &
+                        " (select * from clientlongitudinaldetails) tbl"
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
 
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select *, ROW_NUMBER() over (order by ovcId asc) as RowId " & _
-                                             " from clientdetails ) clientdetails " & _
-                                  " where RowId between " & start_record & " and " & last_record & " " & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('ClientDetails')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("clientdetails")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
 
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
 
-
-            '2. export clientlongitudinaldetails
-            strReportProgress = "Exporting Client Longitudinal details"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = " select count (*) from " & _
-                            " (select * from clientlongitudinaldetails) tbl"
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select *, ROW_NUMBER() over (order by ovcId asc) as RowId " & _
-                                             " from clientlongitudinaldetails) clientlongitudinaldetails " & _
-                                  " where RowId between " & start_record & " and " & last_record & " " & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('clientlongitudinaldetails')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select *, ROW_NUMBER() over (order by ovcId asc) as RowId " &
+                                         " from clientlongitudinaldetails) clientlongitudinaldetails " &
+                              " where RowId between " & start_record & " and " & last_record & " " &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('clientlongitudinaldetails')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
 
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
 
-                    renamesplitfiles("clientlongitudinaldetails")
+                renamesplitfiles("clientlongitudinaldetails")
 
-                End If
-            Next i
-            loop_counter = 0
+            End If
+        Next i
+        loop_counter = 0
 
-            '3. export NeedsAssessment
-            strReportProgress = "Exporting CSI Assessemnts"
-            Exportworker.ReportProgress(i + 1)
+        '3. export NeedsAssessment
+        strReportProgress = "Exporting CSI Assessemnts"
+        Exportworker.ReportProgress(i + 1)
 
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(*) from NeedsAssessment where  SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(*) from NeedsAssessment where  SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
 
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
 
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
 
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
 
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by NeedsAssessmentID asc) as RowId  " & _
-                                " from NeedsAssessment where SyncDate IS NULL ) NeedsAssessment " & _
-                                " where RowId between " & start_record & " and " & last_record & " " & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('NeedsAssessment')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by NeedsAssessmentID asc) as RowId  " &
+                            " from NeedsAssessment where SyncDate IS NULL ) NeedsAssessment " &
+                            " where RowId between " & start_record & " and " & last_record & " " &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('NeedsAssessment')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
 
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
 
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
 
-                    renamesplitfiles("NeedsAssessment")
+                renamesplitfiles("NeedsAssessment")
 
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
 
-            '4. export NeedsAssessmentMain
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(*) from NeedsAssessmentmain where SyncDate IS NULL"
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+        '4. export NeedsAssessmentMain
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(*) from NeedsAssessmentmain where SyncDate IS NULL"
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
 
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
 
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
 
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
 
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by NeedsAssessmentID asc) as RowId  " & _
-                                " from NeedsAssessmentmain where SyncDate IS NULL ) NeedsAssessmentmain " & _
-                                " where RowId between " & start_record & " and " & last_record & " " & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('NeedsAssessmentmain')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by NeedsAssessmentID asc) as RowId  " &
+                            " from NeedsAssessmentmain where SyncDate IS NULL ) NeedsAssessmentmain " &
+                            " where RowId between " & start_record & " and " & last_record & " " &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('NeedsAssessmentmain')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
 
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
 
-                    renamesplitfiles("NeedsAssessmentmain")
+                renamesplitfiles("NeedsAssessmentmain")
 
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
 
 
 
-            '6. export PriorityNeeds
-            strReportProgress = "Exporting CSI Priority Needs"
-            Exportworker.ReportProgress(i + 1)
+        '6. export PriorityNeeds
+        strReportProgress = "Exporting CSI Priority Needs"
+        Exportworker.ReportProgress(i + 1)
 
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(*) from PriorityNeeds where SyncDate IS NULL"
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(*) from PriorityNeeds where SyncDate IS NULL"
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
 
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
 
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
 
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  * , ROW_NUMBER() over (order by NeedsAssessmentID asc) as RowId " & _
-                                " from PriorityNeeds where SyncDate IS NULL ) PriorityNeeds " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('PriorityNeeds')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("PriorityNeeds")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  * , ROW_NUMBER() over (order by NeedsAssessmentID asc) as RowId " &
+                            " from PriorityNeeds where SyncDate IS NULL ) PriorityNeeds " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('PriorityNeeds')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("PriorityNeeds")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
 
 
-            '7. export ServicesProvided
-            strReportProgress = "Exporting CSI Services Provided"
-            Exportworker.ReportProgress(i + 1)
+        '7. export ServicesProvided
+        strReportProgress = "Exporting CSI Services Provided"
+        Exportworker.ReportProgress(i + 1)
 
-            'a. Count number of records to export
-            sqlscalarAction = "select count(*) from ServicesProvided where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+        'a. Count number of records to export
+        sqlscalarAction = "select count(*) from ServicesProvided where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
 
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
 
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
 
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select * , ROW_NUMBER() over (order by NeedsAssessmentID asc) as RowId " & _
-                                    " from ServicesProvided where SyncDate IS NULL ) ServicesProvided " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('ServicesProvided')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("ServicesProvided")
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select * , ROW_NUMBER() over (order by NeedsAssessmentID asc) as RowId " &
+                                " from ServicesProvided where SyncDate IS NULL ) ServicesProvided " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('ServicesProvided')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("ServicesProvided")
 
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
 
-            '===========OVC FORM1A ITEMS============
-            '5. export PriorityMonitoring
-            strReportProgress = "Exporting Form1A Priority Needs"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(*) from PriorityMonitoring where  SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+        '===========OVC FORM1A ITEMS============
+        '5. export PriorityMonitoring
+        strReportProgress = "Exporting Form1A Priority Needs"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(*) from PriorityMonitoring where  SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
 
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
 
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
 
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select *, ROW_NUMBER() over (order by ssvid asc) as RowId " & _
-                                     " from PriorityMonitoring where  SyncDate IS NULL ) PriorityMonitoring " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('PriorityMonitoring')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("PriorityMonitoring")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '8. export StatusandServiceMonitoring
-            strReportProgress = "Exporting Form1A Assessments"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(*) from StatusandServiceMonitoring_assessment where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select *, ROW_NUMBER() over (order by ssvid asc) as RowId " &
+                                 " from PriorityMonitoring where  SyncDate IS NULL ) PriorityMonitoring " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('PriorityMonitoring')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("PriorityMonitoring")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '8. export StatusandServiceMonitoring
+        strReportProgress = "Exporting Form1A Assessments"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(*) from StatusandServiceMonitoring_assessment where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
 
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " & _
-                               " from StatusandServiceMonitoring_assessment where SyncDate IS NULL ) StatusandServiceMonitoring_assessment " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('StatusandServiceMonitoring_assessment')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("StatusandServiceMonitoring_assessment")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(*) from StatusandServiceMonitoring_Service where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " & _
-                               " from StatusandServiceMonitoring_Service where SyncDate IS NULL ) StatusandServiceMonitoring_Service " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('StatusandServiceMonitoring_service')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("StatusandServiceMonitoring_service")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '8. export OVCVisitsCriticalEvents
-            strReportProgress = "Exporting Form1A Critical Events"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(ceid) from OVCVisitsCriticalEvents where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " & _
-                               " from OVCVisitsCriticalEvents where SyncDate IS NULL ) OVCVisitsCriticalEvents " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('OVCVisitsCriticalEvents')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("OVCVisitsCriticalEvents")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '9. export StatusandServiceVisit
-            strReportProgress = "Exporting Form1A Visits"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(*) from StatusandServiceVisit where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId " & _
-                               " from StatusandServiceVisit where SyncDate IS NULL ) StatusandServiceVisit " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('StatusandServiceVisit')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("StatusandServiceVisit")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '===========Caregiver FORM1A ITEMS============
-            '5. export PriorityMonitoring
-            strReportProgress = "Exporting Form1A Caregiver Priority Needs"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(PriorityMonitoringid) from CAREGIVER_PriorityMonitoring where  SyncDate IS NULL"
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select *, ROW_NUMBER() over (order by ssvid asc) as RowId " & _
-                                     " from CAREGIVER_PriorityMonitoring where  SyncDate IS NULL ) PriorityMonitoring " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CAREGIVER_PriorityMonitoring')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("CAREGIVER_PriorityMonitoring")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '8. export StatusandServiceMonitoring
-            strReportProgress = "Exporting Form1A Caregiver Assessemnts"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(SSMID) from CAREGIVER_StatusAndServiceMonitoring_Assessment where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " & _
-                               " from CAREGIVER_StatusAndServiceMonitoring_assessment where SyncDate IS NULL ) CAREGIVER_StatusAndServiceMonitoring_assessment " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CAREGIVER_StatusAndServiceMonitoring_assessment')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("CAREGIVER_StatusAndServiceMonitoring_assessment")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(SSMID) from CAREGIVER_StatusAndServiceMonitoring_service where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " & _
-                               " from CAREGIVER_StatusAndServiceMonitoring_service where SyncDate IS NULL ) CAREGIVER_StatusAndServiceMonitoring_service " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CAREGIVER_StatusAndServiceMonitoring_service')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("CAREGIVER_StatusAndServiceMonitoring_service")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '8. export OVCVisitsCriticalEvents
-            strReportProgress = "Exporting Form1A Caregiver Critical Events"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(ceid) from CareGiverVisitsCriticalEvents where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " & _
-                               " from CareGiverVisitsCriticalEvents where SyncDate IS NULL ) CareGiverVisitsCriticalEvents " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CareGiverVisitsCriticalEvents')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("CareGiverVisitsCriticalEvents")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '9. export StatusandServiceVisit
-            strReportProgress = "Exporting Form1A Caregiver Visits"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(ssvid) from CAREGIVER_StatusAndServiceVisit where SyncDate IS NULL "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId " & _
-                               " from CAREGIVER_StatusAndServiceVisit where SyncDate IS NULL ) CAREGIVER_StatusAndServiceVisit " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CAREGIVER_StatusAndServiceVisit')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("7000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("CAREGIVER_StatusAndServiceVisit")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '===========End of Caregiver Form1As========================
-
-            '10. export ParentDetails
-            strReportProgress = "Exporting Caregiver/parents Details"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-
-            sqlscalarAction = "select  count(*) from ParentDetails where (SyncDate IS NULL  " & _
-                                           " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000'))"
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by parentid asc) as RowId " & _
-                                " from ParentDetails where (SyncDate IS NULL  " & _
-                                           " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000'))) ParentDetails " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('ParentDetails')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("ParentDetails")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '11. export CHW
-            strReportProgress = "Exporting CHW Details"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = "select  count(*) from CHW where (SyncDate IS NULL " & _
-                            " OR  Lastmodifiedon > isnull(syncdate,'1900-01-01 00:00:00.000')) " 
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by chwid asc) as RowId " & _
-                                "  from CHW where (SyncDate IS NULL " & _
-               " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000')) ) CHW " & _
-                                    " where RowId between " & start_record & " and " & last_record & "" & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CHW')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("CHW")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '12. export clientcriteria
-            strReportProgress = "Exporting OVC Vulnerability Criteria"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = " select count(*) from " & _
-                                " (select * from clientdetails where (SyncDate IS NULL " & _
-                                " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000')) ) tbl "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (SELECT *,ROW_NUMBER() over (order by clientcriteriaid asc) as RowId " & _
-                                 " FROM [ClientCriteria] where eligibilitycriteria in " & _
-                                 " (  " & _
-                                 " select clienttype from  " & _
-                                " (select * from clientdetails where (SyncDate IS NULL " & _
-                                " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000')) " & _
-                                " ) tbl " & _
-                                " )) ClientCriteria   " & _
-                                  " where RowId between " & start_record & " and " & last_record & " " & _
-                                        " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('clientcriteria')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("ClientCriteria")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '12. export Household assessments
-            strReportProgress = "Exporting OVC Household Assessments"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = " select count(*) from " & _
-                                " (select * from HHAssessmentMain where SyncDate IS NULL ) tbl "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by hhassessmentid asc) as RowId " & _
-                             " from hhassessmentmain where SyncDate IS NULL ) hhassessmentmain " & _
-                                  " where RowId between " & start_record & " and " & last_record & "" & _
-                                      " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('hhassessmentmain')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("hhassessmentmain")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '12. export Household assessments
-            strReportProgress = "Exporting OVC Household Assessments details"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = " select count(*) from " & _
-                                " (select * from HHAssessment where SyncDate IS NULL ) tbl "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by hhassessmentid asc) as RowId " & _
-                             " from hhassessment where SyncDate IS NULL ) hhassessment " & _
-                                  " where RowId between " & start_record & " and " & last_record & "" & _
-                                      " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('hhassessment')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("hhassessment")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '=========Start ViralLoad export============
-            '13. export Viral Load
-            strReportProgress = "Exporting ViralLoad Testing details"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = " select count(*) from " &
-                                " (select * from ViralLoad where SyncDate IS NULL ) tbl "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by vlid asc) as RowId " &
-                             " from ViralLoad where SyncDate IS NULL ) ViralLoad " &
-                                  " where RowId between " & start_record & " and " & last_record & "" &
-                                      " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('viralload')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("viralload")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-
-            '13. export Viral Load Longitudinal
-            strReportProgress = "Exporting ViralLoadLongitudinal Testing details"
-            Exportworker.ReportProgress(i + 1)
-
-            'a. Count number of records to export
-            sqlscalarAction = " select count(*) from " &
-                                " (select * from ViralLoadLongitudinal where SyncDate IS NULL ) tbl "
-            count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
-
-            'b. Decide how many times to loop
-            num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
-
-            For i = 0 To num_loops - 1
-                'with every loop, increment the loop counter by 1
-                loop_counter = loop_counter + 1
-
-                'calculate range 
-                Dim start_record As Double
-                Dim last_record As Double
-                If loop_counter = 1 Then
-                    start_record = 0
-                    last_record = record_range_count
-                Else
-                    start_record = (record_range_count * i) + 1
-                    last_record = (record_range_count * loop_counter)
-                End If
-
-                'fetch records within specific range
-                mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by vlid asc) as RowId " &
-                             " from ViralLoadLongitudinal where SyncDate IS NULL ) viralloadlongitudinal " &
-                                  " where RowId between " & start_record & " and " & last_record & "" &
-                                      " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('viralloadlongitudinal')"
-                MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-                If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
-                    ' convert string to stream
-                    Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
-                    Dim stream As New MemoryStream(byteArray)
-
-
-                    m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
-                    m_XMLSplitter.SplitSize = CType("1000", Long)
-
-                    m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
-
-                    renamesplitfiles("viralloadlongitudinal")
-
-                End If
-            Next i
-            loop_counter = 0 'reinitialize counter before next table
-            '=========End ViralLoad export============
-
-
-            'Execute the procedure to update SyncDates 
-            strReportProgress = "Updating Timestamps for Exported Data"
-            Exportworker.ReportProgress(i + 1)
-
-            Dim connectionstring As String = ConnectionStrings(SelectedConnectionString).ToString
-            Dim conn As New SqlConnection(connectionstring)
-            Dim cmd As SqlCommand
-
-            cmd = New SqlCommand("dbo.UpdateSyncDates")
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.CommandTimeout = 3600000
-            ''cmd.Parameters.Add(New SqlParameter("@OVCID", myOVCID.ToString))
-            ''cmd.Parameters.Add(New SqlParameter("@DateofVisit", dtpDateofVisit.Value))
-            conn.Open()
-            cmd.Connection = conn
-            cmd.ExecuteReader()
-            conn.Close()
-            
-
-
-
-
-            ''show count of exported records---------------
-            'Dim SqlAction As String = ""
-            'Dim clientdetailsnewcount As Double = 0
-            'Dim Clientdetailsupdatecount As Double = 0
-            'Dim ClientdetailsLongitudinalcount As Double = 0
-            'Dim CSIrecordcount As Double = 0
-            'Dim Form1Acount As Double = 0
-            'Dim ParentsCount As Double = 0
-            'Dim ChwCount As Double = 0
-
-            ''new clients
-            'SqlAction = " select count(ovcid) from clientdetails where SyncDate IS NULL " & _
-            '" and ovcid not in (select ovcid from tempKeys_OVCID)"
-            'clientdetailsnewcount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
-
-            ''updated clients
-            'SqlAction = "select count(ovcid) from clientdetails where isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000')  " & _
-            '" and ovcid not in (select ovcid from tempKeys_OVCID)"
-            'Clientdetailsupdatecount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
-
-            ''new CSI entries
-            'SqlAction = "select  count(distinct(NeedsAssessmentID)) from NeedsAssessment where SyncDate IS NULL " & _
-            '                            " AND NeedsAssessmentID not in " & _
-            '                            " (select NeedsAssessmentID from tempKeys_NeedsAssessmentID) "
-            'CSIrecordcount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
-
-            ''new form1a
-            'SqlAction = "select  count(distinct(ssvid)) from StatusandServiceMonitoring where SyncDate IS NULL " & _
-            '                            " AND ssvid not in " & _
-            '                            " (select ssvid from tempKeys_ssvid) "
-            'Form1Acount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
-
-            ''new parents
-            'SqlAction = "select  count(parentid) from Parentdetails where SyncDate IS NULL"
-            'ParentsCount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
-
-            ''new chw
-            'SqlAction = "select  count(chwid) from chw where SyncDate IS NULL"
-            'ChwCount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
-
-            'Label4.Text = "New Children:" & clientdetailsnewcount & "  Updated children:" & Clientdetailsupdatecount & vbCr & _
-            '              "New CSI:" & CSIrecordcount & "   New Form1A:" & Form1Acount & vbCr & _
-            '              "New Parents:" & ParentsCount & "  New CHWs:" & ChwCount
-
-            '-----show count of exported records---------------
-
-            ''---update syncdates so that data is not exportable again
-            ''1.  clientdetails
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE Clientdetails set Syncdate = getdate() where ovcid in " & _
-            '                        "(select ovcid from clientdetails where (SyncDate IS NULL " & _
-            '                        " OR  Lastmodifiedon > isnull(syncdate,'1900-01-01 00:00:00.000'))) "
-            'UpdateSyncDates(mySqlAction)
-
-
-            ''2.  clientlongitudinaldetails
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE clientlongitudinaldetails set Syncdate = getdate() where ovcid in " & _
-            '                        "(select ovcid from clientlongitudinaldetails where (SyncDate IS NULL " & _
-            '                        " OR  Lastmodifiedon > isnull(syncdate,'1900-01-01 00:00:00.000'))) "
-            'UpdateSyncDates(mySqlAction)
-
-
-            ''3.  NeedsAssessment
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE NeedsAssessment set Syncdate = getdate() where SyncDate IS NULL "
-            'UpdateSyncDates(mySqlAction)
-
-
-            ''4.  NeedsAssessmentMain
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE NeedsAssessmentMain set Syncdate = getdate() where SyncDate IS NULL "
-            'UpdateSyncDates(mySqlAction)
-
-            ''5.  PriorityMonitoring
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE PriorityMonitoring set Syncdate = getdate() where SyncDate IS NULL "
-            'UpdateSyncDates(mySqlAction)
-
-
-            ''6.  PriorityNeeds
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE PriorityNeeds set Syncdate = getdate() where SyncDate IS NULL "
-            'UpdateSyncDates(mySqlAction)
-
-            ''7.  ServicesProvided
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE ServicesProvided set Syncdate = getdate() where SyncDate IS NULL "
-            'UpdateSyncDates(mySqlAction)
-
-            ''8.  StatusandServiceMonitoring
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE StatusandServiceMonitoring set Syncdate = getdate() where SyncDate IS NULL "
-            'UpdateSyncDates(mySqlAction)
-
-            ''9.  StatusandServiceVisit
-            ''update syncdates of just exported data
-            'mySqlAction = "UPDATE StatusandServiceVisit set Syncdate = getdate() where SyncDate IS NULL "
-            'UpdateSyncDates(mySqlAction)
-            ''------------
-
-
-            'hyperlink to new folder with exported files
-            'Label2.Text = "Files exported to: " & Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy")
-
-            'show how many files were exported.
-
-
-            MsgBox("Data Export Successful." & vbCrLf & " Click [OK] and Wait for Data Zipping...", _
-                  MsgBoxStyle.Information)
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " &
+                           " from StatusandServiceMonitoring_assessment where SyncDate IS NULL ) StatusandServiceMonitoring_assessment " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('StatusandServiceMonitoring_assessment')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("StatusandServiceMonitoring_assessment")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(*) from StatusandServiceMonitoring_Service where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " &
+                           " from StatusandServiceMonitoring_Service where SyncDate IS NULL ) StatusandServiceMonitoring_Service " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('StatusandServiceMonitoring_service')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("StatusandServiceMonitoring_service")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '8. export OVCVisitsCriticalEvents
+        strReportProgress = "Exporting Form1A Critical Events"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(ceid) from OVCVisitsCriticalEvents where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " &
+                           " from OVCVisitsCriticalEvents where SyncDate IS NULL ) OVCVisitsCriticalEvents " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('OVCVisitsCriticalEvents')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("OVCVisitsCriticalEvents")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '9. export StatusandServiceVisit
+        strReportProgress = "Exporting Form1A Visits"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(*) from StatusandServiceVisit where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId " &
+                           " from StatusandServiceVisit where SyncDate IS NULL ) StatusandServiceVisit " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('StatusandServiceVisit')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("StatusandServiceVisit")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '===========Caregiver FORM1A ITEMS============
+        '5. export PriorityMonitoring
+        strReportProgress = "Exporting Form1A Caregiver Priority Needs"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(PriorityMonitoringid) from CAREGIVER_PriorityMonitoring where  SyncDate IS NULL"
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select *, ROW_NUMBER() over (order by ssvid asc) as RowId " &
+                                 " from CAREGIVER_PriorityMonitoring where  SyncDate IS NULL ) PriorityMonitoring " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CAREGIVER_PriorityMonitoring')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("CAREGIVER_PriorityMonitoring")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '8. export StatusandServiceMonitoring
+        strReportProgress = "Exporting Form1A Caregiver Assessemnts"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(SSMID) from CAREGIVER_StatusAndServiceMonitoring_Assessment where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " &
+                           " from CAREGIVER_StatusAndServiceMonitoring_assessment where SyncDate IS NULL ) CAREGIVER_StatusAndServiceMonitoring_assessment " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CAREGIVER_StatusAndServiceMonitoring_assessment')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("CAREGIVER_StatusAndServiceMonitoring_assessment")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(SSMID) from CAREGIVER_StatusAndServiceMonitoring_service where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " &
+                           " from CAREGIVER_StatusAndServiceMonitoring_service where SyncDate IS NULL ) CAREGIVER_StatusAndServiceMonitoring_service " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CAREGIVER_StatusAndServiceMonitoring_service')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("CAREGIVER_StatusAndServiceMonitoring_service")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '8. export OVCVisitsCriticalEvents
+        strReportProgress = "Exporting Form1A Caregiver Critical Events"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(ceid) from CareGiverVisitsCriticalEvents where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId  " &
+                           " from CareGiverVisitsCriticalEvents where SyncDate IS NULL ) CareGiverVisitsCriticalEvents " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CareGiverVisitsCriticalEvents')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("CareGiverVisitsCriticalEvents")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '9. export StatusandServiceVisit
+        strReportProgress = "Exporting Form1A Caregiver Visits"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(ssvid) from CAREGIVER_StatusAndServiceVisit where SyncDate IS NULL "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by ssvid asc) as RowId " &
+                           " from CAREGIVER_StatusAndServiceVisit where SyncDate IS NULL ) CAREGIVER_StatusAndServiceVisit " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CAREGIVER_StatusAndServiceVisit')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("7000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("CAREGIVER_StatusAndServiceVisit")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '===========End of Caregiver Form1As========================
+
+        '10. export ParentDetails
+        strReportProgress = "Exporting Caregiver/parents Details"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+
+        sqlscalarAction = "select  count(*) from ParentDetails where (SyncDate IS NULL  " &
+                                       " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000'))"
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by parentid asc) as RowId " &
+                            " from ParentDetails where (SyncDate IS NULL  " &
+                                       " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000'))) ParentDetails " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('ParentDetails')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("ParentDetails")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '11. export CHW
+        strReportProgress = "Exporting CHW Details"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = "select  count(*) from CHW where (SyncDate IS NULL " &
+                        " OR  Lastmodifiedon > isnull(syncdate,'1900-01-01 00:00:00.000')) "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by chwid asc) as RowId " &
+                            "  from CHW where (SyncDate IS NULL " &
+           " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000')) ) CHW " &
+                                " where RowId between " & start_record & " and " & last_record & "" &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CHW')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("CHW")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '12. export clientcriteria
+        strReportProgress = "Exporting OVC Vulnerability Criteria"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = " select count(*) from " &
+                            " (select * from clientdetails where (SyncDate IS NULL " &
+                            " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000')) ) tbl "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (SELECT *,ROW_NUMBER() over (order by clientcriteriaid asc) as RowId " &
+                             " FROM [ClientCriteria] where eligibilitycriteria in " &
+                             " (  " &
+                             " select clienttype from  " &
+                            " (select * from clientdetails where (SyncDate IS NULL " &
+                            " OR  isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000')) " &
+                            " ) tbl " &
+                            " )) ClientCriteria   " &
+                              " where RowId between " & start_record & " and " & last_record & " " &
+                                    " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('clientcriteria')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("ClientCriteria")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '12. export Household assessments
+        strReportProgress = "Exporting OVC Household Assessments"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = " select count(*) from " &
+                            " (select * from HHAssessmentMain where SyncDate IS NULL ) tbl "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by hhassessmentid asc) as RowId " &
+                         " from hhassessmentmain where SyncDate IS NULL ) hhassessmentmain " &
+                              " where RowId between " & start_record & " and " & last_record & "" &
+                                  " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('hhassessmentmain')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("hhassessmentmain")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '12. export Household assessments
+        strReportProgress = "Exporting OVC Household Assessments details"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = " select count(*) from " &
+                            " (select * from HHAssessment where SyncDate IS NULL ) tbl "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by hhassessmentid asc) as RowId " &
+                         " from hhassessment where SyncDate IS NULL ) hhassessment " &
+                              " where RowId between " & start_record & " and " & last_record & "" &
+                                  " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('hhassessment')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("hhassessment")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '=========Start ViralLoad export============
+        '13. export Viral Load
+        strReportProgress = "Exporting ViralLoad Testing details"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = " select count(*) from " &
+                            " (select * from ViralLoad where SyncDate IS NULL ) tbl "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by vlid asc) as RowId " &
+                         " from ViralLoad where SyncDate IS NULL ) ViralLoad " &
+                              " where RowId between " & start_record & " and " & last_record & "" &
+                                  " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('viralload')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("viralload")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+
+        '13. export Viral Load Longitudinal
+        strReportProgress = "Exporting ViralLoadLongitudinal Testing details"
+        Exportworker.ReportProgress(i + 1)
+
+        'a. Count number of records to export
+        sqlscalarAction = " select count(*) from " &
+                            " (select * from ViralLoadLongitudinal where SyncDate IS NULL ) tbl "
+        count_scalar = MyDBAction.DBAction(sqlscalarAction, DBActionType.Scalar)
+
+        'b. Decide how many times to loop
+        num_loops = FormatNumber(count_scalar / record_range_count, 0) + 1 'round off to nearest 10
+
+        For i = 0 To num_loops - 1
+            'with every loop, increment the loop counter by 1
+            loop_counter = loop_counter + 1
+
+            'calculate range 
+            Dim start_record As Double
+            Dim last_record As Double
+            If loop_counter = 1 Then
+                start_record = 0
+                last_record = record_range_count
+            Else
+                start_record = (record_range_count * i) + 1
+                last_record = (record_range_count * loop_counter)
+            End If
+
+            'fetch records within specific range
+            mySqlAction = "select * from (select  *, ROW_NUMBER() over (order by vlid asc) as RowId " &
+                         " from ViralLoadLongitudinal where SyncDate IS NULL ) viralloadlongitudinal " &
+                              " where RowId between " & start_record & " and " & last_record & "" &
+                                  " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('viralloadlongitudinal')"
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
+                ' convert string to stream
+                Dim byteArray As Byte() = Encoding.ASCII.GetBytes(MyDatable.Rows(0).Item(0).ToString)
+                Dim stream As New MemoryStream(byteArray)
+
+
+                m_XMLSplitter.SplitType = XMLDocumentSplitter.SplitTypes.ByElementCount
+                m_XMLSplitter.SplitSize = CType("1000", Long)
+
+                m_XMLSplitter.Split(New System.IO.StreamReader(stream), AddressOf SplitHandler)
+
+                renamesplitfiles("viralloadlongitudinal")
+
+            End If
+        Next i
+        loop_counter = 0 'reinitialize counter before next table
+        '=========End ViralLoad export============
+
+
+        'Execute the procedure to update SyncDates 
+        strReportProgress = "Updating Timestamps for Exported Data"
+        Exportworker.ReportProgress(i + 1)
+
+        Dim connectionstring As String = ConnectionStrings(SelectedConnectionString).ToString
+        Dim conn As New SqlConnection(connectionstring)
+        Dim cmd As SqlCommand
+
+        cmd = New SqlCommand("dbo.UpdateSyncDates")
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.CommandTimeout = 3600000
+        ''cmd.Parameters.Add(New SqlParameter("@OVCID", myOVCID.ToString))
+        ''cmd.Parameters.Add(New SqlParameter("@DateofVisit", dtpDateofVisit.Value))
+        conn.Open()
+        cmd.Connection = conn
+        cmd.ExecuteReader()
+        conn.Close()
+
+
+
+
+
+        ''show count of exported records---------------
+        'Dim SqlAction As String = ""
+        'Dim clientdetailsnewcount As Double = 0
+        'Dim Clientdetailsupdatecount As Double = 0
+        'Dim ClientdetailsLongitudinalcount As Double = 0
+        'Dim CSIrecordcount As Double = 0
+        'Dim Form1Acount As Double = 0
+        'Dim ParentsCount As Double = 0
+        'Dim ChwCount As Double = 0
+
+        ''new clients
+        'SqlAction = " select count(ovcid) from clientdetails where SyncDate IS NULL " & _
+        '" and ovcid not in (select ovcid from tempKeys_OVCID)"
+        'clientdetailsnewcount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
+
+        ''updated clients
+        'SqlAction = "select count(ovcid) from clientdetails where isnull(Lastmodifiedon,'1900-01-01 00:00:00.000') > isnull(syncdate,'1900-01-01 00:00:00.000')  " & _
+        '" and ovcid not in (select ovcid from tempKeys_OVCID)"
+        'Clientdetailsupdatecount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
+
+        ''new CSI entries
+        'SqlAction = "select  count(distinct(NeedsAssessmentID)) from NeedsAssessment where SyncDate IS NULL " & _
+        '                            " AND NeedsAssessmentID not in " & _
+        '                            " (select NeedsAssessmentID from tempKeys_NeedsAssessmentID) "
+        'CSIrecordcount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
+
+        ''new form1a
+        'SqlAction = "select  count(distinct(ssvid)) from StatusandServiceMonitoring where SyncDate IS NULL " & _
+        '                            " AND ssvid not in " & _
+        '                            " (select ssvid from tempKeys_ssvid) "
+        'Form1Acount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
+
+        ''new parents
+        'SqlAction = "select  count(parentid) from Parentdetails where SyncDate IS NULL"
+        'ParentsCount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
+
+        ''new chw
+        'SqlAction = "select  count(chwid) from chw where SyncDate IS NULL"
+        'ChwCount = MyDBAction.DBAction(SqlAction, DBActionType.Scalar)
+
+        'Label4.Text = "New Children:" & clientdetailsnewcount & "  Updated children:" & Clientdetailsupdatecount & vbCr & _
+        '              "New CSI:" & CSIrecordcount & "   New Form1A:" & Form1Acount & vbCr & _
+        '              "New Parents:" & ParentsCount & "  New CHWs:" & ChwCount
+
+        '-----show count of exported records---------------
+
+        ''---update syncdates so that data is not exportable again
+        ''1.  clientdetails
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE Clientdetails set Syncdate = getdate() where ovcid in " & _
+        '                        "(select ovcid from clientdetails where (SyncDate IS NULL " & _
+        '                        " OR  Lastmodifiedon > isnull(syncdate,'1900-01-01 00:00:00.000'))) "
+        'UpdateSyncDates(mySqlAction)
+
+
+        ''2.  clientlongitudinaldetails
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE clientlongitudinaldetails set Syncdate = getdate() where ovcid in " & _
+        '                        "(select ovcid from clientlongitudinaldetails where (SyncDate IS NULL " & _
+        '                        " OR  Lastmodifiedon > isnull(syncdate,'1900-01-01 00:00:00.000'))) "
+        'UpdateSyncDates(mySqlAction)
+
+
+        ''3.  NeedsAssessment
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE NeedsAssessment set Syncdate = getdate() where SyncDate IS NULL "
+        'UpdateSyncDates(mySqlAction)
+
+
+        ''4.  NeedsAssessmentMain
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE NeedsAssessmentMain set Syncdate = getdate() where SyncDate IS NULL "
+        'UpdateSyncDates(mySqlAction)
+
+        ''5.  PriorityMonitoring
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE PriorityMonitoring set Syncdate = getdate() where SyncDate IS NULL "
+        'UpdateSyncDates(mySqlAction)
+
+
+        ''6.  PriorityNeeds
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE PriorityNeeds set Syncdate = getdate() where SyncDate IS NULL "
+        'UpdateSyncDates(mySqlAction)
+
+        ''7.  ServicesProvided
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE ServicesProvided set Syncdate = getdate() where SyncDate IS NULL "
+        'UpdateSyncDates(mySqlAction)
+
+        ''8.  StatusandServiceMonitoring
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE StatusandServiceMonitoring set Syncdate = getdate() where SyncDate IS NULL "
+        'UpdateSyncDates(mySqlAction)
+
+        ''9.  StatusandServiceVisit
+        ''update syncdates of just exported data
+        'mySqlAction = "UPDATE StatusandServiceVisit set Syncdate = getdate() where SyncDate IS NULL "
+        'UpdateSyncDates(mySqlAction)
+        ''------------
+
+
+        'hyperlink to new folder with exported files
+        'Label2.Text = "Files exported to: " & Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy")
+
+        'show how many files were exported.
+
+
+        MsgBox("Data Export Successful." & vbCrLf & " Click [OK] and Wait for Data Zipping...",
+              MsgBoxStyle.Information)
 
         'Return True
         'Catch ex As Exception
@@ -2506,7 +2510,7 @@ Public Class frmDataSync
     End Function
 
     Private Sub SplitHandler(ByVal count As Long, ByVal document As String)
-        Dim stream_writer As New System.IO.StreamWriter(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy") & "\" & _
+        Dim stream_writer As New System.IO.StreamWriter(Application.StartupPath & "\Exports\" & Format(Date.Now, "dd-MMM-yyyy") & "\" &
         String.Format("Splitter{0:D8}.xml", count))
         stream_writer.Write(document)
         stream_writer.Close()
@@ -2562,7 +2566,7 @@ Public Class frmDataSync
             '2. Create textfile and loop through keys and write them to file
             'a. NeedsAssessmentid
             If File.Exists(path & "NeedsAssessmentid") Then File.Delete(path & "NeedsAssessmentid")
-            Dim sqlAction As String = "select NeedsAssessmentid from NeedsAssessmentMain order by NeedsAssessmentid " & _
+            Dim sqlAction As String = "select NeedsAssessmentid from NeedsAssessmentMain order by NeedsAssessmentid " &
                                       " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('NeedsAssessmentMain')"
             Dim cmd As New SqlCommand(sqlAction, conn)
             conn.Open()
@@ -2575,7 +2579,7 @@ Public Class frmDataSync
 
             'b. Status Visit id SSVID
             If File.Exists(path & "SSVID") Then File.Delete(path & "SSVID")
-            sqlAction = "select SSVID from StatusAndServiceVisit order by SSVID " & _
+            sqlAction = "select SSVID from StatusAndServiceVisit order by SSVID " &
                                       " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('SSVID')"
             cmd = New SqlCommand(sqlAction, conn)
             conn.Open()
@@ -2589,7 +2593,7 @@ Public Class frmDataSync
 
             'C. OVCID
             If File.Exists(path & "OVCID") Then File.Delete(path & "OVCID")
-            sqlAction = "select OVCID from Clientdetails order by OVCID " & _
+            sqlAction = "select OVCID from Clientdetails order by OVCID " &
                                       " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('OVCID')"
             cmd = New SqlCommand(sqlAction, conn)
             conn.Open()
@@ -2603,7 +2607,7 @@ Public Class frmDataSync
 
             'd. Parentid
             If File.Exists(path & "ParentID") Then File.Delete(path & "ParentID")
-            sqlAction = "select ParentID from Parentdetails order by ParentID " & _
+            sqlAction = "select ParentID from Parentdetails order by ParentID " &
                                       " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('ParentID')"
             cmd = New SqlCommand(sqlAction, conn)
             conn.Open()
@@ -2617,7 +2621,7 @@ Public Class frmDataSync
 
             'e. Chwid
             If File.Exists(path & "CHWID") Then File.Delete(path & "CHWID")
-            sqlAction = "select CHWID from CHW order by CHWID " & _
+            sqlAction = "select CHWID from CHW order by CHWID " &
                                       " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CHWID')"
             cmd = New SqlCommand(sqlAction, conn)
             conn.Open()
@@ -2808,20 +2812,22 @@ Public Class frmDataSync
 
 
             'first, clean up the exports folder
-            strReportProgress = "Cleaning up exports folder"
+            strReportProgress = "Opening Excel File"
             ImportWorker.ReportProgress(i + 1)
 
-            Dim di As New IO.DirectoryInfo(Application.StartupPath & "\Exports")
-            Deletefiles(di)
+            'Dim di As New IO.DirectoryInfo(Application.StartupPath & "\Exports")
+            'Deletefiles(di)
 
-            'then, we unzip the file sent from partners
-            strReportProgress = "Unzipping partner data"
-            ImportWorker.ReportProgress(i + 1)
+            '''then, we unzip the file sent from partners
+            ''strReportProgress = "Unzipping partner data"
+            ''ImportWorker.ReportProgress(i + 1)
 
-            If ExtractZip(txtimportdirectory.Text.ToString, Application.StartupPath & "\Exports") = False Then
-                MsgBox("something wrong with Zip file.", MsgBoxStyle.Exclamation)
-                Exit Sub
-            End If
+            ''If ExtractZip(txtimportdirectory.Text.ToString, Application.StartupPath & "\Exports") = False Then
+            ''    MsgBox("something wrong with Zip file.", MsgBoxStyle.Exclamation)
+            ''    Exit Sub
+            ''End If
+
+
 
             'first create stored procedures to create temporary tables
             strReportProgress = "Preparing temporary tables"
@@ -2845,22 +2851,28 @@ Public Class frmDataSync
                 'MsgBox("Stored Procedure executed")
             End If
 
-            'file import
-            If ImportfromDirectory(Application.StartupPath & "\Exports") = True Then
-                'Actual synchronising from temp tables into main tables
-
-                strReportProgress = "Merging imported data from temp_tables to main_tables"
-                ImportWorker.ReportProgress(i + 1)
-
-                cmd = New SqlCommand("dbo.SYNCOVCDATA_HQ")
-                cmd.CommandType = CommandType.StoredProcedure
-                cmd.CommandTimeout = 3600
-                conn.Open()
-                cmd.Connection = conn
-                cmd.ExecuteReader()
-                conn.Close()
-                ' MsgBox("Stored Procedure executed")
+            'Open the excel file
+            If ExtractCPIMSData(txtimportdirectory.Text.ToString) = False Then
+                MsgBox("something wrong with Excel file.", MsgBoxStyle.Exclamation)
+                Exit Sub
             End If
+
+            'file import
+            'If ImportfromDirectory(Application.StartupPath & "\Exports") = True Then
+            '    'Actual synchronising from temp tables into main tables
+
+            strReportProgress = "Merging imported data from temp_tables to main_tables"
+            ImportWorker.ReportProgress(i + 1)
+
+            cmd = New SqlCommand("dbo.SYNCOVCDATA_HQ")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.CommandTimeout = 3600
+            conn.Open()
+            cmd.Connection = conn
+            cmd.ExecuteReader()
+            conn.Close()
+            ' MsgBox("Stored Procedure executed")
+            'End If
 
             MsgBox("Data import and Synchronization SUCCESSFUL.", MsgBoxStyle.Information)
         Catch ex As Exception
@@ -2868,40 +2880,97 @@ Public Class frmDataSync
         End Try
     End Sub
 
-    Private Function ImportfromDirectory(ByVal importdirectory As String) As Boolean
+    Private Function ExtractCPIMSData(ByVal cpimsExcelFile As String) As Boolean
+        Dim conn As New SqlConnection(ConnectionStrings(SelectedConnectionString).ToString)
         Try
-            'loop through files in the directory
-            ' Make a reference to a directory.
-            Dim di As New DirectoryInfo(importdirectory)
-            ' Get a reference to each file in that directory.
-            Dim fiArr As FileInfo() = di.GetFiles("*.xml")
-            ' Display the names of the files.
-            Dim fri As FileInfo
-            Dim filenamebilaextension, destinationxmltable As String
-            For Each fri In fiArr
 
-                'report progress
-                strReportProgress = "Importing file " & fri.Name
-                ImportWorker.ReportProgress(0)
+            strReportProgress = "Opening Excel file"
+            'ImportWorker.ReportProgress(i + 1)
+            Dim stream As FileStream = File.Open(cpimsExcelFile, FileMode.Open, FileAccess.Read)
 
-                filenamebilaextension = System.IO.Path.GetFileNameWithoutExtension(fri.Name)
-                'remove the digits at the end e.g Clientdetails000 becomes Clientdetails
-                destinationxmltable = filenamebilaextension.Substring(0, filenamebilaextension.Length - 12)
+            '1. Reading from a binary Excel file ('97-2003 format; *.xls)
+            'Dim excelReader As IExcelDataReader = ExcelReaderFactory.CreateBinaryReader(stream)
+            '...
+            strReportProgress = "Initializing Excel Reader"
+            'ImportWorker.ReportProgress(i + 1)
+            '2. Reading from a OpenXml Excel file (2007 format; *.xlsx)
+            Dim excelReader As IExcelDataReader = ExcelReaderFactory.CreateOpenXmlReader(stream)
+            '...
+            '3. DataSet - The result of each spreadsheet will be created in the result.Tables
+            'Dim result As DataSet = excelReader.AsDataSet()
+            '...
+            excelReader.IsFirstRowAsColumnNames = True
+            Dim result As DataSet = excelReader.AsDataSet()
+            'Dim myDataTable As DataTable = result.Tables(0)
+            '5. Data Reader methods
 
-                'import xml data into database
-                If bulkcopyxml(importdirectory, filenamebilaextension, destinationxmltable) = False Then
-                    MsgBox("Import of " & fri.Name & " FAILED", MsgBoxStyle.Exclamation)
-                End If
+            If bulkcopyxml(cpimsExcelFile, "temp_OVCRegistrationDetails", result) = False Then
+                MsgBox("Excel data import failed.", MsgBoxStyle.Exclamation)
+                Return False
+            End If
+            'While excelReader.Read()
 
-            Next fri
+            '    MsgBox(excelReader.GetString(0)) 'schoolname
+            '    'MsgBox(excelReader.GetString(1))
+            '    'MsgBox(excelReader.GetString(2)) 'district
+            '    'MsgBox(excelReader.GetString(3)) 'schoollevel
 
+
+
+
+
+            'End While
+
+            '6. Free resources (IExcelDataReader is IDisposable)
+            'excelReader.Close()
+
+
+
+            MsgBox("CPIMS data upload complete.", MsgBoxStyle.Information)
             Return True
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+            MsgBox(ex.Message)
             Return False
+        Finally
+            conn.Close()
         End Try
     End Function
+
+    'Private Function ImportfromDirectory(ByVal importdirectory As String) As Boolean
+    '    Try
+    '        'loop through files in the directory
+    '        ' Make a reference to a directory.
+    '        Dim di As New DirectoryInfo(importdirectory)
+    '        ' Get a reference to each file in that directory.
+    '        Dim fiArr As FileInfo() = di.GetFiles("*.xml")
+    '        ' Display the names of the files.
+    '        Dim fri As FileInfo
+    '        Dim filenamebilaextension, destinationxmltable As String
+    '        For Each fri In fiArr
+
+    '            'report progress
+    '            strReportProgress = "Importing file " & fri.Name
+    '            ImportWorker.ReportProgress(0)
+
+    '            filenamebilaextension = System.IO.Path.GetFileNameWithoutExtension(fri.Name)
+    '            'remove the digits at the end e.g Clientdetails000 becomes Clientdetails
+    '            destinationxmltable = filenamebilaextension.Substring(0, filenamebilaextension.Length - 12)
+
+    '            'import xml data into database
+    '            If bulkcopyxml(importdirectory, filenamebilaextension, destinationxmltable) = False Then
+    '                MsgBox("Import of " & fri.Name & " FAILED", MsgBoxStyle.Exclamation)
+    '            End If
+
+    '        Next fri
+
+    '        Return True
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+    '        Return False
+    '    End Try
+    'End Function
 
     Private Function ImportKeysfromDirectory(ByVal importdirectory As String) As Boolean
         Try
@@ -2958,9 +3027,12 @@ Public Class frmDataSync
     End Function
 
 
-    Private Function bulkcopyxml(ByVal importdirectory As String, ByVal strfilename As String, _
-                                ByVal xmltablename As String) As Boolean
+    Private Function bulkcopyxml(ByVal strfilename As String,
+                                ByVal xmltablename As String, ByVal myds As DataSet) As Boolean
         Dim connectionstring As String = ConnectionStrings(SelectedConnectionString).ToString
+        Dim bulkcopy As New SqlBulkCopy(connectionstring, SqlBulkCopyOptions.TableLock _
+                                                  And SqlBulkCopyOptions.UseInternalTransaction _
+                                                  And SqlBulkCopyOptions.KeepNulls)
         Try
             Using sqlconn As New SqlConnection(connectionstring)
                 Dim ds As New DataSet()
@@ -2977,33 +3049,35 @@ Public Class frmDataSync
                 ' ''ds.ReadXmlSchema(readStream)
 
 
-                ds.ReadXml(importdirectory & "\" & strfilename & ".xml")
+                'ds.ReadXml(importdirectory & "\" & strfilename & ".xml")
+                ds = myds
 
                 sourcedata = ds.Tables(0)
                 sqlconn.Open()
-                Using bulkcopy As New SqlBulkCopy(connectionstring, SqlBulkCopyOptions.TableLock _
-                                                  And SqlBulkCopyOptions.UseInternalTransaction _
-                                                  And SqlBulkCopyOptions.KeepNulls)
+                Using bulkcopy
+                    'As New SqlBulkCopy(connectionstring, SqlBulkCopyOptions.TableLock _
+                    '                              And SqlBulkCopyOptions.UseInternalTransaction _
+                    '                              And SqlBulkCopyOptions.KeepNulls)
                     bulkcopy.BulkCopyTimeout = 600
                     bulkcopy.BatchSize = 1000
-                    bulkcopy.DestinationTableName = "dbo.temp_" & xmltablename & ""
+                    bulkcopy.DestinationTableName = "dbo." & xmltablename & ""
                     bulkcopy.ColumnMappings.Clear()
                     For Each myCol In ds.Tables(0).Columns
                         'dont map Rowid coz it does not exist in db
-                        If myCol.ColumnName.Trim().ToString.ToLower <> "rowid" _
-                        AndAlso myCol.ColumnName.Trim().ToString.ToLower <> "syncdate" Then
-                            'cater for both older files and new. Older files had a column called [Exit] but now [Exited]
-                            If myCol.ColumnName.Trim().ToString.ToLower = "exit" Then
-                                bulkcopy.ColumnMappings.Add(myCol.ColumnName.Trim(), "Exited")
-                            Else
-                                bulkcopy.ColumnMappings.Add(myCol.ColumnName.Trim(), myCol.ColumnName.Trim())
-                            End If
+                        'If myCol.ColumnName.Trim().ToString.ToLower <> "countyid" _
+                        '    AndAlso myCol.ColumnName.Trim().ToString.ToLower <> "caregiver_gender" _
+                        '    AndAlso myCol.ColumnName.Trim().ToString.ToLower <> "chv_gender" Then
 
-                        End If
+
+                        bulkcopy.ColumnMappings.Add(myCol.ColumnName.Trim(), myCol.ColumnName.Trim())
+
+
+
+                        Console.WriteLine(myCol.ColumnName)
+                        'End If
 
                     Next
-                    'bulkcopy.ColumnMappings.Add("ParentId", "ParentId")
-                    'bulkcopy.ColumnMappings.Add("IDNumber", "IDNumber")
+
                     bulkcopy.WriteToServer(sourcedata)
 
                 End Using
@@ -3027,9 +3101,39 @@ Public Class frmDataSync
             'End Try
             Return True
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+
+            Dim errorMessage As String = String.Empty
+
+            If (ex.Message.Contains("Received an invalid column length from the bcp client for colid")) Then
+
+                ' this method gives message with column name with length.  
+                errorMessage = GetBulkCopyColumnException(ex, bulkcopy)
+            End If
+            MsgBox(errorMessage, MsgBoxStyle.Exclamation)
             Return False
         End Try
+    End Function
+
+    'This exception gives the column number And that Is Not easy To find When the Excel sheet contains a 
+    'large number Of columns. So we are Using the following code To find the column name.
+    Protected Function GetBulkCopyColumnException(ByVal ex As Exception, ByVal bulkcopy As SqlBulkCopy) As String
+        Dim message As String = String.Empty
+
+        If ex.Message.Contains("Received an invalid column length from the bcp client for colid") Then
+            Dim pattern As String = "\d+"
+            Dim match As Match = Regex.Match(ex.Message.ToString(), pattern)
+            Dim index = Convert.ToInt32(match.Value) - 1
+            Dim fi As FieldInfo = GetType(SqlBulkCopy).GetField("_sortedColumnMappings", BindingFlags.NonPublic Or BindingFlags.Instance)
+            Dim sortedColumns = fi.GetValue(bulkcopy)
+            Dim items = CType(sortedColumns.[GetType]().GetField("_items", BindingFlags.NonPublic Or BindingFlags.Instance).GetValue(sortedColumns), Object())
+            Dim itemdata As FieldInfo = items(index).[GetType]().GetField("_metadata", BindingFlags.NonPublic Or BindingFlags.Instance)
+            Dim metadata = itemdata.GetValue(items(index))
+            Dim column = metadata.[GetType]().GetField("column", BindingFlags.[Public] Or BindingFlags.NonPublic Or BindingFlags.Instance).GetValue(metadata)
+            Dim length = metadata.[GetType]().GetField("length", BindingFlags.[Public] Or BindingFlags.NonPublic Or BindingFlags.Instance).GetValue(metadata)
+            message = (String.Format("Column: {0} contains data with a length greater than: {1}", column, length))
+        End If
+
+        Return message
     End Function
 
     Private Function validatexml(ByVal xmlfile As String) As Boolean

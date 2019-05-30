@@ -22,12 +22,30 @@ Partial Class frmOVCInfo
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.cboRehabCentre = New System.Windows.Forms.ComboBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.txtNCPWDContacts = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.cboIntervention = New System.Windows.Forms.ComboBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.cboDiagnosis = New System.Windows.Forms.ComboBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.dtpDateofDisabilityAssessment = New System.Windows.Forms.DateTimePicker()
+        Me.cbodisabilitytype = New System.Windows.Forms.ComboBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label58 = New System.Windows.Forms.Label()
+        Me.txtNCPWDnum = New System.Windows.Forms.TextBox()
+        Me.chkOVCDisabled = New System.Windows.Forms.CheckBox()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.txtreasonforexit = New System.Windows.Forms.TextBox()
         Me.Label41 = New System.Windows.Forms.Label()
@@ -42,6 +60,14 @@ Partial Class frmOVCInfo
         Me.Label25 = New System.Windows.Forms.Label()
         Me.txtcaregivernames = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.cboTestingOutcome = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.dtpDateofTesting = New System.Windows.Forms.DateTimePicker()
+        Me.cboScreeningOutcome = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.dtpScreeningDate = New System.Windows.Forms.DateTimePicker()
         Me.txtimmunization = New System.Windows.Forms.TextBox()
         Me.txtfacility = New System.Windows.Forms.TextBox()
         Me.txtartstatus = New System.Windows.Forms.TextBox()
@@ -62,6 +88,8 @@ Partial Class frmOVCInfo
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.dtpDateofRegistration = New System.Windows.Forms.DateTimePicker()
         Me.txtgender = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtward = New System.Windows.Forms.TextBox()
@@ -109,37 +137,10 @@ Partial Class frmOVCInfo
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.txtsearchovcname = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.dtpScreeningDate = New System.Windows.Forms.DateTimePicker()
-        Me.cboScreeningOutcome = New System.Windows.Forms.ComboBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.dtpDateofTesting = New System.Windows.Forms.DateTimePicker()
-        Me.cboTestingOutcome = New System.Windows.Forms.ComboBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.cbodisabilitytype = New System.Windows.Forms.ComboBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label58 = New System.Windows.Forms.Label()
-        Me.txtNCPWDnum = New System.Windows.Forms.TextBox()
-        Me.chkOVCDisabled = New System.Windows.Forms.CheckBox()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.dtpDateofDisabilityAssessment = New System.Windows.Forms.DateTimePicker()
-        Me.cboDiagnosis = New System.Windows.Forms.ComboBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.cboIntervention = New System.Windows.Forms.ComboBox()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.txtNCPWDContacts = New System.Windows.Forms.TextBox()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.cboRehabCentre = New System.Windows.Forms.ComboBox()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.dtpDateofRegistration = New System.Windows.Forms.DateTimePicker()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -149,7 +150,6 @@ Partial Class frmOVCInfo
         Me.Panel2.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -194,6 +194,224 @@ Partial Class frmOVCInfo
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1430, 889)
         Me.Panel1.TabIndex = 1
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox4.Controls.Add(Me.cboRehabCentre)
+        Me.GroupBox4.Controls.Add(Me.Label26)
+        Me.GroupBox4.Controls.Add(Me.TextBox1)
+        Me.GroupBox4.Controls.Add(Me.Label24)
+        Me.GroupBox4.Controls.Add(Me.txtNCPWDContacts)
+        Me.GroupBox4.Controls.Add(Me.Label21)
+        Me.GroupBox4.Controls.Add(Me.cboIntervention)
+        Me.GroupBox4.Controls.Add(Me.Label20)
+        Me.GroupBox4.Controls.Add(Me.cboDiagnosis)
+        Me.GroupBox4.Controls.Add(Me.Label19)
+        Me.GroupBox4.Controls.Add(Me.Label18)
+        Me.GroupBox4.Controls.Add(Me.dtpDateofDisabilityAssessment)
+        Me.GroupBox4.Controls.Add(Me.cbodisabilitytype)
+        Me.GroupBox4.Controls.Add(Me.Label11)
+        Me.GroupBox4.Controls.Add(Me.Label58)
+        Me.GroupBox4.Controls.Add(Me.txtNCPWDnum)
+        Me.GroupBox4.Controls.Add(Me.chkOVCDisabled)
+        Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox4.Location = New System.Drawing.Point(964, 234)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox4.Size = New System.Drawing.Size(450, 478)
+        Me.GroupBox4.TabIndex = 63
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Health - Disability"
+        '
+        'cboRehabCentre
+        '
+        Me.cboRehabCentre.FormattingEnabled = True
+        Me.cboRehabCentre.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
+        Me.cboRehabCentre.Location = New System.Drawing.Point(177, 357)
+        Me.cboRehabCentre.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboRehabCentre.Name = "cboRehabCentre"
+        Me.cboRehabCentre.Size = New System.Drawing.Size(234, 28)
+        Me.cboRehabCentre.TabIndex = 80
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Enabled = False
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(5, 365)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(108, 17)
+        Me.Label26.TabIndex = 79
+        Me.Label26.Text = "Rehab Centre"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox1.Enabled = False
+        Me.TextBox1.Location = New System.Drawing.Point(174, 309)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(237, 26)
+        Me.TextBox1.TabIndex = 78
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Enabled = False
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(5, 314)
+        Me.Label24.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(111, 17)
+        Me.Label24.TabIndex = 77
+        Me.Label24.Text = "Other Support"
+        '
+        'txtNCPWDContacts
+        '
+        Me.txtNCPWDContacts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtNCPWDContacts.Enabled = False
+        Me.txtNCPWDContacts.Location = New System.Drawing.Point(177, 262)
+        Me.txtNCPWDContacts.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtNCPWDContacts.Name = "txtNCPWDContacts"
+        Me.txtNCPWDContacts.Size = New System.Drawing.Size(237, 26)
+        Me.txtNCPWDContacts.TabIndex = 76
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.Location = New System.Drawing.Point(8, 272)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(132, 17)
+        Me.Label21.TabIndex = 75
+        Me.Label21.Text = "NCPWD Contacts"
+        '
+        'cboIntervention
+        '
+        Me.cboIntervention.FormattingEnabled = True
+        Me.cboIntervention.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
+        Me.cboIntervention.Location = New System.Drawing.Point(177, 227)
+        Me.cboIntervention.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboIntervention.Name = "cboIntervention"
+        Me.cboIntervention.Size = New System.Drawing.Size(234, 28)
+        Me.cboIntervention.TabIndex = 74
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Enabled = False
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(5, 235)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(94, 17)
+        Me.Label20.TabIndex = 73
+        Me.Label20.Text = "Intervention"
+        '
+        'cboDiagnosis
+        '
+        Me.cboDiagnosis.FormattingEnabled = True
+        Me.cboDiagnosis.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
+        Me.cboDiagnosis.Location = New System.Drawing.Point(177, 186)
+        Me.cboDiagnosis.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboDiagnosis.Name = "cboDiagnosis"
+        Me.cboDiagnosis.Size = New System.Drawing.Size(234, 28)
+        Me.cboDiagnosis.TabIndex = 72
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Enabled = False
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(5, 194)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(79, 17)
+        Me.Label19.TabIndex = 71
+        Me.Label19.Text = "Diagnosis"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(8, 155)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(152, 17)
+        Me.Label18.TabIndex = 66
+        Me.Label18.Text = "Date of Assessment"
+        Me.Label18.Visible = False
+        '
+        'dtpDateofDisabilityAssessment
+        '
+        Me.dtpDateofDisabilityAssessment.Enabled = False
+        Me.dtpDateofDisabilityAssessment.Location = New System.Drawing.Point(177, 143)
+        Me.dtpDateofDisabilityAssessment.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpDateofDisabilityAssessment.Name = "dtpDateofDisabilityAssessment"
+        Me.dtpDateofDisabilityAssessment.Size = New System.Drawing.Size(237, 26)
+        Me.dtpDateofDisabilityAssessment.TabIndex = 65
+        Me.dtpDateofDisabilityAssessment.Visible = False
+        '
+        'cbodisabilitytype
+        '
+        Me.cbodisabilitytype.FormattingEnabled = True
+        Me.cbodisabilitytype.Items.AddRange(New Object() {"Mentally Challenged", "Lame", "Physical Hump", "Deaf", "Dumb", "Deaf and Dumb", "Epileptic", "Mental disability"})
+        Me.cbodisabilitytype.Location = New System.Drawing.Point(177, 93)
+        Me.cbodisabilitytype.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbodisabilitytype.Name = "cbodisabilitytype"
+        Me.cbodisabilitytype.Size = New System.Drawing.Size(234, 28)
+        Me.cbodisabilitytype.TabIndex = 64
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Enabled = False
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(6, 104)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(134, 17)
+        Me.Label11.TabIndex = 63
+        Me.Label11.Text = "Type of Disability"
+        '
+        'Label58
+        '
+        Me.Label58.AutoSize = True
+        Me.Label58.Enabled = False
+        Me.Label58.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label58.Location = New System.Drawing.Point(8, 67)
+        Me.Label58.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(73, 17)
+        Me.Label58.TabIndex = 62
+        Me.Label58.Text = "NCPWD#"
+        '
+        'txtNCPWDnum
+        '
+        Me.txtNCPWDnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtNCPWDnum.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtNCPWDnum.Enabled = False
+        Me.txtNCPWDnum.Location = New System.Drawing.Point(177, 58)
+        Me.txtNCPWDnum.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtNCPWDnum.Name = "txtNCPWDnum"
+        Me.txtNCPWDnum.Size = New System.Drawing.Size(167, 26)
+        Me.txtNCPWDnum.TabIndex = 61
+        '
+        'chkOVCDisabled
+        '
+        Me.chkOVCDisabled.AutoSize = True
+        Me.chkOVCDisabled.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkOVCDisabled.Location = New System.Drawing.Point(11, 24)
+        Me.chkOVCDisabled.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkOVCDisabled.Name = "chkOVCDisabled"
+        Me.chkOVCDisabled.Size = New System.Drawing.Size(156, 24)
+        Me.chkOVCDisabled.TabIndex = 60
+        Me.chkOVCDisabled.Text = "OVC is disabled"
+        Me.chkOVCDisabled.UseVisualStyleBackColor = True
         '
         'GroupBox7
         '
@@ -384,6 +602,94 @@ Partial Class frmOVCInfo
         Me.GroupBox3.TabIndex = 41
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Health - HIV"
+        '
+        'cboTestingOutcome
+        '
+        Me.cboTestingOutcome.FormattingEnabled = True
+        Me.cboTestingOutcome.Items.AddRange(New Object() {"Positive", "Negative", "Not Known"})
+        Me.cboTestingOutcome.Location = New System.Drawing.Point(188, 393)
+        Me.cboTestingOutcome.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboTestingOutcome.Name = "cboTestingOutcome"
+        Me.cboTestingOutcome.Size = New System.Drawing.Size(234, 28)
+        Me.cboTestingOutcome.TabIndex = 74
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Enabled = False
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(16, 397)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(131, 17)
+        Me.Label13.TabIndex = 73
+        Me.Label13.Text = "Testing Outcome"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(16, 357)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(120, 17)
+        Me.Label12.TabIndex = 72
+        Me.Label12.Text = "Date of Testing"
+        Me.Label12.Visible = False
+        '
+        'dtpDateofTesting
+        '
+        Me.dtpDateofTesting.Enabled = False
+        Me.dtpDateofTesting.Location = New System.Drawing.Point(185, 352)
+        Me.dtpDateofTesting.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpDateofTesting.Name = "dtpDateofTesting"
+        Me.dtpDateofTesting.Size = New System.Drawing.Size(237, 26)
+        Me.dtpDateofTesting.TabIndex = 71
+        Me.dtpDateofTesting.Visible = False
+        '
+        'cboScreeningOutcome
+        '
+        Me.cboScreeningOutcome.FormattingEnabled = True
+        Me.cboScreeningOutcome.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
+        Me.cboScreeningOutcome.Location = New System.Drawing.Point(188, 309)
+        Me.cboScreeningOutcome.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboScreeningOutcome.Name = "cboScreeningOutcome"
+        Me.cboScreeningOutcome.Size = New System.Drawing.Size(234, 28)
+        Me.cboScreeningOutcome.TabIndex = 70
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Enabled = False
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(16, 317)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(150, 17)
+        Me.Label10.TabIndex = 69
+        Me.Label10.Text = "Screening Outcome"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(16, 277)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(139, 17)
+        Me.Label9.TabIndex = 68
+        Me.Label9.Text = "Date of Screening"
+        Me.Label9.Visible = False
+        '
+        'dtpScreeningDate
+        '
+        Me.dtpScreeningDate.Enabled = False
+        Me.dtpScreeningDate.Location = New System.Drawing.Point(185, 268)
+        Me.dtpScreeningDate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpScreeningDate.Name = "dtpScreeningDate"
+        Me.dtpScreeningDate.Size = New System.Drawing.Size(237, 26)
+        Me.dtpScreeningDate.TabIndex = 67
+        Me.dtpScreeningDate.Visible = False
         '
         'txtimmunization
         '
@@ -633,6 +939,27 @@ Partial Class frmOVCInfo
         Me.GroupBox1.TabIndex = 37
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "The Client"
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label42.Location = New System.Drawing.Point(23, 624)
+        Me.Label42.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(154, 17)
+        Me.Label42.TabIndex = 63
+        Me.Label42.Text = "Date of Registration"
+        '
+        'dtpDateofRegistration
+        '
+        Me.dtpDateofRegistration.Enabled = False
+        Me.dtpDateofRegistration.Location = New System.Drawing.Point(179, 617)
+        Me.dtpDateofRegistration.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpDateofRegistration.Name = "dtpDateofRegistration"
+        Me.dtpDateofRegistration.Size = New System.Drawing.Size(255, 26)
+        Me.dtpDateofRegistration.TabIndex = 62
         '
         'txtgender
         '
@@ -911,7 +1238,7 @@ Partial Class frmOVCInfo
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TabPage3.Size = New System.Drawing.Size(1622, 741)
+        Me.TabPage3.Size = New System.Drawing.Size(1598, 912)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Search Client"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1025,35 +1352,35 @@ Partial Class frmOVCInfo
         '
         'DataGridView1
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column6, Me.Column8, Me.Column9, Me.Column5})
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Location = New System.Drawing.Point(4, 180)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.Size = New System.Drawing.Size(1570, 529)
         Me.DataGridView1.TabIndex = 6
         '
@@ -1127,332 +1454,6 @@ Partial Class frmOVCInfo
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "OVC Name"
         '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(16, 277)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(139, 17)
-        Me.Label9.TabIndex = 68
-        Me.Label9.Text = "Date of Screening"
-        Me.Label9.Visible = False
-        '
-        'dtpScreeningDate
-        '
-        Me.dtpScreeningDate.Enabled = False
-        Me.dtpScreeningDate.Location = New System.Drawing.Point(185, 268)
-        Me.dtpScreeningDate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.dtpScreeningDate.Name = "dtpScreeningDate"
-        Me.dtpScreeningDate.Size = New System.Drawing.Size(237, 26)
-        Me.dtpScreeningDate.TabIndex = 67
-        Me.dtpScreeningDate.Visible = False
-        '
-        'cboScreeningOutcome
-        '
-        Me.cboScreeningOutcome.FormattingEnabled = True
-        Me.cboScreeningOutcome.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
-        Me.cboScreeningOutcome.Location = New System.Drawing.Point(188, 309)
-        Me.cboScreeningOutcome.Margin = New System.Windows.Forms.Padding(2)
-        Me.cboScreeningOutcome.Name = "cboScreeningOutcome"
-        Me.cboScreeningOutcome.Size = New System.Drawing.Size(234, 28)
-        Me.cboScreeningOutcome.TabIndex = 70
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Enabled = False
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(16, 317)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(150, 17)
-        Me.Label10.TabIndex = 69
-        Me.Label10.Text = "Screening Outcome"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(16, 357)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(120, 17)
-        Me.Label12.TabIndex = 72
-        Me.Label12.Text = "Date of Testing"
-        Me.Label12.Visible = False
-        '
-        'dtpDateofTesting
-        '
-        Me.dtpDateofTesting.Enabled = False
-        Me.dtpDateofTesting.Location = New System.Drawing.Point(185, 352)
-        Me.dtpDateofTesting.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.dtpDateofTesting.Name = "dtpDateofTesting"
-        Me.dtpDateofTesting.Size = New System.Drawing.Size(237, 26)
-        Me.dtpDateofTesting.TabIndex = 71
-        Me.dtpDateofTesting.Visible = False
-        '
-        'cboTestingOutcome
-        '
-        Me.cboTestingOutcome.FormattingEnabled = True
-        Me.cboTestingOutcome.Items.AddRange(New Object() {"Positive", "Negative", "Not Known"})
-        Me.cboTestingOutcome.Location = New System.Drawing.Point(188, 393)
-        Me.cboTestingOutcome.Margin = New System.Windows.Forms.Padding(2)
-        Me.cboTestingOutcome.Name = "cboTestingOutcome"
-        Me.cboTestingOutcome.Size = New System.Drawing.Size(234, 28)
-        Me.cboTestingOutcome.TabIndex = 74
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Enabled = False
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(16, 397)
-        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(131, 17)
-        Me.Label13.TabIndex = 73
-        Me.Label13.Text = "Testing Outcome"
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox4.Controls.Add(Me.cboRehabCentre)
-        Me.GroupBox4.Controls.Add(Me.Label26)
-        Me.GroupBox4.Controls.Add(Me.TextBox1)
-        Me.GroupBox4.Controls.Add(Me.Label24)
-        Me.GroupBox4.Controls.Add(Me.txtNCPWDContacts)
-        Me.GroupBox4.Controls.Add(Me.Label21)
-        Me.GroupBox4.Controls.Add(Me.cboIntervention)
-        Me.GroupBox4.Controls.Add(Me.Label20)
-        Me.GroupBox4.Controls.Add(Me.cboDiagnosis)
-        Me.GroupBox4.Controls.Add(Me.Label19)
-        Me.GroupBox4.Controls.Add(Me.Label18)
-        Me.GroupBox4.Controls.Add(Me.dtpDateofDisabilityAssessment)
-        Me.GroupBox4.Controls.Add(Me.cbodisabilitytype)
-        Me.GroupBox4.Controls.Add(Me.Label11)
-        Me.GroupBox4.Controls.Add(Me.Label58)
-        Me.GroupBox4.Controls.Add(Me.txtNCPWDnum)
-        Me.GroupBox4.Controls.Add(Me.chkOVCDisabled)
-        Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(964, 234)
-        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox4.Size = New System.Drawing.Size(450, 478)
-        Me.GroupBox4.TabIndex = 63
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Health - Disability"
-        '
-        'cbodisabilitytype
-        '
-        Me.cbodisabilitytype.FormattingEnabled = True
-        Me.cbodisabilitytype.Location = New System.Drawing.Point(177, 93)
-        Me.cbodisabilitytype.Margin = New System.Windows.Forms.Padding(2)
-        Me.cbodisabilitytype.Name = "cbodisabilitytype"
-        Me.cbodisabilitytype.Size = New System.Drawing.Size(234, 28)
-        Me.cbodisabilitytype.TabIndex = 64
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Enabled = False
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(6, 104)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(134, 17)
-        Me.Label11.TabIndex = 63
-        Me.Label11.Text = "Type of Disability"
-        '
-        'Label58
-        '
-        Me.Label58.AutoSize = True
-        Me.Label58.Enabled = False
-        Me.Label58.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label58.Location = New System.Drawing.Point(8, 67)
-        Me.Label58.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(73, 17)
-        Me.Label58.TabIndex = 62
-        Me.Label58.Text = "NCPWD#"
-        '
-        'txtNCPWDnum
-        '
-        Me.txtNCPWDnum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtNCPWDnum.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtNCPWDnum.Enabled = False
-        Me.txtNCPWDnum.Location = New System.Drawing.Point(177, 58)
-        Me.txtNCPWDnum.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.txtNCPWDnum.Name = "txtNCPWDnum"
-        Me.txtNCPWDnum.Size = New System.Drawing.Size(167, 26)
-        Me.txtNCPWDnum.TabIndex = 61
-        '
-        'chkOVCDisabled
-        '
-        Me.chkOVCDisabled.AutoSize = True
-        Me.chkOVCDisabled.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkOVCDisabled.Location = New System.Drawing.Point(11, 24)
-        Me.chkOVCDisabled.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.chkOVCDisabled.Name = "chkOVCDisabled"
-        Me.chkOVCDisabled.Size = New System.Drawing.Size(156, 24)
-        Me.chkOVCDisabled.TabIndex = 60
-        Me.chkOVCDisabled.Text = "OVC is disabled"
-        Me.chkOVCDisabled.UseVisualStyleBackColor = True
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(8, 155)
-        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(152, 17)
-        Me.Label18.TabIndex = 66
-        Me.Label18.Text = "Date of Assessment"
-        Me.Label18.Visible = False
-        '
-        'dtpDateofDisabilityAssessment
-        '
-        Me.dtpDateofDisabilityAssessment.Enabled = False
-        Me.dtpDateofDisabilityAssessment.Location = New System.Drawing.Point(177, 143)
-        Me.dtpDateofDisabilityAssessment.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.dtpDateofDisabilityAssessment.Name = "dtpDateofDisabilityAssessment"
-        Me.dtpDateofDisabilityAssessment.Size = New System.Drawing.Size(237, 26)
-        Me.dtpDateofDisabilityAssessment.TabIndex = 65
-        Me.dtpDateofDisabilityAssessment.Visible = False
-        '
-        'cboDiagnosis
-        '
-        Me.cboDiagnosis.FormattingEnabled = True
-        Me.cboDiagnosis.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
-        Me.cboDiagnosis.Location = New System.Drawing.Point(177, 186)
-        Me.cboDiagnosis.Margin = New System.Windows.Forms.Padding(2)
-        Me.cboDiagnosis.Name = "cboDiagnosis"
-        Me.cboDiagnosis.Size = New System.Drawing.Size(234, 28)
-        Me.cboDiagnosis.TabIndex = 72
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Enabled = False
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(5, 194)
-        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(79, 17)
-        Me.Label19.TabIndex = 71
-        Me.Label19.Text = "Diagnosis"
-        '
-        'cboIntervention
-        '
-        Me.cboIntervention.FormattingEnabled = True
-        Me.cboIntervention.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
-        Me.cboIntervention.Location = New System.Drawing.Point(177, 227)
-        Me.cboIntervention.Margin = New System.Windows.Forms.Padding(2)
-        Me.cboIntervention.Name = "cboIntervention"
-        Me.cboIntervention.Size = New System.Drawing.Size(234, 28)
-        Me.cboIntervention.TabIndex = 74
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Enabled = False
-        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(5, 235)
-        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(94, 17)
-        Me.Label20.TabIndex = 73
-        Me.Label20.Text = "Intervention"
-        '
-        'txtNCPWDContacts
-        '
-        Me.txtNCPWDContacts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtNCPWDContacts.Enabled = False
-        Me.txtNCPWDContacts.Location = New System.Drawing.Point(177, 262)
-        Me.txtNCPWDContacts.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.txtNCPWDContacts.Name = "txtNCPWDContacts"
-        Me.txtNCPWDContacts.Size = New System.Drawing.Size(237, 26)
-        Me.txtNCPWDContacts.TabIndex = 76
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(8, 272)
-        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(132, 17)
-        Me.Label21.TabIndex = 75
-        Me.Label21.Text = "NCPWD Contacts"
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Enabled = False
-        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(5, 314)
-        Me.Label24.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(111, 17)
-        Me.Label24.TabIndex = 77
-        Me.Label24.Text = "Other Support"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(174, 309)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(237, 26)
-        Me.TextBox1.TabIndex = 78
-        '
-        'cboRehabCentre
-        '
-        Me.cboRehabCentre.FormattingEnabled = True
-        Me.cboRehabCentre.Items.AddRange(New Object() {"At Risk", "Test Not Required"})
-        Me.cboRehabCentre.Location = New System.Drawing.Point(177, 357)
-        Me.cboRehabCentre.Margin = New System.Windows.Forms.Padding(2)
-        Me.cboRehabCentre.Name = "cboRehabCentre"
-        Me.cboRehabCentre.Size = New System.Drawing.Size(234, 28)
-        Me.cboRehabCentre.TabIndex = 80
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Enabled = False
-        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(5, 365)
-        Me.Label26.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(108, 17)
-        Me.Label26.TabIndex = 79
-        Me.Label26.Text = "Rehab Centre"
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.Location = New System.Drawing.Point(23, 624)
-        Me.Label42.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(154, 17)
-        Me.Label42.TabIndex = 63
-        Me.Label42.Text = "Date of Registration"
-        '
-        'dtpDateofRegistration
-        '
-        Me.dtpDateofRegistration.Enabled = False
-        Me.dtpDateofRegistration.Location = New System.Drawing.Point(179, 617)
-        Me.dtpDateofRegistration.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.dtpDateofRegistration.Name = "dtpDateofRegistration"
-        Me.dtpDateofRegistration.Size = New System.Drawing.Size(255, 26)
-        Me.dtpDateofRegistration.TabIndex = 62
-        '
         'frmOVCInfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1469,6 +1470,8 @@ Partial Class frmOVCInfo
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
@@ -1485,8 +1488,6 @@ Partial Class frmOVCInfo
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox8.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

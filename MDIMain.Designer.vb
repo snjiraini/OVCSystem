@@ -40,6 +40,7 @@ Partial Class MDIMain
         Me.TrainingsListing = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMaintenanceData = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportMaintenanceData = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportCPIMSData = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExcelReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.Tools = New System.Windows.Forms.ToolStripMenuItem()
@@ -117,7 +118,7 @@ Partial Class MDIMain
         '
         'MaintenanceMenu
         '
-        Me.MaintenanceMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VSLAListing, Me.StarterKits, Me.ValueChains, Me.TrainingsListing, Me.ExportMaintenanceData, Me.ImportMaintenanceData})
+        Me.MaintenanceMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VSLAListing, Me.StarterKits, Me.ValueChains, Me.TrainingsListing, Me.ExportMaintenanceData, Me.ImportMaintenanceData, Me.ImportCPIMSData})
         Me.MaintenanceMenu.Name = "MaintenanceMenu"
         Me.MaintenanceMenu.Size = New System.Drawing.Size(124, 29)
         Me.MaintenanceMenu.Text = "&Maintenance"
@@ -159,6 +160,12 @@ Partial Class MDIMain
         Me.ImportMaintenanceData.Size = New System.Drawing.Size(299, 30)
         Me.ImportMaintenanceData.Text = "Import Maintenance Data"
         Me.ImportMaintenanceData.Visible = False
+        '
+        'ImportCPIMSData
+        '
+        Me.ImportCPIMSData.Name = "ImportCPIMSData"
+        Me.ImportCPIMSData.Size = New System.Drawing.Size(299, 30)
+        Me.ImportCPIMSData.Text = "ImportCPIMSData"
         '
         'ViewMenu
         '
@@ -314,4 +321,5 @@ Partial Class MDIMain
     Friend WithEvents CaregiverStarterKits As ToolStripMenuItem
     Friend WithEvents CaregiverValueChains As ToolStripMenuItem
     Friend WithEvents TrainingAttendance As ToolStripMenuItem
+    Friend WithEvents ImportCPIMSData As ToolStripMenuItem
 End Class
