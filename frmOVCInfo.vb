@@ -67,6 +67,58 @@ Public Class frmOVCInfo
 
     Private Sub frmOVCInfo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         populatecounties()
+        populatefacilities()
+        populatedisabilitytype()
+    End Sub
+
+    Private Sub populatedisabilitytype()
+        Dim ErrorAction As New functions
+        Try
+
+            'populate the combobox
+            Dim mySqlAction As String = "select disability_type_id,disability_type from disability_type  order by disability_type asc"
+            Dim MyDBAction As New functions
+            Dim MyDatable As New Data.DataTable
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            With cbodisabilitytype
+                .DataSource = Nothing
+                .Items.Clear()
+                .DataSource = MyDatable
+                .DisplayMember = "disability_type"
+                .ValueMember = "disability_type_id"
+                .SelectedIndex = -1 ' This line makes the combo default value to be blank
+            End With
+
+        Catch ex As Exception
+            ErrorAction.WriteToErrorLogFile("clientinfo", "populatedisabilitytype", ex.Message) ''---Write error to error log file
+
+        End Try
+    End Sub
+
+    Private Sub populatefacilities()
+        Dim ErrorAction As New functions
+        Try
+
+            'populate the combobox
+            Dim mySqlAction As String = "select distinct facility from OVCRegistrationDetails  order by facility asc"
+            Dim MyDBAction As New functions
+            Dim MyDatable As New Data.DataTable
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            With cboRehabCentre
+                .DataSource = Nothing
+                .Items.Clear()
+                .DataSource = MyDatable
+                .DisplayMember = "facility"
+                .ValueMember = 0
+                .SelectedIndex = -1 ' This line makes the combo default value to be blank
+            End With
+
+        Catch ex As Exception
+            ErrorAction.WriteToErrorLogFile("clientinfo", "populatefacilities", ex.Message) ''---Write error to error log file
+
+        End Try
     End Sub
 
     Private Sub populatecounties()
@@ -217,6 +269,7 @@ Public Class frmOVCInfo
 
             'take focus back to the first tab
             TabControl1.SelectedIndex = 0
+            BtnEdit.Enabled = True
 
         Catch ex As Exception
             MsgBox(ex.Message, vbExclamation)
@@ -256,7 +309,116 @@ Public Class frmOVCInfo
         End Try
     End Sub
 
-    Private Sub chkExit_CheckedChanged(sender As Object, e As EventArgs) Handles chkExit.CheckedChanged
 
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        Try
+            Dim MyDBAction As New functions
+            Dim mycpims_ovc_id As String = ""
+            Dim myovcdisability_type As String = ""
+            Dim mydisability_assessment_date As DateTime
+            Dim myDiagnosis As String = ""
+            Dim myInterventions As String = ""
+            Dim myNCPWD_Contacts As String = ""
+            Dim myNCPWD_Residence As String = ""
+            Dim myNCPWD_Other_Support As String = ""
+            Dim myNCPWD_Rehab_Centre As String = ""
+            Dim myHIV_Screening_Date As DateTime
+            Dim myHIV_Screening_Outcome As String = ""
+            Dim myHIV_Testing_Date As DateTime
+
+
+
+            If cbodisabilitytype.Text.Length > 0 Then
+                myovcdisability_type = cbodisabilitytype.SelectedItem.ToString
+            End If
+
+            If cboDiagnosis.Text.Length > 0 Then
+                myDiagnosis = cboDiagnosis.SelectedItem.ToString
+            End If
+
+            If cboIntervention.Text.Length > 0 Then
+                myInterventions = cboIntervention.SelectedItem.ToString
+            End If
+
+            If cboScreeningOutcome.Text.Length > 0 Then
+                myHIV_Screening_Outcome = cboScreeningOutcome.SelectedItem.ToString
+            End If
+
+            If dtpDateofDisabilityAssessment.Value = Date.Today Then
+                mydisability_assessment_date = "1900-01-01 00:00:00.000"
+            Else
+                mydisability_assessment_date = dtpDateofDisabilityAssessment.Value
+            End If
+
+            If dtpScreeningDate.Value = Date.Today Then
+                myHIV_Screening_Date = "1900-01-01 00:00:00.000"
+            Else
+                myHIV_Screening_Date = dtpDateofDisabilityAssessment.Value
+            End If
+
+            If dtpDateofTesting.Value = Date.Today Then
+                myHIV_Testing_Date = "1900-01-01 00:00:00.000"
+            Else
+                myHIV_Testing_Date = dtpDateofDisabilityAssessment.Value
+            End If
+
+            myNCPWD_Contacts = txtNCPWDContacts.Text.ToString
+            myNCPWD_Residence = txtward.Text.ToString
+            myNCPWD_Other_Support = txtOtherSupport.Text.ToString
+
+            If cboRehabCentre.Text.Length > 0 Then
+                myNCPWD_Rehab_Centre = cboRehabCentre.SelectedItem.ToString
+            Else
+                myNCPWD_Rehab_Centre = ""
+            End If
+
+            If dtpScreeningDate.Value = Date.Today Then
+                myHIV_Screening_Date = "1900-01-01 00:00:00.000"
+            Else
+                myHIV_Screening_Date = dtpScreeningDate.Value.ToString
+            End If
+
+
+            myHIV_Screening_Outcome = cboScreeningOutcome.SelectedItem.ToString
+
+            If dtpScreeningDate.Value = Date.Today Then
+                myHIV_Screening_Date = "1900-01-01 00:00:00.000"
+            Else
+                myHIV_Screening_Date = dtpScreeningDate.Value.ToString
+            End If
+
+
+            mycpims_ovc_id = txtOVCid.Text.ToString
+
+            'MyDBAction.UpdateClient(txtOVC.Text.ToString, RegularExpressions.Regex.Replace(txtfname.Text.ToString, "[^a-zA-Z]", ""),
+            '     RegularExpressions.Regex.Replace(txtmname.Text.ToString, "[^a-zA-Z]", ""), RegularExpressions.Regex.Replace(txtlname.Text.ToString, "[^a-zA-Z]", ""),
+            '    cboGender.Text.ToString, Format(dtpDateofBirth.Value, "dd-MMM-yyyy"), chkHasCert.Checked, strCriteria, cboCBO.SelectedValue.ToString _
+            '    , cboDistrict.SelectedValue.ToString, cboLocation.SelectedValue.ToString, strFacility.ToString, Format(dtpDateofLinkage.Value, "dd-MMM-yyyy"), cboImmunization.SelectedValue.ToString, cboCHWName.SelectedValue.ToString, cboSchoolLevel.SelectedValue.ToString, strschool, strclass, cboHIVStatus.SelectedValue.ToString _
+            '    , strART, "0", guardian_id.ToString, father_id.ToString, mother_id.ToString, householdhead_id.ToString, cboCareTaker.SelectedItem, Format(dtpDateofVisit.Value, "dd-MMM-yyyy"), chkExit.Checked, Format(dtpDateofRegistration.Value, "dd-MMM-yyyy") _
+            '    , Format(dtpDateofExit.Value, "dd-MMM-yyyy"), strExitReason, CDate(Date.Now.ToString), strsession.ToString, cboschoolingtype.Text.ToString,
+            '       strbcertnumber.ToString, chkOVCDisabled.Checked, txtNCPWDnum.Text.ToString, txtcccnumber.Text.ToString, strmode)
+
+            MyDBAction.UpdateClient(myovcdisability_type _
+      , mydisability_assessment_date _
+      , myDiagnosis _
+      , myInterventions _
+      , myNCPWD_Contacts _
+      , myNCPWD_Residence _
+      , myNCPWD_Other_Support _
+      , myNCPWD_Rehab_Centre _
+      , myHIV_Screening_Date _
+      , myHIV_Screening_Outcome _
+      , myHIV_Testing_Date _
+        , mycpims_ovc_id)
+
+            BtnEdit.Enabled = False
+
+            MsgBox("Record edited successfully")
+        Catch ex As Exception
+            MsgBox(ex.Message, vbExclamation)
+            MsgBox("Record update NOT successful", vbExclamation)
+
+        End Try
     End Sub
+
 End Class

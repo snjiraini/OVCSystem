@@ -73,7 +73,7 @@ Public Class frmVSLAListing
                     myvsla = MyDatable.Rows(K).Item("vsla_name").ToString
                     mycounty = MyDatable.Rows(K).Item("county").ToString
                     myward = MyDatable.Rows(K).Item("ward").ToString
-                    mydateofregistration = MyDatable.Rows(K).Item("registration_date").ToString
+                    mydateofregistration = MyDatable.Rows(K).Item("registration_date_cbo").ToString
                     DataGridView1.Rows.Add(myvslaid, myvsla, mycounty, myward, mydateofregistration, "Select")
                 Next
             End If
@@ -93,7 +93,9 @@ Public Class frmVSLAListing
             mySqlAction =
             "INSERT INTO [dbo].[vsla_list] " &
            "([vsla_name] " &
-           ",[registration_date] " &
+           ",[registration_date_cbo]" &
+           ",[Is_Gov_registered]" &
+           ",[registration_date_gov]" &
            ",[ward_id] " &
            ",[ward] " &
            ",[county_id] " &
@@ -102,7 +104,9 @@ Public Class frmVSLAListing
            ",[chairperson_phonenumber]) " &
             "VALUES " &
            "( '" & txtName.Text.ToString & "'," &
-          "'" & dtpDateRegistered.Value & "'," &
+          "'" & dtpDateRegisteredCBO.Value & "'," &
+          "'" & chkIsGovRegistered.Checked & "'," &
+          "'" & dtpDateRegisteredGov.Value & "'," &
           " '" & cbowards.SelectedValue.ToString & "'," &
           " '" & cbowards.Text.ToString & "'," &
           " '" & cbocounty.SelectedValue.ToString & "'," &
@@ -167,7 +171,9 @@ Public Class frmVSLAListing
                 txtName.Text = MyDatable.Rows(0).Item("vsla_name").ToString
                 cbocounty.SelectedValue = MyDatable.Rows(0).Item("county_ID").ToString
                 cbowards.SelectedValue = MyDatable.Rows(0).Item("ward_ID").ToString
-                dtpDateRegistered.Value = MyDatable.Rows(0).Item("registration_date").ToString
+                dtpDateRegisteredCBO.Value = MyDatable.Rows(0).Item("registration_date_cbo").ToString
+                dtpDateRegisteredGov.Value = MyDatable.Rows(0).Item("registration_date_gov").ToString
+                chkIsGovRegistered.Checked = CBool(MyDatable.Rows(0).Item("Is_Gov_registered"))
                 txtchairpersonname.Text = MyDatable.Rows(0).Item("chairperson").ToString
                 txtchairpersonnumber.Text = MyDatable.Rows(0).Item("chairperson_phonenumber").ToString
             End If
@@ -191,7 +197,9 @@ Public Class frmVSLAListing
             Dim MyDBAction As New functions
             mySqlAction = "UPDATE [dbo].[vsla_list] " &
                                "SET [vsla_name] = '" & txtName.Text.ToString & "' " &
-                                 " ,[registration_date] = '" & dtpDateRegistered.Value & "' " &
+                                 " ,[registration_date_cbo] = '" & dtpDateRegisteredCBO.Value.ToString & "' " &
+                                  ",[Is_Gov_registered] = '" & chkIsGovRegistered.Checked & "' " &
+                                  " ,[registration_date_gov] = '" & dtpDateRegisteredGov.Value.ToString & "' " &
                                   ",[ward_id] = '" & cbowards.SelectedValue.ToString & "' " &
                                  " ,[ward] = '" & cbowards.Text.ToString & "' " &
                                  " ,[county_id] = '" & cbocounty.SelectedValue.ToString & "' " &

@@ -443,78 +443,44 @@ Public Class functions
 
     End Function
 
-    Public Function UpdateClient(ByVal myOVCID As String, ByVal myFirstName As String, ByVal myMiddleName As String _
-          , ByVal mySurname As String, ByVal myGender As String, ByVal myDateofBirth As Date, ByVal myBirthCert As Integer _
-          , ByVal myClientType As String, ByVal myCbo As Integer, ByVal myDistrict As Integer, ByVal myLocation As Integer _
-          , ByVal myFacility As Integer, ByVal mydateofLinkage As Date, ByVal myImmunization As Integer, ByVal myVolunteerId As String _
-          , ByVal mySchoolLevel As Integer, ByVal mySchool As Integer, ByVal myschoolclass As Integer, ByVal myHIVStatus As Integer, ByVal myARTStatus As Integer, ByVal myCriteria As Integer, ByVal myguardianID As String _
-           , ByVal myfatherID As String, ByVal mymotherID As String, ByVal myhouseholdheadID As String, ByVal myCareTakerID As String _
-           , ByVal myDateofVisit As Date, ByVal myExit As Integer, ByVal mydateofreg As Date,
-          ByVal mydateofexit As Date, ByVal myreasonforexit As Integer, ByVal mylastmodifiedon As Date,
-          ByVal mylastmodifiedsession As String, ByVal myschoolingtype As String,
-           ByVal mybcertnumber As String, ByVal myisdisabled As Integer, ByVal myncpwdnumber As String, ByVal mycccnumber As String,
-        ByVal mymode As String,
-          Optional ByVal myclientlongid As Integer = 0)
+    Public Function UpdateClient(ByVal my_ovcdisability_type As String _
+      , ByVal my_disability_assessment_date As DateTime _
+      , ByVal my_Diagnosis As String _
+      , ByVal my_Interventions As String _
+      , ByVal my_NCPWD_Contacts As String _
+      , ByVal my_NCPWD_Residence As String _
+      , ByVal my_NCPWD_Other_Support As String _
+      , ByVal my_NCPWD_Rehab_Centre As String _
+      , ByVal my_HIV_Screening_Date As DateTime _
+      , ByVal my_HIV_Screening_Outcome As String _
+      , ByVal my_HIV_Testing_Date As DateTime _
+        , ByVal my_cpims_ovc_id As String)
 
         Dim myID As Double = 0
         Dim myConnection As New SqlConnection(ConnectionStrings(SelectedConnectionString).ToString)
         Dim myCommand As SqlCommand = Nothing
         myConnection.Open()
 
-        'select wht entry mode,normal or longitudinal
-        If mymode = "normal" Then
-            myCommand = New SqlCommand("Update_Client", myConnection)
-        ElseIf mymode = "longitudinal" Then
-            myCommand = New SqlCommand("Update_LongClient", myConnection)
-        End If
+        myCommand = New SqlCommand("Update_Client", myConnection)
 
 
         Try
             With myCommand
                 .CommandType = Data.CommandType.StoredProcedure
-                'select wht entry mode,normal or longitudinal
-                If mymode = "longitudinal" Then
-                    .Parameters.Add("@ClientLongid", Data.SqlDbType.Int).Value = myclientlongid
-                End If
 
-                .Parameters.Add("@OVCID", Data.SqlDbType.VarChar, 50).Value = myOVCID
-                .Parameters.Add("@FirstName", Data.SqlDbType.VarChar, 50).Value = myFirstName
-                .Parameters.Add("@MiddleName", Data.SqlDbType.VarChar, 50).Value = myMiddleName
-                .Parameters.Add("@Surname", Data.SqlDbType.VarChar, 50).Value = mySurname
-                .Parameters.Add("@Gender", Data.SqlDbType.VarChar, 10).Value = myGender
-                .Parameters.Add("@DateofBirth", Data.SqlDbType.DateTime).Value = myDateofBirth
-                .Parameters.Add("@BirthCert", Data.SqlDbType.Int).Value = myBirthCert
-                .Parameters.Add("@ClientType", Data.SqlDbType.VarChar, 50).Value = myClientType
-                .Parameters.Add("@Cbo", Data.SqlDbType.Int).Value = myCbo
-                .Parameters.Add("@District", Data.SqlDbType.Int).Value = myDistrict
-                .Parameters.Add("@Location", Data.SqlDbType.Int).Value = myLocation
-                .Parameters.Add("@Facility", Data.SqlDbType.Int).Value = myFacility
-                .Parameters.Add("@DateofLinkage", Data.SqlDbType.DateTime).Value = mydateofLinkage
-                .Parameters.Add("@Immunization", Data.SqlDbType.Int).Value = myImmunization
-                .Parameters.Add("@VolunteerId", Data.SqlDbType.VarChar, 50).Value = myVolunteerId
-                .Parameters.Add("@SchoolLevel", Data.SqlDbType.Int).Value = mySchoolLevel
-                .Parameters.Add("@School", Data.SqlDbType.Int).Value = mySchool
-                .Parameters.Add("@Class", Data.SqlDbType.Int).Value = myschoolclass
-                .Parameters.Add("@HIVStatus", Data.SqlDbType.Int).Value = myHIVStatus
-                .Parameters.Add("@ARTStatus", Data.SqlDbType.Int).Value = myARTStatus
-                .Parameters.Add("@EligibilityCriteria", Data.SqlDbType.Int).Value = myCriteria
-                .Parameters.Add("@FatherID", Data.SqlDbType.VarChar, 50).Value = myfatherID
-                .Parameters.Add("@MotherID", Data.SqlDbType.VarChar, 50).Value = mymotherID
-                .Parameters.Add("@GuardianID", Data.SqlDbType.VarChar, 50).Value = myguardianID
-                .Parameters.Add("@CareTaker", Data.SqlDbType.VarChar, 50).Value = myCareTakerID
-                .Parameters.Add("@HouseHoldheadID", Data.SqlDbType.VarChar, 50).Value = myhouseholdheadID
-                .Parameters.Add("@DateofVisit", Data.SqlDbType.DateTime).Value = myDateofVisit
-                .Parameters.Add("@DateofExit", Data.SqlDbType.DateTime).Value = mydateofexit
-                .Parameters.Add("@DateofRegistration", Data.SqlDbType.DateTime).Value = mydateofreg
-                .Parameters.Add("@Exited", Data.SqlDbType.Int).Value = myExit
-                .Parameters.Add("@ReasonforExit", Data.SqlDbType.Int).Value = myreasonforexit
-                .Parameters.Add("@lastmodifiedon", Data.SqlDbType.DateTime).Value = mylastmodifiedon
-                .Parameters.Add("@lastmodifiedsession", Data.SqlDbType.VarChar, 50).Value = mylastmodifiedsession
-                .Parameters.Add("@schoolingtype", Data.SqlDbType.VarChar, 50).Value = myschoolingtype
-                .Parameters.Add("@bcertnumber", Data.SqlDbType.VarChar, 50).Value = mybcertnumber
-                .Parameters.Add("@isdisabled", Data.SqlDbType.Int).Value = myisdisabled
-                .Parameters.Add("@NCPWDNumber", Data.SqlDbType.VarChar, 50).Value = myncpwdnumber
-                .Parameters.Add("@cccNumber", Data.SqlDbType.VarChar, 50).Value = mycccnumber
+                .Parameters.Add("@ovcdisability_type", Data.SqlDbType.VarChar, 50).Value = my_ovcdisability_type
+                .Parameters.Add("@disability_assessment_date", Data.SqlDbType.DateTime).Value = my_disability_assessment_date
+                .Parameters.Add("@Diagnosis", Data.SqlDbType.VarChar, 50).Value = my_Diagnosis
+                .Parameters.Add("@Interventions", Data.SqlDbType.VarChar, 50).Value = my_Interventions
+                .Parameters.Add("@NCPWD_Contacts", Data.SqlDbType.VarChar, 50).Value = my_NCPWD_Contacts
+                .Parameters.Add("@NCPWD_Residence", Data.SqlDbType.VarChar, 50).Value = my_NCPWD_Residence
+                .Parameters.Add("@NCPWD_Other_Support", Data.SqlDbType.VarChar, 250).Value = my_NCPWD_Other_Support
+                .Parameters.Add("@NCPWD_Rehab_Centre", Data.SqlDbType.VarChar, 50).Value = my_NCPWD_Rehab_Centre
+                .Parameters.Add("@HIV_Screening_Date", Data.SqlDbType.DateTime).Value = my_HIV_Screening_Date
+                .Parameters.Add("@HIV_Screening_Outcome", Data.SqlDbType.VarChar, 50).Value = my_HIV_Screening_Outcome
+                .Parameters.Add("@HIV_Testing_Date", Data.SqlDbType.DateTime).Value = my_HIV_Testing_Date
+                .Parameters.Add("@cpims_ovc_id", Data.SqlDbType.VarChar, 50).Value = my_cpims_ovc_id
+
                 .ExecuteNonQuery()
 
             End With
