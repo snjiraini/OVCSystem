@@ -276,7 +276,7 @@ Public Class frmVsla_membership
             Dim MyDBAction As New functions
             mySqlAction = "Insert Into vsla_membership(caregiver_id,vsla_id,date_joined,member_left_vsla,date_left) " &
             " values('" & txtcpimsid.Text.ToString & "','" & cboVSLA.SelectedValue.ToString &
-            "','" & dtpDateJoined.Value.ToShortDateString & "','" & chkMemberLeft.Checked & "','" & dtpDateLeft.Value.ToShortDateString & "')"
+            "','" & Format(dtpDateJoined.Value, "dd-MMM-yyyy") & "','" & chkMemberLeft.Checked & "','" & Format(dtpDateLeft.Value, "dd-MMM-yyyy") & "')"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
             MsgBox("Record saved successfully.", MsgBoxStyle.Information)
@@ -388,8 +388,8 @@ Public Class frmVsla_membership
             Dim mySqlAction As String = ""
             Dim MyDBAction As New functions
             mySqlAction = "update vsla_membership set vsla_id = " &
-            " '" & cboVSLA.SelectedValue.ToString & "', date_joined = '" & dtpDateJoined.Value.ToShortDateString & "'," &
-            "member_left_vsla = '" & chkMemberLeft.Checked & "',date_left = '" & dtpDateLeft.Value.ToShortDateString & "'" &
+            " '" & cboVSLA.SelectedValue.ToString & "', date_joined = '" & Format(dtpDateJoined.Value, "dd-MMM-yyyy") & "'," &
+            "member_left_vsla = '" & chkMemberLeft.Checked & "',date_left = '" & Format(dtpDateLeft.Value, "dd-MMM-yyyy") & "'" &
             " where vsla_membership_id = '" & str_vsla_membership & "'"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Update)
@@ -456,4 +456,5 @@ Public Class frmVsla_membership
     Private Sub cbosearchcounty_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcounty.SelectedIndexChanged
 
     End Sub
+
 End Class

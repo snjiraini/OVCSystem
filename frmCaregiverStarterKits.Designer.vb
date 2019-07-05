@@ -76,6 +76,7 @@ Partial Class frmCaregiverStarterKits
         Me.txtsearchcaregivername = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.chkIsProvidedDirectly = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -198,6 +199,7 @@ Partial Class frmCaregiverStarterKits
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GroupBox1.Controls.Add(Me.chkIsProvidedDirectly)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.txtstarterkitcost)
         Me.GroupBox1.Controls.Add(Me.dtpDateprovided)
@@ -581,6 +583,16 @@ Partial Class frmCaregiverStarterKits
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
+        'chkIsProvidedDirectly
+        '
+        Me.chkIsProvidedDirectly.AutoSize = True
+        Me.chkIsProvidedDirectly.Location = New System.Drawing.Point(455, 176)
+        Me.chkIsProvidedDirectly.Name = "chkIsProvidedDirectly"
+        Me.chkIsProvidedDirectly.Size = New System.Drawing.Size(237, 24)
+        Me.chkIsProvidedDirectly.TabIndex = 61
+        Me.chkIsProvidedDirectly.Text = "Is provided directly by project"
+        Me.chkIsProvidedDirectly.UseVisualStyleBackColor = True
+        '
         'frmCaregiverStarterKits
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -656,4 +668,5 @@ Partial Class frmCaregiverStarterKits
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewLinkColumn
+    Friend WithEvents chkIsProvidedDirectly As CheckBox
 End Class

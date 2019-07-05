@@ -322,13 +322,15 @@ Public Class frmCaregiverStarterKits
                                   " ,[persons_type] " &
                                   " ,[starterkit_id] " &
                                   " ,[date_provided] " &
-                                  " ,[starterkit_cost] )" &
+                                  " ,[starterkit_cost] " &
+                                  " ,[Is_provided_directly] )" &
                              "VALUES " &
                                   " ('" & txtcpimsid.Text.ToString & "' " &
                                    ",'CAREGIVER' " &
                                   " ,'" & cboStarterKit.SelectedValue.ToString & "' " &
-                                   ",'" & dtpDateprovided.Value & "' " &
-                                   ",'" & txtstarterkitcost.Text.ToString & "')"
+                                   ",'" & Format(dtpDateprovided.Value, "dd-MMM-yyyy") & "' " &
+                                   ",'" & txtstarterkitcost.Text.ToString & "'" &
+                                    ",'" & chkIsProvidedDirectly.Checked & "')"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
             MsgBox("Record saved successfully.", MsgBoxStyle.Information)
@@ -392,7 +394,7 @@ Public Class frmCaregiverStarterKits
             Dim MyDatable As New Data.DataTable
             mysqlaction = "SELECT distinct  ovc_caregiver_starterkit.ovc_caregiver_starterkit_id,ovc_caregiver_starterkit.ovc_or_caregiver_id, OVCRegistrationDetails.caregiver_names, " &
                                            " starterkit_list.starterkit_name, ovc_caregiver_starterkit.starterkit_id, ovc_caregiver_starterkit.date_provided,  " &
-                                            "valuechain_List.valuechain_name,ovc_caregiver_starterkit.starterkit_cost " &
+                                            "valuechain_List.valuechain_name,ovc_caregiver_starterkit.starterkit_cost,ovc_caregiver_starterkit.Is_provided_directly " &
                                             "FROM   ovc_caregiver_starterkit INNER JOIN " &
                                             "OVCRegistrationDetails ON ovc_caregiver_starterkit.ovc_or_caregiver_id = OVCRegistrationDetails.caregiver_id  " &
                                             "INNER JOIN starterkit_list On ovc_caregiver_starterkit.starterkit_id = starterkit_list.starterkit_id  " &
@@ -406,6 +408,7 @@ Public Class frmCaregiverStarterKits
                 cboStarterKit.SelectedValue = MyDatable.Rows(0).Item("starterkit_id").ToString
                 dtpDateprovided.Value = MyDatable.Rows(0).Item("date_provided").ToString
                 txtstarterkitcost.Text = MyDatable.Rows(0).Item("starterkit_cost").ToString
+                chkIsProvidedDirectly.Checked = CBool(MyDatable.Rows(0).Item("Is_provided_directly").ToString)
                 'initialize the record identifier
                 str_caregiver_starterkit_id = MyDatable.Rows(0).Item("ovc_caregiver_starterkit_id").ToString
 
@@ -433,8 +436,9 @@ Public Class frmCaregiverStarterKits
             mySqlAction = "UPDATE [dbo].[ovc_caregiver_starterkit] " &
                               " SET " &
                                  " [starterkit_id] = '" & cboStarterKit.SelectedValue.ToString & "' " &
-                                 " ,[date_provided] = '" & dtpDateprovided.Value & "' " &
+                                 " ,[date_provided] = '" & Format(dtpDateprovided.Value, "dd-MMM-yyyy") & "' " &
                                  " ,[starterkit_cost] = '" & txtstarterkitcost.Text.ToString & "' " &
+                                 " ,[Is_provided_directly] = '" & chkIsProvidedDirectly.Checked & "' " &
                              "WHERE ovc_caregiver_starterkit_id = '" & str_caregiver_starterkit_id & "'"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Update)

@@ -73,7 +73,7 @@ Public Class frmVSLAListing
                     myvsla = MyDatable.Rows(K).Item("vsla_name").ToString
                     mycounty = MyDatable.Rows(K).Item("county").ToString
                     myward = MyDatable.Rows(K).Item("ward").ToString
-                    mydateofregistration = MyDatable.Rows(K).Item("registration_date_cbo").ToString
+                    mydateofregistration = MyDatable.Rows(K).Item("date_of_formation").ToString
                     DataGridView1.Rows.Add(myvslaid, myvsla, mycounty, myward, mydateofregistration, "Select")
                 Next
             End If
@@ -93,7 +93,7 @@ Public Class frmVSLAListing
             mySqlAction =
             "INSERT INTO [dbo].[vsla_list] " &
            "([vsla_name] " &
-           ",[registration_date_cbo]" &
+           ",[date_of_formation]" &
            ",[Is_Gov_registered]" &
            ",[registration_date_gov]" &
            ",[ward_id] " &
@@ -101,18 +101,20 @@ Public Class frmVSLAListing
            ",[county_id] " &
            ",[county] " &
            ",[chairperson] " &
-           ",[chairperson_phonenumber]) " &
+           ",[chairperson_phonenumber] " &
+           ",[Is_Directly_Monitored]) " &
             "VALUES " &
            "( '" & txtName.Text.ToString & "'," &
-          "'" & dtpDateRegisteredCBO.Value & "'," &
+          "'" & Format(dtpDateofformation.Value, "dd-MMM-yyyy") & "'," &
           "'" & chkIsGovRegistered.Checked & "'," &
-          "'" & dtpDateRegisteredGov.Value & "'," &
+          "'" & Format(dtpDateRegisteredGov.Value, "dd-MMM-yyyy") & "'," &
           " '" & cbowards.SelectedValue.ToString & "'," &
           " '" & cbowards.Text.ToString & "'," &
           " '" & cbocounty.SelectedValue.ToString & "'," &
            "'" & cbocounty.Text.ToString & "'," &
            "'" & txtchairpersonname.Text.ToString & "'," &
-           "'" & txtchairpersonnumber.Text.ToString & "')   "
+           "'" & txtchairpersonnumber.Text.ToString & "',  " &
+            "'" & chkIsDirectlyMonitored.Checked & "')   "
 
 
 
@@ -171,11 +173,12 @@ Public Class frmVSLAListing
                 txtName.Text = MyDatable.Rows(0).Item("vsla_name").ToString
                 cbocounty.SelectedValue = MyDatable.Rows(0).Item("county_ID").ToString
                 cbowards.SelectedValue = MyDatable.Rows(0).Item("ward_ID").ToString
-                dtpDateRegisteredCBO.Value = MyDatable.Rows(0).Item("registration_date_cbo").ToString
-                dtpDateRegisteredGov.Value = MyDatable.Rows(0).Item("registration_date_gov").ToString
+                dtpDateofformation.Value = CDate(MyDatable.Rows(0).Item("date_of_formation").ToString)
+                dtpDateRegisteredGov.Value = CDate(MyDatable.Rows(0).Item("registration_date_gov").ToString)
                 chkIsGovRegistered.Checked = CBool(MyDatable.Rows(0).Item("Is_Gov_registered"))
                 txtchairpersonname.Text = MyDatable.Rows(0).Item("chairperson").ToString
                 txtchairpersonnumber.Text = MyDatable.Rows(0).Item("chairperson_phonenumber").ToString
+                chkIsDirectlyMonitored.Checked = CBool(MyDatable.Rows(0).Item("Is_Directly_Monitored"))
             End If
 
             Panel1.Enabled = True
@@ -197,15 +200,16 @@ Public Class frmVSLAListing
             Dim MyDBAction As New functions
             mySqlAction = "UPDATE [dbo].[vsla_list] " &
                                "SET [vsla_name] = '" & txtName.Text.ToString & "' " &
-                                 " ,[registration_date_cbo] = '" & dtpDateRegisteredCBO.Value.ToString & "' " &
+                                 " ,[date_of_formation] = '" & Format(dtpDateofformation.Value, "dd-MMM-yyyy") & "' " &
                                   ",[Is_Gov_registered] = '" & chkIsGovRegistered.Checked & "' " &
-                                  " ,[registration_date_gov] = '" & dtpDateRegisteredGov.Value.ToString & "' " &
+                                  " ,[registration_date_gov] = '" & Format(dtpDateRegisteredGov.Value, "dd-MMM-yyyy") & "' " &
                                   ",[ward_id] = '" & cbowards.SelectedValue.ToString & "' " &
                                  " ,[ward] = '" & cbowards.Text.ToString & "' " &
                                  " ,[county_id] = '" & cbocounty.SelectedValue.ToString & "' " &
                                  " ,[county] = '" & cbocounty.Text.ToString & "' " &
                                   ",[chairperson] = '" & txtchairpersonname.Text.ToString & "' " &
                                  " ,[chairperson_phonenumber] = '" & txtName.Text.ToString & "' " &
+                                 " ,[Is_Directly_Monitored] = '" & chkIsDirectlyMonitored.Checked & "' " &
                              "WHERE vslaid = '" & txtVSLAID.Text.ToString & "'"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Update)
@@ -227,8 +231,40 @@ Public Class frmVSLAListing
     End Sub
 
     Private Sub lnkNew_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkNew.LinkClicked
+        clearcontrols()
         Panel1.Enabled = True
         btnpost.Enabled = True
+    End Sub
+
+    Private Sub clearcontrols()
+        Try
+
+
+            'to clear textBoxes,radiobutton and checkboxes
+            ' that are in containers 
+            Dim ctrl As Control = Me.GetNextControl(Me, True)
+            Do Until ctrl Is Nothing
+                If TypeOf ctrl Is TextBox Then
+                    ctrl.Text = String.Empty
+                ElseIf TypeOf ctrl Is RadioButton Then
+                    DirectCast(ctrl, RadioButton).Checked = False
+                ElseIf TypeOf ctrl Is CheckBox Then
+                    DirectCast(ctrl, CheckBox).Checked = False
+                ElseIf TypeOf ctrl Is ComboBox Then
+                    DirectCast(ctrl, ComboBox).SelectedIndex = -1
+                ElseIf TypeOf ctrl Is DateTimePicker Then
+                    DirectCast(ctrl, DateTimePicker).Value = Date.Today
+                ElseIf TypeOf ctrl Is MaskedTextBox Then
+                    ctrl.Text = String.Empty
+                End If
+
+                ctrl = Me.GetNextControl(ctrl, True)
+
+            Loop
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click

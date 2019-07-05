@@ -4,9 +4,34 @@ Imports System.Data.Odbc
 Public Class frmTrainingListing
     Private Sub frmTrainingListing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         populatetypeoftraining()
-        populatewards()
+        populatecounties()
         fillgrid()
 
+    End Sub
+
+    Private Sub populatecounties()
+        Dim ErrorAction As New functions
+        Try
+
+            'populate the combobox
+            Dim mySqlAction As String = "select distinct county_id,county from wards  order by county asc"
+            Dim MyDBAction As New functions
+            Dim MyDatable As New Data.DataTable
+            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+
+            With cbocounty
+                .DataSource = Nothing
+                .Items.Clear()
+                .DataSource = MyDatable
+                .DisplayMember = "County"
+                .ValueMember = "county_id"
+                .SelectedIndex = -1 ' This line makes the combo default value to be blank
+            End With
+
+        Catch ex As Exception
+            ErrorAction.WriteToErrorLogFile("TrainingListing", "populatecounties", ex.Message) ''---Write error to error log file
+
+        End Try
     End Sub
 
     Private Sub fillgrid()
@@ -15,7 +40,7 @@ Public Class frmTrainingListing
 
             'populate the datagrid with all the data
             Dim mySqlAction As String = "SELECT distinct training_list.training_id, type_of_training.type_of_training, " &
-                                            " training_list.facilitator, training_list.date_of_training, wards.ward As location " &
+                                            " training_list.facilitator, training_list.start_date_of_training, wards.ward As location " &
                                             " FROM   training_list INNER JOIN " &
                                             " type_of_training On training_list.type_of_training = type_of_training.trainingtypeid INNER JOIN " &
                                             " wards ON training_list.location = wards.ward_id"
@@ -30,7 +55,7 @@ Public Class frmTrainingListing
                     mytrainingtype = MyDatable.Rows(K).Item("type_of_training").ToString
                     myfacilitator = MyDatable.Rows(K).Item("facilitator").ToString
                     myward = MyDatable.Rows(K).Item("location").ToString
-                    mydateoftraining = MyDatable.Rows(K).Item("date_of_training").ToString
+                    mydateoftraining = MyDatable.Rows(K).Item("start_date_of_training").ToString
                     DataGridView1.Rows.Add(mytrainingid, mytrainingtype, myfacilitator, myward, mydateoftraining, "Select")
                 Next
             End If
@@ -50,8 +75,40 @@ Public Class frmTrainingListing
         txtfacilitator.Text = ""
         cboTypeOfTraining.SelectedIndex = -1
         cbowards.SelectedIndex = -1
-        dtpDateofTraining.Value = Date.Today
+        dtpstartdate.Value = Date.Today
+        clearcontrols()
+    End Sub
 
+
+    Private Sub clearcontrols()
+        Try
+
+
+            'to clear textBoxes,radiobutton and checkboxes
+            ' that are in containers 
+            Dim ctrl As Control = Me.GetNextControl(Me, True)
+            Do Until ctrl Is Nothing
+                If TypeOf ctrl Is TextBox Then
+                    ctrl.Text = String.Empty
+                ElseIf TypeOf ctrl Is RadioButton Then
+                    DirectCast(ctrl, RadioButton).Checked = False
+                ElseIf TypeOf ctrl Is CheckBox Then
+                    DirectCast(ctrl, CheckBox).Checked = False
+                ElseIf TypeOf ctrl Is ComboBox Then
+                    DirectCast(ctrl, ComboBox).SelectedIndex = -1
+                ElseIf TypeOf ctrl Is DateTimePicker Then
+                    DirectCast(ctrl, DateTimePicker).Value = Date.Today
+                ElseIf TypeOf ctrl Is MaskedTextBox Then
+                    ctrl.Text = String.Empty
+                End If
+
+                ctrl = Me.GetNextControl(ctrl, True)
+
+            Loop
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub populatetypeoftraining()
@@ -76,12 +133,12 @@ Public Class frmTrainingListing
         End Try
     End Sub
 
-    Private Sub populatewards()
+    Private Sub populatewards(ByVal mycountyid As String)
         Dim ErrorAction As New functions
         Try
 
             'populate the combobox
-            Dim mySqlAction As String = "select distinct ward_id,ward + ' - ' + county as ward from wards   order by ward + ' - ' + county"
+            Dim mySqlAction As String = "select distinct ward_id,ward + ' - ' + county as ward from wards where county_id = '" & mycountyid & "'   order by ward + ' - ' + county"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
@@ -114,7 +171,7 @@ Public Class frmTrainingListing
            ",[location])" &
             " values('" & cboTypeOfTraining.SelectedValue.ToString & "','" &
             txtfacilitator.Text.ToString & "','" &
-            dtpDateofTraining.Value.ToString & "','" &
+            Format(dtpstartdate.Value.ToString, "dd-MMM-yyyy") & "','" &
             cbowards.SelectedValue.ToString & "')"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
@@ -151,7 +208,7 @@ Public Class frmTrainingListing
                 cboTypeOfTraining.SelectedValue = MyDatable.Rows(0).Item("type_of_training").ToString
                 txtfacilitator.Text = MyDatable.Rows(0).Item("facilitator").ToString
                 cbowards.SelectedValue = MyDatable.Rows(0).Item("location").ToString
-                dtpDateofTraining.Value = MyDatable.Rows(0).Item("date_of_training").ToString
+                dtpstartdate.Value = MyDatable.Rows(0).Item("date_of_training").ToString
             End If
 
             Panel1.Enabled = True
@@ -174,7 +231,7 @@ Public Class frmTrainingListing
             mySqlAction = "UPDATE [dbo].[training_list] " &
                           " SET [type_of_training] = '" & cboTypeOfTraining.SelectedValue.ToString & "' " &
                               ",[facilitator] = '" & txtfacilitator.Text.ToString & "' " &
-                             " ,[date_of_training] = '" & dtpDateofTraining.Value.ToString & "' " &
+                             " ,[date_of_training] = '" & Format(dtpstartdate.Value.ToString, "dd-MMM-yyyy") & "' " &
                               ",[location] = '" & cbowards.SelectedValue.ToString & "' " &
                          "WHERE [training_id] = '" & txttrainingID.Text.ToString & "'"
 
@@ -194,5 +251,22 @@ Public Class frmTrainingListing
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
         Me.Close()
+    End Sub
+
+    Private Sub cbocounty_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbocounty.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbocounty_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbocounty.SelectedValueChanged
+        Try
+            'If cboDistrict.Text.Trim.Length <> 0 Or cboDistrict.Text <> "System.Data.DataRowView" Then
+            If IsNumeric(cbocounty.SelectedIndex) = True Then
+
+                populatewards(cbocounty.SelectedValue)
+            End If
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

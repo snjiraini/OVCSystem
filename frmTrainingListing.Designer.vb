@@ -26,9 +26,13 @@ Partial Class frmTrainingListing
         Me.btnpost = New System.Windows.Forms.Button()
         Me.BtnExit = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cbocounty = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.dtpenddate = New System.Windows.Forms.DateTimePicker()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.txtfacilitator = New System.Windows.Forms.TextBox()
         Me.cboTypeOfTraining = New System.Windows.Forms.ComboBox()
-        Me.dtpDateofTraining = New System.Windows.Forms.DateTimePicker()
+        Me.dtpstartdate = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cbowards = New System.Windows.Forms.ComboBox()
@@ -85,9 +89,13 @@ Partial Class frmTrainingListing
         '
         Me.Panel1.AccessibleName = ""
         Me.Panel1.AccessibleRole = System.Windows.Forms.AccessibleRole.None
+        Me.Panel1.Controls.Add(Me.cbocounty)
+        Me.Panel1.Controls.Add(Me.Label7)
+        Me.Panel1.Controls.Add(Me.dtpenddate)
+        Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.txtfacilitator)
         Me.Panel1.Controls.Add(Me.cboTypeOfTraining)
-        Me.Panel1.Controls.Add(Me.dtpDateofTraining)
+        Me.Panel1.Controls.Add(Me.dtpstartdate)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.cbowards)
@@ -99,12 +107,49 @@ Partial Class frmTrainingListing
         Me.Panel1.Location = New System.Drawing.Point(17, 31)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(655, 221)
+        Me.Panel1.Size = New System.Drawing.Size(655, 349)
         Me.Panel1.TabIndex = 59
+        '
+        'cbocounty
+        '
+        Me.cbocounty.FormattingEnabled = True
+        Me.cbocounty.Location = New System.Drawing.Point(245, 172)
+        Me.cbocounty.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.cbocounty.Name = "cbocounty"
+        Me.cbocounty.Size = New System.Drawing.Size(386, 28)
+        Me.cbocounty.TabIndex = 45
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(56, 172)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(59, 20)
+        Me.Label7.TabIndex = 44
+        Me.Label7.Text = "County"
+        '
+        'dtpenddate
+        '
+        Me.dtpenddate.Location = New System.Drawing.Point(245, 314)
+        Me.dtpenddate.Margin = New System.Windows.Forms.Padding(2)
+        Me.dtpenddate.Name = "dtpenddate"
+        Me.dtpenddate.Size = New System.Drawing.Size(255, 26)
+        Me.dtpenddate.TabIndex = 43
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(56, 314)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(137, 20)
+        Me.Label6.TabIndex = 42
+        Me.Label6.Text = "Training End Date"
         '
         'txtfacilitator
         '
-        Me.txtfacilitator.Location = New System.Drawing.Point(245, 95)
+        Me.txtfacilitator.Location = New System.Drawing.Point(245, 126)
         Me.txtfacilitator.Name = "txtfacilitator"
         Me.txtfacilitator.Size = New System.Drawing.Size(386, 26)
         Me.txtfacilitator.TabIndex = 41
@@ -112,34 +157,34 @@ Partial Class frmTrainingListing
         'cboTypeOfTraining
         '
         Me.cboTypeOfTraining.FormattingEnabled = True
-        Me.cboTypeOfTraining.Location = New System.Drawing.Point(245, 56)
+        Me.cboTypeOfTraining.Location = New System.Drawing.Point(245, 78)
         Me.cboTypeOfTraining.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cboTypeOfTraining.Name = "cboTypeOfTraining"
         Me.cboTypeOfTraining.Size = New System.Drawing.Size(386, 28)
         Me.cboTypeOfTraining.TabIndex = 40
         '
-        'dtpDateofTraining
+        'dtpstartdate
         '
-        Me.dtpDateofTraining.Location = New System.Drawing.Point(245, 190)
-        Me.dtpDateofTraining.Margin = New System.Windows.Forms.Padding(2)
-        Me.dtpDateofTraining.Name = "dtpDateofTraining"
-        Me.dtpDateofTraining.Size = New System.Drawing.Size(236, 26)
-        Me.dtpDateofTraining.TabIndex = 38
+        Me.dtpstartdate.Location = New System.Drawing.Point(245, 268)
+        Me.dtpstartdate.Margin = New System.Windows.Forms.Padding(2)
+        Me.dtpstartdate.Name = "dtpstartdate"
+        Me.dtpstartdate.Size = New System.Drawing.Size(255, 26)
+        Me.dtpstartdate.TabIndex = 38
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(56, 190)
+        Me.Label5.Location = New System.Drawing.Point(56, 268)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(122, 20)
+        Me.Label5.Size = New System.Drawing.Size(143, 20)
         Me.Label5.TabIndex = 37
-        Me.Label5.Text = "Date of Training"
+        Me.Label5.Text = "Training Start Date"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(56, 95)
+        Me.Label4.Location = New System.Drawing.Point(56, 126)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(78, 20)
@@ -149,7 +194,7 @@ Partial Class frmTrainingListing
         'cbowards
         '
         Me.cbowards.FormattingEnabled = True
-        Me.cbowards.Location = New System.Drawing.Point(245, 138)
+        Me.cbowards.Location = New System.Drawing.Point(245, 220)
         Me.cbowards.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cbowards.Name = "cbowards"
         Me.cbowards.Size = New System.Drawing.Size(386, 28)
@@ -158,7 +203,7 @@ Partial Class frmTrainingListing
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(56, 138)
+        Me.Label3.Location = New System.Drawing.Point(56, 220)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(47, 20)
@@ -168,7 +213,7 @@ Partial Class frmTrainingListing
         'txttrainingID
         '
         Me.txttrainingID.Enabled = False
-        Me.txttrainingID.Location = New System.Drawing.Point(245, 12)
+        Me.txttrainingID.Location = New System.Drawing.Point(245, 32)
         Me.txttrainingID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txttrainingID.Name = "txttrainingID"
         Me.txttrainingID.ReadOnly = True
@@ -178,7 +223,7 @@ Partial Class frmTrainingListing
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(56, 54)
+        Me.Label2.Location = New System.Drawing.Point(56, 78)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(121, 20)
@@ -189,7 +234,7 @@ Partial Class frmTrainingListing
         '
         Me.Label1.AccessibleRole = System.Windows.Forms.AccessibleRole.None
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(56, 12)
+        Me.Label1.Location = New System.Drawing.Point(56, 32)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(86, 20)
@@ -200,10 +245,10 @@ Partial Class frmTrainingListing
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column6, Me.Column5})
-        Me.DataGridView1.Location = New System.Drawing.Point(17, 261)
+        Me.DataGridView1.Location = New System.Drawing.Point(13, 390)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1061, 369)
+        Me.DataGridView1.Size = New System.Drawing.Size(1061, 467)
         Me.DataGridView1.TabIndex = 64
         '
         'Column1
@@ -228,7 +273,7 @@ Partial Class frmTrainingListing
         '
         'Column6
         '
-        Me.Column6.HeaderText = "Training Date"
+        Me.Column6.HeaderText = "Start Date"
         Me.Column6.Name = "Column6"
         '
         'Column5
@@ -262,7 +307,7 @@ Partial Class frmTrainingListing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1092, 649)
+        Me.ClientSize = New System.Drawing.Size(1092, 871)
         Me.Controls.Add(Me.lnkNew)
         Me.Controls.Add(Me.btnpost)
         Me.Controls.Add(Me.BtnExit)
@@ -284,7 +329,7 @@ Partial Class frmTrainingListing
     Friend WithEvents btnpost As Button
     Friend WithEvents BtnExit As Button
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents dtpDateofTraining As DateTimePicker
+    Friend WithEvents dtpstartdate As DateTimePicker
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents cbowards As ComboBox
@@ -297,6 +342,10 @@ Partial Class frmTrainingListing
     Friend WithEvents BtnEdit As Button
     Friend WithEvents txtfacilitator As TextBox
     Friend WithEvents cboTypeOfTraining As ComboBox
+    Friend WithEvents cbocounty As ComboBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents dtpenddate As DateTimePicker
+    Friend WithEvents Label6 As Label
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn

@@ -65,10 +65,6 @@ Partial Class frmVsla_membership
         Me.cbosearchcbo = New System.Windows.Forms.ComboBox()
         Me.cbosearchcounty = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.txtsearchcaregivername = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -76,6 +72,10 @@ Partial Class frmVsla_membership
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.txtsearchcaregivername = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -519,38 +519,6 @@ Partial Class frmVsla_membership
         Me.DataGridView1.Size = New System.Drawing.Size(1123, 611)
         Me.DataGridView1.TabIndex = 6
         '
-        'btnSearch
-        '
-        Me.btnSearch.Location = New System.Drawing.Point(1163, 135)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(97, 35)
-        Me.btnSearch.TabIndex = 5
-        Me.btnSearch.Text = "Search"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'txtsearchcaregivername
-        '
-        Me.txtsearchcaregivername.Location = New System.Drawing.Point(631, 141)
-        Me.txtsearchcaregivername.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.txtsearchcaregivername.Name = "txtsearchcaregivername"
-        Me.txtsearchcaregivername.Size = New System.Drawing.Size(496, 26)
-        Me.txtsearchcaregivername.TabIndex = 2
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(627, 115)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(122, 20)
-        Me.Label8.TabIndex = 0
-        Me.Label8.Text = "Caregiver Name"
-        '
-        'ErrorProvider1
-        '
-        Me.ErrorProvider1.ContainerControl = Me
-        '
         'Column1
         '
         Me.Column1.HeaderText = "CPIMS_Caregiver_ID"
@@ -587,6 +555,38 @@ Partial Class frmVsla_membership
         '
         Me.Column5.HeaderText = "Select"
         Me.Column5.Name = "Column5"
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(1163, 135)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(97, 35)
+        Me.btnSearch.TabIndex = 5
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'txtsearchcaregivername
+        '
+        Me.txtsearchcaregivername.Location = New System.Drawing.Point(631, 141)
+        Me.txtsearchcaregivername.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtsearchcaregivername.Name = "txtsearchcaregivername"
+        Me.txtsearchcaregivername.Size = New System.Drawing.Size(496, 26)
+        Me.txtsearchcaregivername.TabIndex = 2
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(627, 115)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(122, 20)
+        Me.Label8.TabIndex = 0
+        Me.Label8.Text = "Caregiver Name"
+        '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
         '
         'frmVsla_membership
         '

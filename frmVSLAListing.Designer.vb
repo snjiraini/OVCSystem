@@ -27,17 +27,15 @@ Partial Class frmVSLAListing
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cbowards = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dtpDateRegisteredCBO = New System.Windows.Forms.DateTimePicker()
-        Me.Column5 = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.dtpDateofformation = New System.Windows.Forms.DateTimePicker()
         Me.lnkNew = New System.Windows.Forms.LinkLabel()
         Me.btnpost = New System.Windows.Forms.Button()
         Me.BtnExit = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.chkIsDirectlyMonitored = New System.Windows.Forms.CheckBox()
+        Me.chkIsGovRegistered = New System.Windows.Forms.CheckBox()
+        Me.dtpDateRegisteredGov = New System.Windows.Forms.DateTimePicker()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.txtchairpersonnumber = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtchairpersonname = New System.Windows.Forms.TextBox()
@@ -49,9 +47,12 @@ Partial Class frmVSLAListing
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.BtnDelete = New System.Windows.Forms.Button()
         Me.BtnEdit = New System.Windows.Forms.Button()
-        Me.dtpDateRegisteredGov = New System.Windows.Forms.DateTimePicker()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.chkIsGovRegistered = New System.Windows.Forms.CheckBox()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -71,9 +72,9 @@ Partial Class frmVSLAListing
         Me.Label5.Location = New System.Drawing.Point(14, 190)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(182, 20)
+        Me.Label5.Size = New System.Drawing.Size(130, 20)
         Me.Label5.TabIndex = 37
-        Me.Label5.Text = "Date Registered at CBO"
+        Me.Label5.Text = "Date of formaton"
         '
         'Label4
         '
@@ -104,43 +105,13 @@ Partial Class frmVSLAListing
         Me.Label3.TabIndex = 34
         Me.Label3.Text = "Ward"
         '
-        'Column1
+        'dtpDateofformation
         '
-        Me.Column1.HeaderText = "VSLA ID"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "VSLA Name"
-        Me.Column2.Name = "Column2"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "County"
-        Me.Column4.Name = "Column4"
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Ward"
-        Me.Column3.Name = "Column3"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "DateRegistered"
-        Me.Column6.Name = "Column6"
-        '
-        'dtpDateRegisteredCBO
-        '
-        Me.dtpDateRegisteredCBO.Location = New System.Drawing.Point(280, 190)
-        Me.dtpDateRegisteredCBO.Margin = New System.Windows.Forms.Padding(2)
-        Me.dtpDateRegisteredCBO.Name = "dtpDateRegisteredCBO"
-        Me.dtpDateRegisteredCBO.Size = New System.Drawing.Size(236, 26)
-        Me.dtpDateRegisteredCBO.TabIndex = 38
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Select"
-        Me.Column5.Name = "Column5"
+        Me.dtpDateofformation.Location = New System.Drawing.Point(280, 190)
+        Me.dtpDateofformation.Margin = New System.Windows.Forms.Padding(2)
+        Me.dtpDateofformation.Name = "dtpDateofformation"
+        Me.dtpDateofformation.Size = New System.Drawing.Size(236, 26)
+        Me.dtpDateofformation.TabIndex = 38
         '
         'lnkNew
         '
@@ -178,6 +149,7 @@ Partial Class frmVSLAListing
         '
         Me.Panel1.AccessibleName = ""
         Me.Panel1.AccessibleRole = System.Windows.Forms.AccessibleRole.None
+        Me.Panel1.Controls.Add(Me.chkIsDirectlyMonitored)
         Me.Panel1.Controls.Add(Me.chkIsGovRegistered)
         Me.Panel1.Controls.Add(Me.dtpDateRegisteredGov)
         Me.Panel1.Controls.Add(Me.Label8)
@@ -186,7 +158,7 @@ Partial Class frmVSLAListing
         Me.Panel1.Controls.Add(Me.txtchairpersonname)
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.cbocounty)
-        Me.Panel1.Controls.Add(Me.dtpDateRegisteredCBO)
+        Me.Panel1.Controls.Add(Me.dtpDateofformation)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.cbowards)
@@ -199,8 +171,46 @@ Partial Class frmVSLAListing
         Me.Panel1.Location = New System.Drawing.Point(12, 31)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(655, 401)
+        Me.Panel1.Size = New System.Drawing.Size(655, 451)
         Me.Panel1.TabIndex = 52
+        '
+        'chkIsDirectlyMonitored
+        '
+        Me.chkIsDirectlyMonitored.AutoSize = True
+        Me.chkIsDirectlyMonitored.Location = New System.Drawing.Point(280, 399)
+        Me.chkIsDirectlyMonitored.Name = "chkIsDirectlyMonitored"
+        Me.chkIsDirectlyMonitored.Size = New System.Drawing.Size(234, 24)
+        Me.chkIsDirectlyMonitored.TabIndex = 47
+        Me.chkIsDirectlyMonitored.Text = "Directly Monitored by project"
+        Me.chkIsDirectlyMonitored.UseVisualStyleBackColor = True
+        '
+        'chkIsGovRegistered
+        '
+        Me.chkIsGovRegistered.AutoSize = True
+        Me.chkIsGovRegistered.Location = New System.Drawing.Point(280, 237)
+        Me.chkIsGovRegistered.Name = "chkIsGovRegistered"
+        Me.chkIsGovRegistered.Size = New System.Drawing.Size(222, 24)
+        Me.chkIsGovRegistered.TabIndex = 46
+        Me.chkIsGovRegistered.Text = "Is Government Registered"
+        Me.chkIsGovRegistered.UseVisualStyleBackColor = True
+        '
+        'dtpDateRegisteredGov
+        '
+        Me.dtpDateRegisteredGov.Location = New System.Drawing.Point(280, 286)
+        Me.dtpDateRegisteredGov.Margin = New System.Windows.Forms.Padding(2)
+        Me.dtpDateRegisteredGov.Name = "dtpDateRegisteredGov"
+        Me.dtpDateRegisteredGov.Size = New System.Drawing.Size(236, 26)
+        Me.dtpDateRegisteredGov.TabIndex = 45
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(14, 286)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(250, 20)
+        Me.Label8.TabIndex = 44
+        Me.Label8.Text = "Date Registered with Government"
         '
         'txtchairpersonnumber
         '
@@ -284,7 +294,7 @@ Partial Class frmVSLAListing
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column6, Me.Column5})
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 442)
+        Me.DataGridView1.Location = New System.Drawing.Point(13, 509)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(1061, 411)
@@ -312,39 +322,41 @@ Partial Class frmVSLAListing
         Me.BtnEdit.Text = "&Edit"
         Me.BtnEdit.UseVisualStyleBackColor = True
         '
-        'dtpDateRegisteredGov
+        'Column1
         '
-        Me.dtpDateRegisteredGov.Location = New System.Drawing.Point(280, 286)
-        Me.dtpDateRegisteredGov.Margin = New System.Windows.Forms.Padding(2)
-        Me.dtpDateRegisteredGov.Name = "dtpDateRegisteredGov"
-        Me.dtpDateRegisteredGov.Size = New System.Drawing.Size(236, 26)
-        Me.dtpDateRegisteredGov.TabIndex = 45
+        Me.Column1.HeaderText = "VSLA ID"
+        Me.Column1.Name = "Column1"
         '
-        'Label8
+        'Column2
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(14, 286)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(250, 20)
-        Me.Label8.TabIndex = 44
-        Me.Label8.Text = "Date Registered with Government"
+        Me.Column2.HeaderText = "VSLA Name"
+        Me.Column2.Name = "Column2"
         '
-        'chkIsGovRegistered
+        'Column4
         '
-        Me.chkIsGovRegistered.AutoSize = True
-        Me.chkIsGovRegistered.Location = New System.Drawing.Point(280, 237)
-        Me.chkIsGovRegistered.Name = "chkIsGovRegistered"
-        Me.chkIsGovRegistered.Size = New System.Drawing.Size(222, 24)
-        Me.chkIsGovRegistered.TabIndex = 46
-        Me.chkIsGovRegistered.Text = "Is Government Registered"
-        Me.chkIsGovRegistered.UseVisualStyleBackColor = True
+        Me.Column4.HeaderText = "County"
+        Me.Column4.Name = "Column4"
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Ward"
+        Me.Column3.Name = "Column3"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "DateofFormation"
+        Me.Column6.Name = "Column6"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Select"
+        Me.Column5.Name = "Column5"
         '
         'frmVSLAListing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1086, 867)
+        Me.ClientSize = New System.Drawing.Size(1086, 934)
         Me.Controls.Add(Me.lnkNew)
         Me.Controls.Add(Me.btnpost)
         Me.Controls.Add(Me.BtnExit)
@@ -368,13 +380,7 @@ Partial Class frmVSLAListing
     Friend WithEvents Label4 As Label
     Friend WithEvents cbowards As ComboBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents dtpDateRegisteredCBO As DateTimePicker
-    Friend WithEvents Column5 As DataGridViewLinkColumn
+    Friend WithEvents dtpDateofformation As DateTimePicker
     Friend WithEvents lnkNew As LinkLabel
     Friend WithEvents btnpost As Button
     Friend WithEvents BtnExit As Button
@@ -393,4 +399,11 @@ Partial Class frmVSLAListing
     Friend WithEvents chkIsGovRegistered As CheckBox
     Friend WithEvents dtpDateRegisteredGov As DateTimePicker
     Friend WithEvents Label8 As Label
+    Friend WithEvents chkIsDirectlyMonitored As CheckBox
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewLinkColumn
 End Class

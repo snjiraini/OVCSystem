@@ -82,7 +82,7 @@ Public Class frmCaregiverValueChains
             mySqlAction = "UPDATE [dbo].[ovc_caregiver_valuechains] " &
                                "SET [ovc_or_caregiver_id] = '" & txtcpimsid.Text.ToString & "'  " &
                                  " ,[valuechain_id] = '" & cboValuechain.SelectedValue.ToString & "' " &
-                                  ",[datelinked] = '" & dtpDatelinked.Value & "'  " &
+                                  ",[datelinked] = '" & Format(dtpDatelinked.Value, "dd-MMM-yyyy") & "'  " &
                                  " ,[persons_type] = 'CAREGIVER'  " &
                              "WHERE ovc_caregiver_valuechains_id = '" & str_caregiver_valuechains_id & "'"
 
@@ -146,7 +146,7 @@ Public Class frmCaregiverValueChains
                             " VALUES " &
                                    "('" & txtcpimsid.Text.ToString & "' " &
                                   " ,'" & cboValuechain.SelectedValue.ToString & "' " &
-                                  " ,'" & dtpDatelinked.Value & "' " &
+                                  " ,'" & Format(dtpDatelinked.Value, "dd-MMM-yyyy") & "' " &
                                   " ,'CAREGIVER')"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
