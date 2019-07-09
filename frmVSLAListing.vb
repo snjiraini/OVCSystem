@@ -271,4 +271,16 @@ Public Class frmVSLAListing
         Me.Close()
 
     End Sub
+
+    Private Sub cbocounty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbocounty.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbowards_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbowards.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbowards_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbowards.KeyPress
+        e.Handled = True
+    End Sub
 End Class

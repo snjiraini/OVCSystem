@@ -40,6 +40,7 @@ Partial Class frmCaregiverStarterKits
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lnkNew = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.chkIsProvidedDirectly = New System.Windows.Forms.CheckBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtstarterkitcost = New System.Windows.Forms.TextBox()
         Me.dtpDateprovided = New System.Windows.Forms.DateTimePicker()
@@ -76,7 +77,6 @@ Partial Class frmCaregiverStarterKits
         Me.txtsearchcaregivername = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.chkIsProvidedDirectly = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -220,6 +220,16 @@ Partial Class frmCaregiverStarterKits
         Me.GroupBox1.TabIndex = 38
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "The Client"
+        '
+        'chkIsProvidedDirectly
+        '
+        Me.chkIsProvidedDirectly.AutoSize = True
+        Me.chkIsProvidedDirectly.Location = New System.Drawing.Point(455, 176)
+        Me.chkIsProvidedDirectly.Name = "chkIsProvidedDirectly"
+        Me.chkIsProvidedDirectly.Size = New System.Drawing.Size(237, 24)
+        Me.chkIsProvidedDirectly.TabIndex = 61
+        Me.chkIsProvidedDirectly.Text = "Is provided directly by project"
+        Me.chkIsProvidedDirectly.UseVisualStyleBackColor = True
         '
         'Label5
         '
@@ -582,16 +592,6 @@ Partial Class frmCaregiverStarterKits
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
-        '
-        'chkIsProvidedDirectly
-        '
-        Me.chkIsProvidedDirectly.AutoSize = True
-        Me.chkIsProvidedDirectly.Location = New System.Drawing.Point(455, 176)
-        Me.chkIsProvidedDirectly.Name = "chkIsProvidedDirectly"
-        Me.chkIsProvidedDirectly.Size = New System.Drawing.Size(237, 24)
-        Me.chkIsProvidedDirectly.TabIndex = 61
-        Me.chkIsProvidedDirectly.Text = "Is provided directly by project"
-        Me.chkIsProvidedDirectly.UseVisualStyleBackColor = True
         '
         'frmCaregiverStarterKits
         '

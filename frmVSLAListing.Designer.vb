@@ -45,14 +45,14 @@ Partial Class frmVSLAListing
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.BtnDelete = New System.Windows.Forms.Button()
-        Me.BtnEdit = New System.Windows.Forms.Button()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.BtnDelete = New System.Windows.Forms.Button()
+        Me.BtnEdit = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -300,28 +300,6 @@ Partial Class frmVSLAListing
         Me.DataGridView1.Size = New System.Drawing.Size(1061, 411)
         Me.DataGridView1.TabIndex = 57
         '
-        'BtnDelete
-        '
-        Me.BtnDelete.Enabled = False
-        Me.BtnDelete.Location = New System.Drawing.Point(943, 98)
-        Me.BtnDelete.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(130, 41)
-        Me.BtnDelete.TabIndex = 54
-        Me.BtnDelete.Text = "&Delete"
-        Me.BtnDelete.UseVisualStyleBackColor = True
-        '
-        'BtnEdit
-        '
-        Me.BtnEdit.Enabled = False
-        Me.BtnEdit.Location = New System.Drawing.Point(943, 49)
-        Me.BtnEdit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(130, 41)
-        Me.BtnEdit.TabIndex = 53
-        Me.BtnEdit.Text = "&Edit"
-        Me.BtnEdit.UseVisualStyleBackColor = True
-        '
         'Column1
         '
         Me.Column1.HeaderText = "VSLA ID"
@@ -351,6 +329,28 @@ Partial Class frmVSLAListing
         '
         Me.Column5.HeaderText = "Select"
         Me.Column5.Name = "Column5"
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Enabled = False
+        Me.BtnDelete.Location = New System.Drawing.Point(943, 98)
+        Me.BtnDelete.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(130, 41)
+        Me.BtnDelete.TabIndex = 54
+        Me.BtnDelete.Text = "&Delete"
+        Me.BtnDelete.UseVisualStyleBackColor = True
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Enabled = False
+        Me.BtnEdit.Location = New System.Drawing.Point(943, 49)
+        Me.BtnEdit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(130, 41)
+        Me.BtnEdit.TabIndex = 53
+        Me.BtnEdit.Text = "&Edit"
+        Me.BtnEdit.UseVisualStyleBackColor = True
         '
         'frmVSLAListing
         '

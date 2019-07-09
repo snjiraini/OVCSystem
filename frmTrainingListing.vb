@@ -167,11 +167,15 @@ Public Class frmTrainingListing
             mySqlAction = "INSERT INTO [dbo].[training_list] " &
            "([type_of_training] " &
            ",[facilitator] " &
-           ",[date_of_training] " &
+           ",[start_date_of_training] " &
+           ",[enddate_of_training] " &
+           ",[county_id] " &
            ",[location])" &
             " values('" & cboTypeOfTraining.SelectedValue.ToString & "','" &
             txtfacilitator.Text.ToString & "','" &
-            Format(dtpstartdate.Value.ToString, "dd-MMM-yyyy") & "','" &
+            Format(dtpstartdate.Value, "dd-MMM-yyyy") & "','" &
+            Format(dtpenddate.Value, "dd-MMM-yyyy") & "','" &
+            cbocounty.SelectedValue.ToString & "','" &
             cbowards.SelectedValue.ToString & "')"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
@@ -207,8 +211,10 @@ Public Class frmTrainingListing
                 txttrainingID.Text = MyDatable.Rows(0).Item("training_id").ToString
                 cboTypeOfTraining.SelectedValue = MyDatable.Rows(0).Item("type_of_training").ToString
                 txtfacilitator.Text = MyDatable.Rows(0).Item("facilitator").ToString
+                cbocounty.SelectedValue = MyDatable.Rows(0).Item("county_id").ToString
                 cbowards.SelectedValue = MyDatable.Rows(0).Item("location").ToString
-                dtpstartdate.Value = MyDatable.Rows(0).Item("date_of_training").ToString
+                dtpstartdate.Value = MyDatable.Rows(0).Item("start_date_of_training").ToString
+                dtpenddate.Value = MyDatable.Rows(0).Item("enddate_of_training").ToString
             End If
 
             Panel1.Enabled = True
@@ -231,7 +237,9 @@ Public Class frmTrainingListing
             mySqlAction = "UPDATE [dbo].[training_list] " &
                           " SET [type_of_training] = '" & cboTypeOfTraining.SelectedValue.ToString & "' " &
                               ",[facilitator] = '" & txtfacilitator.Text.ToString & "' " &
-                             " ,[date_of_training] = '" & Format(dtpstartdate.Value.ToString, "dd-MMM-yyyy") & "' " &
+                             " ,[start_date_of_training] = '" & Format(dtpstartdate.Value, "dd-MMM-yyyy") & "' " &
+                             " ,[enddate_of_training] = '" & Format(dtpenddate.Value, "dd-MMM-yyyy") & "' " &
+                             " ,[county_id] = '" & cbocounty.SelectedValue.ToString & "' " &
                               ",[location] = '" & cbowards.SelectedValue.ToString & "' " &
                          "WHERE [training_id] = '" & txttrainingID.Text.ToString & "'"
 
@@ -260,7 +268,7 @@ Public Class frmTrainingListing
     Private Sub cbocounty_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbocounty.SelectedValueChanged
         Try
             'If cboDistrict.Text.Trim.Length <> 0 Or cboDistrict.Text <> "System.Data.DataRowView" Then
-            If IsNumeric(cbocounty.SelectedIndex) = True Then
+            If IsNumeric(cbocounty.SelectedIndex) = True AndAlso (cbocounty.SelectedIndex + 1) > 0 Then
 
                 populatewards(cbocounty.SelectedValue)
             End If
@@ -268,5 +276,25 @@ Public Class frmTrainingListing
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub cboTypeOfTraining_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboTypeOfTraining.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboTypeOfTraining_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cboTypeOfTraining.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbocounty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbocounty.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbowards_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbowards.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbowards_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbowards.KeyPress
+        e.Handled = True
     End Sub
 End Class

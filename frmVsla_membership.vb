@@ -72,7 +72,7 @@ Public Class frmVsla_membership
 
     Private Sub frmOVCInfo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         populatecounties()
-        populatevslaList()
+
     End Sub
 
     Private Sub populatecounties()
@@ -180,7 +180,7 @@ Public Class frmVsla_membership
             Dim MyDatable As New Data.DataTable
             Dim strcaregiverid As String = Me.DataGridView1.Rows(K).Cells(0).Value
 
-            mysqlaction = "SELECT distinct caregiver_id,caregiver_names,county,cbo,ward,chv_names  from OVCRegistrationDetails where caregiver_id ='" & strcaregiverid & "'"
+            mysqlaction = "SELECT distinct caregiver_id,caregiver_names,county,countyid,cbo,ward,chv_names  from OVCRegistrationDetails where caregiver_id ='" & strcaregiverid & "'"
             MyDatable = TryCast(MyDBAction.DBAction(mysqlaction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 Then
                 If MyDatable.Rows.Count > 0 Then
@@ -196,6 +196,7 @@ Public Class frmVsla_membership
                 End If
             End If
 
+            populatevslaList(MyDatable.Rows(0).Item("countyid").ToString)
             fillgrid()
 
             'take focus back to the first tab
@@ -239,12 +240,13 @@ Public Class frmVsla_membership
         End Try
     End Sub
 
-    Private Sub populatevslaList()
+    Private Sub populatevslaList(ByVal mycountyid As String)
         Dim ErrorAction As New functions
         Try
 
             'populate the combobox
-            Dim mySqlAction As String = "select distinct vslaid,vsla_name + ' - ' + county as vsla_name from vsla_list  order by vslaid,vsla_name + ' - ' + county  asc"
+            Dim mySqlAction As String = "select distinct vslaid,vsla_name + ' - ' + county as vsla_name from vsla_list " &
+                " where county_id = '" & mycountyid & "' order by vslaid,vsla_name + ' - ' + county  asc"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
@@ -274,9 +276,9 @@ Public Class frmVsla_membership
             'save record
             Dim mySqlAction As String = ""
             Dim MyDBAction As New functions
-            mySqlAction = "Insert Into vsla_membership(caregiver_id,vsla_id,date_joined,member_left_vsla,date_left) " &
+            mySqlAction = "Insert Into vsla_membership(caregiver_id,vsla_id,date_joined,member_active_vsla) " &
             " values('" & txtcpimsid.Text.ToString & "','" & cboVSLA.SelectedValue.ToString &
-            "','" & Format(dtpDateJoined.Value, "dd-MMM-yyyy") & "','" & chkMemberLeft.Checked & "','" & Format(dtpDateLeft.Value, "dd-MMM-yyyy") & "')"
+            "','" & Format(dtpDateJoined.Value, "dd-MMM-yyyy") & "','" & chkMemberActive.Checked & "')"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
             MsgBox("Record saved successfully.", MsgBoxStyle.Information)
@@ -297,14 +299,14 @@ Public Class frmVsla_membership
 
             'populate the datagrid with all the data
             Dim mySqlAction As String = "SELECT distinct  vsla_membership.vsla_membership_id, vsla_membership.caregiver_id, " &
-                                        "vsla_membership.vsla_id, vsla_membership.date_joined, vsla_membership.member_left_vsla,  " &
-                                        "vsla_membership.date_left, vsla_list.vsla_name, OVCRegistrationDetails.caregiver_names " &
+                                        "vsla_membership.vsla_id, vsla_membership.date_joined, vsla_membership.member_active_vsla,  " &
+                                        " vsla_list.vsla_name, OVCRegistrationDetails.caregiver_names " &
                                         "FROM   vsla_membership INNER JOIN " &
                                         "OVCRegistrationDetails ON vsla_membership.caregiver_id = OVCRegistrationDetails.caregiver_id INNER JOIN " &
                                         "vsla_list ON vsla_membership.vsla_id = vsla_list.vslaid where vsla_membership.caregiver_id = '" & txtcpimsid.Text.ToString & "'"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
-            Dim myvslamembershipid, mycaregivername, myvsla, mydatejoined, mymemberleft, mydateleft As String
+            Dim myvslamembershipid, mycaregivername, myvsla, mydatejoined, mymemberactive As String
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             DataGridView2.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
@@ -313,9 +315,8 @@ Public Class frmVsla_membership
                     'mycaregivername = MyDatable.Rows(K).Item("caregiver_names").ToString
                     myvsla = MyDatable.Rows(K).Item("vsla_name").ToString
                     mydatejoined = MyDatable.Rows(K).Item("date_joined").ToString
-                    mymemberleft = CBool(MyDatable.Rows(K).Item("member_left_vsla").ToString)
-                    mydateleft = MyDatable.Rows(K).Item("date_joined").ToString
-                    DataGridView2.Rows.Add(myvslamembershipid, myvsla, mydatejoined, mymemberleft, mydateleft, "Select")
+                    mymemberactive = CBool(MyDatable.Rows(K).Item("member_active_vsla").ToString)
+                    DataGridView2.Rows.Add(myvslamembershipid, myvsla, mydatejoined, mymemberactive, "Select")
                 Next
             End If
         Catch ex As Exception
@@ -326,22 +327,13 @@ Public Class frmVsla_membership
     Private Sub lnkNew_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkNew.LinkClicked
         cboVSLA.SelectedIndex = -1
         dtpDateJoined.Value = Date.Today
-        dtpDateLeft.Value = Date.Today
         btnpost.Enabled = True
         btnDelete.Enabled = False
         BtnEdit.Enabled = False
         GroupBox1.Enabled = True
     End Sub
 
-    Private Sub chkMemberLeft_CheckedChanged(sender As Object, e As EventArgs) Handles chkMemberLeft.CheckedChanged
-        If chkMemberLeft.Checked = True Then
-            Label4.Visible = True
-            dtpDateLeft.Visible = True
-        Else
-            Label4.Visible = False
-            dtpDateLeft.Visible = False
-        End If
-    End Sub
+
 
     Private Function validatecontrols() As Boolean
         Try
@@ -358,15 +350,6 @@ Public Class frmVsla_membership
                 MsgBox("Please select some value to continue", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, Me.Text)
                 dtpDateJoined.Focus()
                 Return False
-            ElseIf chkMemberLeft.Checked = True AndAlso dtpDateLeft.Value >= Date.Today Then
-                ErrorProvider1.SetError(dtpDateLeft, "Please select correct date to continue")
-                MsgBox("Please select some value to continue", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, Me.Text)
-                dtpDateLeft.Focus()
-                Return False
-            ElseIf dtpDateJoined.Value > dtpDateLeft.Value Then
-                ErrorProvider1.SetError(dtpDateJoined, "Date Joined cannot be later than Date Left")
-                MsgBox("Please select correct date to continue", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, Me.Text)
-                dtpDateJoined.Focus()
 
             End If
 
@@ -389,7 +372,7 @@ Public Class frmVsla_membership
             Dim MyDBAction As New functions
             mySqlAction = "update vsla_membership set vsla_id = " &
             " '" & cboVSLA.SelectedValue.ToString & "', date_joined = '" & Format(dtpDateJoined.Value, "dd-MMM-yyyy") & "'," &
-            "member_left_vsla = '" & chkMemberLeft.Checked & "',date_left = '" & Format(dtpDateLeft.Value, "dd-MMM-yyyy") & "'" &
+            "member_active_vsla = '" & chkMemberActive.Checked & "'" &
             " where vsla_membership_id = '" & str_vsla_membership & "'"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Update)
@@ -422,8 +405,8 @@ Public Class frmVsla_membership
 
             Dim MyDatable As New Data.DataTable
             mysqlaction = "SELECT distinct  vsla_membership.vsla_membership_id, vsla_membership.caregiver_id, " &
-                                        "vsla_membership.vsla_id, vsla_membership.date_joined, vsla_membership.member_left_vsla,  " &
-                                        "vsla_membership.date_left, vsla_list.vsla_name, OVCRegistrationDetails.caregiver_names " &
+                                        "vsla_membership.vsla_id, vsla_membership.date_joined, vsla_membership.member_active_vsla,  " &
+                                        " vsla_list.vsla_name, OVCRegistrationDetails.caregiver_names " &
                                         "FROM   vsla_membership INNER JOIN " &
                                         "OVCRegistrationDetails ON vsla_membership.caregiver_id = OVCRegistrationDetails.caregiver_id INNER JOIN " &
                                         "vsla_list ON vsla_membership.vsla_id = vsla_list.vslaid where vsla_membership.vsla_membership_id = " & Me.DataGridView2.Rows(K).Cells(0).Value & ""
@@ -433,8 +416,8 @@ Public Class frmVsla_membership
                 txtcaregivernames.Text = MyDatable.Rows(0).Item("caregiver_names").ToString
                 cboVSLA.SelectedValue = MyDatable.Rows(0).Item("vsla_id").ToString
                 dtpDateJoined.Value = MyDatable.Rows(0).Item("date_joined").ToString
-                chkMemberLeft.Checked = CBool(MyDatable.Rows(0).Item("member_left_vsla").ToString)
-                dtpDateLeft.Value = MyDatable.Rows(0).Item("date_left").ToString
+                chkMemberActive.Checked = CBool(MyDatable.Rows(0).Item("member_active_vsla").ToString)
+
 
                 'initialize the record identifier
                 str_vsla_membership = MyDatable.Rows(0).Item("vsla_membership_id").ToString
@@ -457,4 +440,31 @@ Public Class frmVsla_membership
 
     End Sub
 
+    Private Sub cboVSLA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVSLA.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboVSLA_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cboVSLA.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchcounty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchcounty.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchcbo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcbo.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbosearchcbo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchcbo.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchward_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchward.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbosearchward_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchward.KeyPress
+        e.Handled = True
+    End Sub
 End Class

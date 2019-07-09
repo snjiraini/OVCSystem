@@ -444,4 +444,32 @@ Public Class frmCaregiverValueChains
     Private Sub cbosearchcounty_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcounty.SelectedIndexChanged
 
     End Sub
+
+    Private Sub cboValuechain_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboValuechain.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboValuechain_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cboValuechain.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchcounty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchcounty.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchcbo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcbo.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbosearchcbo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchcbo.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchward_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchward.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbosearchward_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchward.KeyPress
+        e.Handled = True
+    End Sub
 End Class

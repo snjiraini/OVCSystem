@@ -202,7 +202,7 @@ Public Class frmUserManagement
     End Sub
     Private Sub frmUserManagement_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         populatemenus()
-        AddRootNode()
+        'AddRootNode()
         fillgrid()
     End Sub
 

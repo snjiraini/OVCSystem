@@ -16,7 +16,6 @@ Public Class frmTrainingAttendance
             mySqlAction = "UPDATE [dbo].[training_attendance] " &
                               " SET [caregiver_id] = '" & txtcpimsid.Text.ToString & "' " &
                                 "  ,[training_id] = '" & cboTraining.SelectedValue.ToString & "' " &
-                                 " ,[vsla_id] = '" & cboVSLA.SelectedValue.ToString & "' " &
                              "WHERE training_attendance_id = '" & str_training_attendance & "'"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Update)
@@ -37,34 +36,10 @@ Public Class frmTrainingAttendance
 
     Private Sub frmTrainingAttendance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         populatecounties()
-        populatevslaList()
         populatetrainingList()
     End Sub
 
-    Private Sub populatevslaList()
-        Dim ErrorAction As New functions
-        Try
 
-            'populate the combobox
-            Dim mySqlAction As String = "select distinct vslaid,vsla_name + ' - ' + county as vsla_name from vsla_list  order by vslaid,vsla_name + ' - ' + county  asc"
-            Dim MyDBAction As New functions
-            Dim MyDatable As New Data.DataTable
-            MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
-
-            With cboVSLA
-                .DataSource = Nothing
-                .Items.Clear()
-                .DataSource = MyDatable
-                .DisplayMember = "vsla_name"
-                .ValueMember = "vslaid"
-                .SelectedIndex = -1 ' This line makes the combo default value to be blank
-            End With
-
-        Catch ex As Exception
-            ErrorAction.WriteToErrorLogFile("TrainingAttendance", "populatevslaList", ex.Message) ''---Write error to error log file
-
-        End Try
-    End Sub
 
     Private Sub populatetrainingList()
         Dim ErrorAction As New functions
@@ -75,8 +50,8 @@ Public Class frmTrainingAttendance
                                         "FROM   training_list INNER JOIN " &
                                                      "type_of_training ON training_list.type_of_training = type_of_training.trainingtypeid INNER JOIN " &
                                                      "wards ON training_list.location = wards.ward_id INNER JOIN " &
-                                                     "DateDimension ON training_list.date_of_training = DateDimension.Date " &
-                                        "ORDER BY type_of_training.type_of_training, wards.county, wards.ward, training_list.date_of_training"
+                                                     "DateDimension ON training_list.start_date_of_training = DateDimension.Date " &
+                                        "ORDER BY type_of_training.type_of_training, wards.county, wards.ward, training_list.start_date_of_training"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
@@ -180,7 +155,7 @@ Public Class frmTrainingAttendance
     End Sub
 
     Private Sub lnkNew_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkNew.LinkClicked
-        cboVSLA.SelectedIndex = -1
+
         cboTraining.SelectedIndex = -1
         btnpost.Enabled = True
         btnDelete.Enabled = False
@@ -202,7 +177,7 @@ Public Class frmTrainingAttendance
             Dim MyDatable As New Data.DataTable
             Dim strcaregiverid As String = Me.DataGridView1.Rows(K).Cells(0).Value
 
-            mysqlaction = "SELECT distinct caregiver_id,caregiver_names,county,cbo,ward,chv_names  from OVCRegistrationDetails where caregiver_id ='" & strcaregiverid & "'"
+            mysqlaction = "SELECT distinct caregiver_id,caregiver_names,county,countyid,cbo,ward,chv_names  from OVCRegistrationDetails where caregiver_id ='" & strcaregiverid & "'"
             MyDatable = TryCast(MyDBAction.DBAction(mysqlaction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 Then
                 If MyDatable.Rows.Count > 0 Then
@@ -217,6 +192,7 @@ Public Class frmTrainingAttendance
 
                 End If
             End If
+
 
             fillgrid()
 
@@ -331,14 +307,13 @@ Public Class frmTrainingAttendance
 
             'populate the datagrid with all the data
             Dim mySqlAction As String = "SELECT DISTINCT training_attendance.training_attendance_id, training_attendance.caregiver_id, " &
-                                            "training_attendance.training_id, training_attendance.vsla_id, OVCRegistrationDetails.caregiver_names,  " &
-                                            "training_list.facilitator, training_list.date_of_training, wards.ward, wards.county,  " &
-                                           " vsla_list.vsla_name, type_of_training.type_of_training " &
+                                            "training_attendance.training_id,  OVCRegistrationDetails.caregiver_names,  " &
+                                            "training_list.facilitator, training_list.start_date_of_training, wards.ward, wards.county,  " &
+                                           " type_of_training.type_of_training " &
                                         "FROM   training_attendance INNER JOIN " &
                                             "OVCRegistrationDetails On training_attendance.caregiver_id = OVCRegistrationDetails.caregiver_id INNER JOIN " &
                                            " training_list ON training_attendance.training_id = training_list.training_id INNER JOIN " &
-                                           " wards On training_list.location = wards.ward_id INNER JOIN " &
-                                           " vsla_list ON training_attendance.vsla_id = vsla_list.vslaid INNER JOIN " &
+                                           " wards On training_list.location = wards.ward_id  INNER JOIN " &
                                            "type_of_training On training_list.type_of_training = type_of_training.trainingtypeid  " &
                                         " where training_attendance.caregiver_id = '" & txtcpimsid.Text.ToString & "'"
             Dim MyDBAction As New functions
@@ -354,8 +329,8 @@ Public Class frmTrainingAttendance
                     myfacilitator = MyDatable.Rows(K).Item("facilitator").ToString
                     mylocation = MyDatable.Rows(K).Item("ward").ToString
                     mycounty = MyDatable.Rows(K).Item("county").ToString
-                    myvsla = MyDatable.Rows(K).Item("vsla_name").ToString
-                    DataGridView2.Rows.Add(mytrainingmembershipid, myTraining, myfacilitator, mylocation, mycounty, myvsla, "Select")
+
+                    DataGridView2.Rows.Add(mytrainingmembershipid, myTraining, myfacilitator, mylocation, mycounty, "Select")
                 Next
             End If
         Catch ex As Exception
@@ -376,12 +351,10 @@ Public Class frmTrainingAttendance
             Dim MyDBAction As New functions
             mySqlAction = "INSERT INTO [dbo].[training_attendance] " &
                                    " ([caregiver_id]" &
-                                   ",[training_id]" &
-                                   ",[vsla_id])" &
+                                   ",[training_id])" &
                              "VALUES" &
                                   "('" & txtcpimsid.Text.ToString & "'" &
-                                  " ,'" & cboTraining.SelectedValue.ToString & "'" &
-                                   ",'" & cboVSLA.SelectedValue.ToString & "')"
+                                  " ,'" & cboTraining.SelectedValue.ToString & "')"
 
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
             MsgBox("Record saved successfully.", MsgBoxStyle.Information)
@@ -406,10 +379,10 @@ Public Class frmTrainingAttendance
                 MsgBox("Please select a Training to continue", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, Me.Text)
                 cboTraining.Focus()
                 Return False
-            ElseIf cboVSLA.Text.Trim.Length = 0 Then
-                ErrorProvider1.SetError(cboVSLA, "Please select a Training to continue")
-                MsgBox("Please select a VSLA to continue", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, Me.Text)
-                cboVSLA.Focus()
+                'ElseIf cboVSLA.Text.Trim.Length = 0 Then
+                '    ErrorProvider1.SetError(cboVSLA, "Please select a Training to continue")
+                '    MsgBox("Please select a VSLA to continue", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, Me.Text)
+                '    cboVSLA.Focus()
 
             End If
 
@@ -435,14 +408,13 @@ Public Class frmTrainingAttendance
 
             Dim MyDatable As New Data.DataTable
             mysqlaction = "Select DISTINCT training_attendance.training_attendance_id, training_attendance.caregiver_id, " &
-                                            "training_attendance.training_id, training_attendance.vsla_id, OVCRegistrationDetails.caregiver_names,  " &
-                                            "training_list.facilitator, training_list.date_of_training, wards.ward, wards.county,  " &
-                                           " vsla_list.vsla_name, type_of_training.type_of_training " &
+                                            "training_attendance.training_id,  OVCRegistrationDetails.caregiver_names,  " &
+                                            "training_list.facilitator, training_list.start_date_of_training, wards.ward, wards.county,  " &
+                                           "  type_of_training.type_of_training " &
                                         "FROM   training_attendance INNER JOIN " &
                                             "OVCRegistrationDetails On training_attendance.caregiver_id = OVCRegistrationDetails.caregiver_id INNER JOIN " &
                                            " training_list On training_attendance.training_id = training_list.training_id INNER JOIN " &
-                                           " wards On training_list.location = wards.ward_id INNER JOIN " &
-                                           " vsla_list On training_attendance.vsla_id = vsla_list.vslaid INNER JOIN " &
+                                           " wards On training_list.location = wards.ward_id  INNER JOIN " &
                                            "type_of_training On training_list.type_of_training = type_of_training.trainingtypeid " &
                                             "where training_attendance.training_attendance_id = " & Me.DataGridView2.Rows(K).Cells(0).Value & ""
 
@@ -450,7 +422,6 @@ Public Class frmTrainingAttendance
             If MyDatable.Rows.Count > 0 Then
                 txtcpimsid.Text = MyDatable.Rows(0).Item("caregiver_id").ToString
                 txtcaregivernames.Text = MyDatable.Rows(0).Item("caregiver_names").ToString
-                cboVSLA.SelectedValue = MyDatable.Rows(0).Item("vsla_id").ToString
                 cboTraining.SelectedValue = MyDatable.Rows(0).Item("training_id").ToString
 
                 'initialize the record identifier
@@ -472,5 +443,35 @@ Public Class frmTrainingAttendance
 
     Private Sub cbosearchcounty_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcounty.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub cboTraining_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboTraining.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboTraining_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cboTraining.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchcounty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchcounty.KeyPress
+        e.Handled = True
+    End Sub
+
+
+
+    Private Sub cbosearchward_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchward.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbosearchward_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchward.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchcbo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcbo.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbosearchcbo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchcbo.KeyPress
+        e.Handled = True
     End Sub
 End Class

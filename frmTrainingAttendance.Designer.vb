@@ -35,13 +35,10 @@ Partial Class frmTrainingAttendance
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lnkNew = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cboVSLA = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.cboTraining = New System.Windows.Forms.ComboBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtcpimsid = New System.Windows.Forms.TextBox()
@@ -63,10 +60,6 @@ Partial Class frmTrainingAttendance
         Me.cbosearchcbo = New System.Windows.Forms.ComboBox()
         Me.cbosearchcounty = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.txtsearchcaregivername = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -74,6 +67,10 @@ Partial Class frmTrainingAttendance
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.txtsearchcaregivername = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,7 +126,7 @@ Partial Class frmTrainingAttendance
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column7, Me.Column8, Me.Column10, Me.Column13, Me.Column12, Me.Column11})
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column7, Me.Column8, Me.Column10, Me.Column13, Me.Column11})
         Me.DataGridView2.Location = New System.Drawing.Point(7, 300)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 28
@@ -160,11 +157,6 @@ Partial Class frmTrainingAttendance
         '
         Me.Column13.HeaderText = "Training County"
         Me.Column13.Name = "Column13"
-        '
-        'Column12
-        '
-        Me.Column12.HeaderText = "vsla_name"
-        Me.Column12.Name = "Column12"
         '
         'Column11
         '
@@ -198,8 +190,6 @@ Partial Class frmTrainingAttendance
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox1.Controls.Add(Me.cboVSLA)
-        Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.cboTraining)
         Me.GroupBox1.Controls.Add(Me.Label14)
         Me.GroupBox1.Controls.Add(Me.txtcpimsid)
@@ -216,25 +206,6 @@ Partial Class frmTrainingAttendance
         Me.GroupBox1.TabIndex = 38
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "The Client"
-        '
-        'cboVSLA
-        '
-        Me.cboVSLA.FormattingEnabled = True
-        Me.cboVSLA.Location = New System.Drawing.Point(455, 117)
-        Me.cboVSLA.Name = "cboVSLA"
-        Me.cboVSLA.Size = New System.Drawing.Size(459, 28)
-        Me.cboVSLA.TabIndex = 58
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(452, 97)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(47, 17)
-        Me.Label2.TabIndex = 57
-        Me.Label2.Text = "VSLA"
         '
         'cboTraining
         '
@@ -490,38 +461,6 @@ Partial Class frmTrainingAttendance
         Me.DataGridView1.Size = New System.Drawing.Size(1123, 586)
         Me.DataGridView1.TabIndex = 6
         '
-        'btnSearch
-        '
-        Me.btnSearch.Location = New System.Drawing.Point(1163, 135)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(90, 35)
-        Me.btnSearch.TabIndex = 5
-        Me.btnSearch.Text = "Search"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'txtsearchcaregivername
-        '
-        Me.txtsearchcaregivername.Location = New System.Drawing.Point(631, 141)
-        Me.txtsearchcaregivername.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.txtsearchcaregivername.Name = "txtsearchcaregivername"
-        Me.txtsearchcaregivername.Size = New System.Drawing.Size(496, 26)
-        Me.txtsearchcaregivername.TabIndex = 2
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(627, 115)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(122, 20)
-        Me.Label8.TabIndex = 0
-        Me.Label8.Text = "Caregiver Name"
-        '
-        'ErrorProvider1
-        '
-        Me.ErrorProvider1.ContainerControl = Me
-        '
         'Column1
         '
         Me.Column1.HeaderText = "CPIMS_Caregiver_ID"
@@ -558,6 +497,38 @@ Partial Class frmTrainingAttendance
         '
         Me.Column5.HeaderText = "Select"
         Me.Column5.Name = "Column5"
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(1163, 135)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(90, 35)
+        Me.btnSearch.TabIndex = 5
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'txtsearchcaregivername
+        '
+        Me.txtsearchcaregivername.Location = New System.Drawing.Point(631, 141)
+        Me.txtsearchcaregivername.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtsearchcaregivername.Name = "txtsearchcaregivername"
+        Me.txtsearchcaregivername.Size = New System.Drawing.Size(496, 26)
+        Me.txtsearchcaregivername.TabIndex = 2
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(627, 115)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(122, 20)
+        Me.Label8.TabIndex = 0
+        Me.Label8.Text = "Caregiver Name"
+        '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
         '
         'frmTrainingAttendance
         '
@@ -615,15 +586,6 @@ Partial Class frmTrainingAttendance
     Friend WithEvents btnSearch As Button
     Friend WithEvents txtsearchcaregivername As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents cboVSLA As ComboBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents Column10 As DataGridViewTextBoxColumn
-    Friend WithEvents Column13 As DataGridViewTextBoxColumn
-    Friend WithEvents Column12 As DataGridViewTextBoxColumn
-    Friend WithEvents Column11 As DataGridViewLinkColumn
     Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents Label4 As Label
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
@@ -633,4 +595,10 @@ Partial Class frmTrainingAttendance
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewLinkColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column10 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewLinkColumn
 End Class

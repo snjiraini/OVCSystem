@@ -461,4 +461,31 @@ Public Class frmCaregiverStarterKits
 
     End Sub
 
+    Private Sub cboStarterKit_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboStarterKit.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboStarterKit_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cboStarterKit.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchcounty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchcounty.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchcbo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchcbo.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbosearchcbo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchcbo.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cbosearchward_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbosearchward.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbosearchward_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbosearchward.KeyPress
+        e.Handled = True
+    End Sub
 End Class

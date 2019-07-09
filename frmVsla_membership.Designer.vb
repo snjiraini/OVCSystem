@@ -34,16 +34,13 @@ Partial Class frmVsla_membership
         Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lnkNew = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.dtpDateLeft = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpDateJoined = New System.Windows.Forms.DateTimePicker()
-        Me.chkMemberLeft = New System.Windows.Forms.CheckBox()
+        Me.chkMemberActive = New System.Windows.Forms.CheckBox()
         Me.cboVSLA = New System.Windows.Forms.ComboBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtcpimsid = New System.Windows.Forms.TextBox()
@@ -131,7 +128,7 @@ Partial Class frmVsla_membership
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column12, Me.Column7, Me.Column8, Me.Column10, Me.Column11})
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column12, Me.Column7, Me.Column8, Me.Column11})
         Me.DataGridView2.Location = New System.Drawing.Point(8, 378)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 28
@@ -155,13 +152,8 @@ Partial Class frmVsla_membership
         '
         'Column8
         '
-        Me.Column8.HeaderText = "MemberLeft"
+        Me.Column8.HeaderText = "MemberActive"
         Me.Column8.Name = "Column8"
-        '
-        'Column10
-        '
-        Me.Column10.HeaderText = "DateLeft"
-        Me.Column10.Name = "Column10"
         '
         'Column11
         '
@@ -195,11 +187,9 @@ Partial Class frmVsla_membership
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.dtpDateLeft)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.dtpDateJoined)
-        Me.GroupBox1.Controls.Add(Me.chkMemberLeft)
+        Me.GroupBox1.Controls.Add(Me.chkMemberActive)
         Me.GroupBox1.Controls.Add(Me.cboVSLA)
         Me.GroupBox1.Controls.Add(Me.Label14)
         Me.GroupBox1.Controls.Add(Me.txtcpimsid)
@@ -216,26 +206,6 @@ Partial Class frmVsla_membership
         Me.GroupBox1.TabIndex = 38
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "The Client"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(548, 194)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(119, 17)
-        Me.Label4.TabIndex = 61
-        Me.Label4.Text = "Date Left VSLA"
-        Me.Label4.Visible = False
-        '
-        'dtpDateLeft
-        '
-        Me.dtpDateLeft.Location = New System.Drawing.Point(551, 218)
-        Me.dtpDateLeft.Name = "dtpDateLeft"
-        Me.dtpDateLeft.Size = New System.Drawing.Size(278, 26)
-        Me.dtpDateLeft.TabIndex = 60
-        Me.dtpDateLeft.Visible = False
         '
         'Label2
         '
@@ -255,15 +225,17 @@ Partial Class frmVsla_membership
         Me.dtpDateJoined.Size = New System.Drawing.Size(278, 26)
         Me.dtpDateJoined.TabIndex = 58
         '
-        'chkMemberLeft
+        'chkMemberActive
         '
-        Me.chkMemberLeft.AutoSize = True
-        Me.chkMemberLeft.Location = New System.Drawing.Point(551, 165)
-        Me.chkMemberLeft.Name = "chkMemberLeft"
-        Me.chkMemberLeft.Size = New System.Drawing.Size(171, 24)
-        Me.chkMemberLeft.TabIndex = 57
-        Me.chkMemberLeft.Text = "Member Left VSLA"
-        Me.chkMemberLeft.UseVisualStyleBackColor = True
+        Me.chkMemberActive.AutoSize = True
+        Me.chkMemberActive.Checked = True
+        Me.chkMemberActive.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkMemberActive.Location = New System.Drawing.Point(551, 165)
+        Me.chkMemberActive.Name = "chkMemberActive"
+        Me.chkMemberActive.Size = New System.Drawing.Size(202, 24)
+        Me.chkMemberActive.TabIndex = 57
+        Me.chkMemberActive.Text = "Member Active in VSLA"
+        Me.chkMemberActive.UseVisualStyleBackColor = True
         '
         'cboVSLA
         '
@@ -636,11 +608,9 @@ Partial Class frmVsla_membership
     Friend WithEvents txtsearchcaregivername As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents dtpDateLeft As DateTimePicker
     Friend WithEvents Label2 As Label
     Friend WithEvents dtpDateJoined As DateTimePicker
-    Friend WithEvents chkMemberLeft As CheckBox
+    Friend WithEvents chkMemberActive As CheckBox
     Friend WithEvents cboVSLA As ComboBox
     Friend WithEvents Label14 As Label
     Friend WithEvents txtcpimsid As TextBox
@@ -651,12 +621,6 @@ Partial Class frmVsla_membership
     Friend WithEvents btnDelete As Button
     Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents DataGridView2 As DataGridView
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column12 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents Column10 As DataGridViewTextBoxColumn
-    Friend WithEvents Column11 As DataGridViewLinkColumn
     Friend WithEvents Label5 As Label
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
@@ -665,4 +629,9 @@ Partial Class frmVsla_membership
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewLinkColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewLinkColumn
 End Class

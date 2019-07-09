@@ -136,15 +136,15 @@ Public Class MDIMain
 
         Try
 
-            ''first disable all menus
-            'Dim menues As New List(Of ToolStripItem)
-            'For Each t As ToolStripItem In Me.MenuStrip.Items
-            '    GetMenues(t, menues)
-            'Next
+            'first disable all menus
+            Dim menues As New List(Of ToolStripItem)
+            For Each t As ToolStripItem In Me.MenuStrip.Items
+                GetMenues(t, menues)
+            Next
 
-            'For Each t As ToolStripItem In menues
-            '    t.Enabled = False
-            'Next
+            For Each t As ToolStripItem In menues
+                t.Enabled = False
+            Next
 
             ''enable menus depending on user rights
             Dim mySqlAction As String = "select * from userrights where username = '" & strusername.ToString &
@@ -152,25 +152,24 @@ Public Class MDIMain
             Dim MyDBAction As New functions
             'Dim MyDatable As New Data.DataTable
             Dim mydecryptedpass As String = ""
-            ''MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
+            'MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
 
-            'Dim cmd As New SqlCommand(mySqlAction, conn)
-            'conn.Open()
-            'Dim myreader As SqlDataReader = cmd.ExecuteReader()
+            Dim cmd As New SqlCommand(mySqlAction, conn)
+            conn.Open()
+            Dim myreader As SqlDataReader = cmd.ExecuteReader()
 
-            ''If MyDatable.Rows.Count > 0 Then
-            ''    For K = 0 To MyDatable.Rows.Count - 1
-            'Do While myreader.Read
-            '    For Each t As ToolStripItem In menues
-            '        If myreader("menuid").ToString = t.Name Then
-            '            t.Enabled = True
-            '        End If
+            'If MyDatable.Rows.Count > 0 Then
+            '    For K = 0 To MyDatable.Rows.Count - 1
+            Do While myreader.Read
+                For Each t As ToolStripItem In menues
+                    If myreader("menuid").ToString = t.Name Then
+                        t.Enabled = True
+                    End If
 
-            '    Next
-            'Loop
+                Next
+            Loop
 
-            '    Next
-            'End If
+
 
 
 
