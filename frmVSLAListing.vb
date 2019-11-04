@@ -69,11 +69,11 @@ Public Class frmVSLAListing
             DataGridView1.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    myvslaid = MyDatable.Rows(K).Item("vslaid").ToString
-                    myvsla = MyDatable.Rows(K).Item("vsla_name").ToString
-                    mycounty = MyDatable.Rows(K).Item("county").ToString
-                    myward = MyDatable.Rows(K).Item("ward").ToString
-                    mydateofregistration = MyDatable.Rows(K).Item("date_of_formation").ToString
+                    myvslaid = MyDatable.Rows(0).Item("vslaid").ToString
+                    myvsla = MyDatable.Rows(0).Item("vsla_name").ToString
+                    mycounty = MyDatable.Rows(0).Item("county").ToString
+                    myward = MyDatable.Rows(0).Item("ward").ToString
+                    mydateofregistration = MyDatable.Rows(0).Item("date_of_formation").ToString
                     DataGridView1.Rows.Add(myvslaid, myvsla, mycounty, myward, mydateofregistration, "Select")
                 Next
             End If

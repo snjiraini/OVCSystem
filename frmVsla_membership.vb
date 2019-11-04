@@ -43,12 +43,12 @@ Public Class frmVsla_membership
             DataGridView1.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mycpimsid = MyDatable.Rows(K).Item("caregiver_id").ToString
-                    mycaregivernames = MyDatable.Rows(K).Item("caregiver_names").ToString
-                    Mycounty = MyDatable.Rows(K).Item("county").ToString
-                    mycbo = MyDatable.Rows(K).Item("cbo").ToString
-                    myward = MyDatable.Rows(K).Item("ward").ToString
-                    mychvnames = MyDatable.Rows(K).Item("chv_names").ToString
+                    mycpimsid = MyDatable.Rows(0).Item("caregiver_id").ToString
+                    mycaregivernames = MyDatable.Rows(0).Item("caregiver_names").ToString
+                    Mycounty = MyDatable.Rows(0).Item("county").ToString
+                    mycbo = MyDatable.Rows(0).Item("cbo").ToString
+                    myward = MyDatable.Rows(0).Item("ward").ToString
+                    mychvnames = MyDatable.Rows(0).Item("chv_names").ToString
 
 
                     DataGridView1.Rows.Add(mycpimsid, mycaregivernames, mychvnames, mycbo, Mycounty, myward, "Select")
@@ -311,11 +311,11 @@ Public Class frmVsla_membership
             DataGridView2.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    myvslamembershipid = MyDatable.Rows(K).Item("vsla_membership_id").ToString
-                    'mycaregivername = MyDatable.Rows(K).Item("caregiver_names").ToString
-                    myvsla = MyDatable.Rows(K).Item("vsla_name").ToString
-                    mydatejoined = MyDatable.Rows(K).Item("date_joined").ToString
-                    mymemberactive = CBool(MyDatable.Rows(K).Item("member_active_vsla").ToString)
+                    myvslamembershipid = MyDatable.Rows(0).Item("vsla_membership_id").ToString
+                    'mycaregivername = MyDatable.Rows(0).Item("caregiver_names").ToString
+                    myvsla = MyDatable.Rows(0).Item("vsla_name").ToString
+                    mydatejoined = MyDatable.Rows(0).Item("date_joined").ToString
+                    mymemberactive = CBool(MyDatable.Rows(0).Item("member_active_vsla").ToString)
                     DataGridView2.Rows.Add(myvslamembershipid, myvsla, mydatejoined, mymemberactive, "Select")
                 Next
             End If

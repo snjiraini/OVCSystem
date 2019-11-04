@@ -274,9 +274,9 @@ Public Class frmCaregiverValueChains
             DataGridView2.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mycaregivervaluechainid = MyDatable.Rows(K).Item("ovc_caregiver_valuechains_id").ToString
-                    myvaluechain = MyDatable.Rows(K).Item("valuechain_name").ToString
-                    mydatelinked = MyDatable.Rows(K).Item("datelinked").ToString
+                    mycaregivervaluechainid = MyDatable.Rows(0).Item("ovc_caregiver_valuechains_id").ToString
+                    myvaluechain = MyDatable.Rows(0).Item("valuechain_name").ToString
+                    mydatelinked = MyDatable.Rows(0).Item("datelinked").ToString
 
                     DataGridView2.Rows.Add(mycaregivervaluechainid, myvaluechain, mydatelinked, "Select")
                 Next
@@ -386,12 +386,12 @@ Public Class frmCaregiverValueChains
             DataGridView1.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mycpimsid = MyDatable.Rows(K).Item("caregiver_id").ToString
-                    mycaregivernames = MyDatable.Rows(K).Item("caregiver_names").ToString
-                    Mycounty = MyDatable.Rows(K).Item("county").ToString
-                    mycbo = MyDatable.Rows(K).Item("cbo").ToString
-                    myward = MyDatable.Rows(K).Item("ward").ToString
-                    mychvnames = MyDatable.Rows(K).Item("chv_names").ToString
+                    mycpimsid = MyDatable.Rows(0).Item("caregiver_id").ToString
+                    mycaregivernames = MyDatable.Rows(0).Item("caregiver_names").ToString
+                    Mycounty = MyDatable.Rows(0).Item("county").ToString
+                    mycbo = MyDatable.Rows(0).Item("cbo").ToString
+                    myward = MyDatable.Rows(0).Item("ward").ToString
+                    mychvnames = MyDatable.Rows(0).Item("chv_names").ToString
 
 
                     DataGridView1.Rows.Add(mycpimsid, mycaregivernames, mychvnames, mycbo, Mycounty, myward, "Select")

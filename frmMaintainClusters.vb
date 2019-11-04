@@ -215,10 +215,10 @@ Public Class frmMaintainClusters
             mysqlaction = "SELECT * FROM   Clusters WHERE ClusterID ='" & Me.DataGridView1.Rows(K).Cells(0).Value & "'"
             MyDatable = TryCast(MyDBAction.DBAction(mysqlaction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 Then
-                txtClusterID.Text = MyDatable.Rows(0).Item("ClusterId")
-                txtClustername.Text = MyDatable.Rows(0).Item("ClusterName")
+                txtClusterID.Text = MyDatable.Rows(e.RowIndex).Item("ClusterId")
+                txtClustername.Text = MyDatable.Rows(e.RowIndex).Item("ClusterName")
                 'repopulate ClusterCBOs
-                MyCbolist.AddRange(Split(MyDatable.Rows(0).Item("ClusterCBOs"), ","))
+                MyCbolist.AddRange(Split(MyDatable.Rows(e.RowIndex).Item("ClusterCBOs"), ","))
                 populate_clustercbos(MyCbolist)
 
             End If

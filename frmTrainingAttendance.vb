@@ -130,12 +130,12 @@ Public Class frmTrainingAttendance
             DataGridView1.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mycpimsid = MyDatable.Rows(K).Item("caregiver_id").ToString
-                    mycaregivernames = MyDatable.Rows(K).Item("caregiver_names").ToString
-                    Mycounty = MyDatable.Rows(K).Item("county").ToString
-                    mycbo = MyDatable.Rows(K).Item("cbo").ToString
-                    myward = MyDatable.Rows(K).Item("ward").ToString
-                    mychvnames = MyDatable.Rows(K).Item("chv_names").ToString
+                    mycpimsid = MyDatable.Rows(0).Item("caregiver_id").ToString
+                    mycaregivernames = MyDatable.Rows(0).Item("caregiver_names").ToString
+                    Mycounty = MyDatable.Rows(0).Item("county").ToString
+                    mycbo = MyDatable.Rows(0).Item("cbo").ToString
+                    myward = MyDatable.Rows(0).Item("ward").ToString
+                    mychvnames = MyDatable.Rows(0).Item("chv_names").ToString
 
 
                     DataGridView1.Rows.Add(mycpimsid, mycaregivernames, mychvnames, mycbo, Mycounty, myward, "Select")
@@ -187,8 +187,8 @@ Public Class frmTrainingAttendance
                     txtcpimsid.Text = MyDatable.Rows(0).Item("caregiver_id").ToString
                     txtcaregivernames.Text = MyDatable.Rows(0).Item("caregiver_names").ToString
 
-                    'dtpDateofLinkage.Value = IIf(IsDate(MyDatable.Rows(0).Item("date_of_linkage").ToString) = False, "1900-01-01 00:00:00.000", MyDatable.Rows(0).Item("date_of_linkage").ToString)
-                    'txtcccnumber.Text = MyDatable.Rows(0).Item("ccc_number").ToString
+                    'dtpDateofLinkage.Value = IIf(IsDate(MyDatable.Rows(e.RowIndex).Item("date_of_linkage").ToString) = False, "1900-01-01 00:00:00.000", MyDatable.Rows(e.RowIndex).Item("date_of_linkage").ToString)
+                    'txtcccnumber.Text = MyDatable.Rows(e.RowIndex).Item("ccc_number").ToString
 
                 End If
             End If
@@ -323,12 +323,12 @@ Public Class frmTrainingAttendance
             DataGridView2.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mytrainingmembershipid = MyDatable.Rows(K).Item("training_attendance_id").ToString
-                    'mycaregivername = MyDatable.Rows(K).Item("caregiver_names").ToString
-                    myTraining = MyDatable.Rows(K).Item("type_of_training").ToString
-                    myfacilitator = MyDatable.Rows(K).Item("facilitator").ToString
-                    mylocation = MyDatable.Rows(K).Item("ward").ToString
-                    mycounty = MyDatable.Rows(K).Item("county").ToString
+                    mytrainingmembershipid = MyDatable.Rows(0).Item("training_attendance_id").ToString
+                    'mycaregivername = MyDatable.Rows(0).Item("caregiver_names").ToString
+                    myTraining = MyDatable.Rows(0).Item("type_of_training").ToString
+                    myfacilitator = MyDatable.Rows(0).Item("facilitator").ToString
+                    mylocation = MyDatable.Rows(0).Item("ward").ToString
+                    mycounty = MyDatable.Rows(0).Item("county").ToString
 
                     DataGridView2.Rows.Add(mytrainingmembershipid, myTraining, myfacilitator, mylocation, mycounty, "Select")
                 Next

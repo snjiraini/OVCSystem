@@ -77,9 +77,9 @@ Public Class frmValueChainsListings
             DataGridView1.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    myvaluechainid = MyDatable.Rows(K).Item("valuechain_id").ToString
-                    myvaluechainname = MyDatable.Rows(K).Item("valuechain_name").ToString
-                    myvaluechaintype = MyDatable.Rows(K).Item("valuechain_type").ToString
+                    myvaluechainid = MyDatable.Rows(0).Item("valuechain_id").ToString
+                    myvaluechainname = MyDatable.Rows(0).Item("valuechain_name").ToString
+                    myvaluechaintype = MyDatable.Rows(0).Item("valuechain_type").ToString
                     DataGridView1.Rows.Add(myvaluechainid, myvaluechainname, myvaluechaintype, "Select")
                 Next
             End If

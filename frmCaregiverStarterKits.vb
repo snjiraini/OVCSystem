@@ -16,10 +16,7 @@ Public Class frmCaregiverStarterKits
         Try
 
             'populate the combobox
-            Dim mySqlAction As String = "select ROW_NUMBER() OVER(ORDER BY county ASC) AS county_id, county " &
-                                       " from " &
-                                        "(select distinct county from OVCRegistrationDetails where len(county)> 1) tbl_county " &
-                                        "order by county asc"
+            Dim mySqlAction As String = "select distinct county from OVCRegistrationDetails  order by county asc"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
@@ -29,12 +26,12 @@ Public Class frmCaregiverStarterKits
                 .Items.Clear()
                 .DataSource = MyDatable
                 .DisplayMember = "County"
-                .ValueMember = "county_id"
+                .ValueMember = 0
                 .SelectedIndex = -1 ' This line makes the combo default value to be blank
             End With
 
         Catch ex As Exception
-            ErrorAction.WriteToErrorLogFile("CaregiverStarterKits", "populatecounties", ex.Message) ''---Write error to error log file
+            ErrorAction.WriteToErrorLogFile("clientinfo", "populatecounties", ex.Message) ''---Write error to error log file
 
         End Try
     End Sub
@@ -167,12 +164,12 @@ Public Class frmCaregiverStarterKits
             DataGridView1.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mycpimsid = MyDatable.Rows(K).Item("caregiver_id").ToString
-                    mycaregivernames = MyDatable.Rows(K).Item("caregiver_names").ToString
-                    Mycounty = MyDatable.Rows(K).Item("county").ToString
-                    mycbo = MyDatable.Rows(K).Item("cbo").ToString
-                    myward = MyDatable.Rows(K).Item("ward").ToString
-                    mychvnames = MyDatable.Rows(K).Item("chv_names").ToString
+                    mycpimsid = MyDatable.Rows(0).Item("caregiver_id").ToString
+                    mycaregivernames = MyDatable.Rows(0).Item("caregiver_names").ToString
+                    Mycounty = MyDatable.Rows(0).Item("county").ToString
+                    mycbo = MyDatable.Rows(0).Item("cbo").ToString
+                    myward = MyDatable.Rows(0).Item("ward").ToString
+                    mychvnames = MyDatable.Rows(0).Item("chv_names").ToString
 
 
                     DataGridView1.Rows.Add(mycpimsid, mycaregivernames, mychvnames, mycbo, Mycounty, myward, "Select")
@@ -242,12 +239,12 @@ Public Class frmCaregiverStarterKits
             DataGridView2.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mycaregiverstarterkitid = MyDatable.Rows(K).Item("ovc_caregiver_starterkit_id").ToString
-                    'mycaregivername = MyDatable.Rows(K).Item("caregiver_names").ToString
-                    mystarterkit = MyDatable.Rows(K).Item("starterkit_name").ToString
-                    myvaluechain = MyDatable.Rows(K).Item("valuechain_name").ToString
-                    mydateprovided = MyDatable.Rows(K).Item("date_provided").ToString
-                    mystarterkitcost = MyDatable.Rows(K).Item("starterkit_cost").ToString
+                    mycaregiverstarterkitid = MyDatable.Rows(0).Item("ovc_caregiver_starterkit_id").ToString
+                    'mycaregivername = MyDatable.Rows(0).Item("caregiver_names").ToString
+                    mystarterkit = MyDatable.Rows(0).Item("starterkit_name").ToString
+                    myvaluechain = MyDatable.Rows(0).Item("valuechain_name").ToString
+                    mydateprovided = MyDatable.Rows(0).Item("date_provided").ToString
+                    mystarterkitcost = MyDatable.Rows(0).Item("starterkit_cost").ToString
                     DataGridView2.Rows.Add(mycaregiverstarterkitid, mystarterkit, myvaluechain, mydateprovided, mystarterkitcost, "Select")
                 Next
             End If

@@ -37,13 +37,13 @@ Public Class frmOVCInfo
             DataGridView1.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mycpimsid = MyDatable.Rows(K).Item("cpims_ovc_id").ToString
-                    myovcnames = MyDatable.Rows(K).Item("ovc_names").ToString
-                    Mycounty = MyDatable.Rows(K).Item("county").ToString
-                    mycbo = MyDatable.Rows(K).Item("cbo").ToString
-                    myward = MyDatable.Rows(K).Item("ward").ToString
-                    mychvnames = MyDatable.Rows(K).Item("chv_names").ToString
-                    mycaregivernames = MyDatable.Rows(K).Item("caregiver_names").ToString
+                    mycpimsid = MyDatable.Rows(0).Item("cpims_ovc_id").ToString
+                    myovcnames = MyDatable.Rows(0).Item("ovc_names").ToString
+                    Mycounty = MyDatable.Rows(0).Item("county").ToString
+                    mycbo = MyDatable.Rows(0).Item("cbo").ToString
+                    myward = MyDatable.Rows(0).Item("ward").ToString
+                    mychvnames = MyDatable.Rows(0).Item("chv_names").ToString
+                    mycaregivernames = MyDatable.Rows(0).Item("caregiver_names").ToString
 
                     DataGridView1.Rows.Add(mycpimsid, myovcnames, mycbo, Mycounty, myward, mychvnames,
                                            mycaregivernames, "Select")

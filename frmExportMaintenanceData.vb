@@ -135,7 +135,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '1 Wards
-            mySqlAction = "select [WardID],[Ward],[Countyid] from  Wards " & _
+            mySqlAction = "select [WardID],[Ward],[Countyid] from  Wards " &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('wards')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -154,7 +154,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '1a.a County
-            mySqlAction = "select [CountyID],[County] from  county " & _
+            mySqlAction = "select [CountyID],[County] from  county " &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('county')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -173,7 +173,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '1b. cbo
-            mySqlAction = "SELECT [CBOID],[CBO] as CBO_name ,[DistrictID] FROM [CBO]" & _
+            mySqlAction = "SELECT [CBOID],[CBO] as CBO_name ,[DistrictID] FROM [CBO]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('cbo')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -192,7 +192,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '1c. Location
-            mySqlAction = "SELECT [LocationID],[Location] as Location_name,[DistrictID],[Wardid]FROM [Location]" & _
+            mySqlAction = "SELECT [LocationID],[Location] as Location_name,[DistrictID],[Wardid]FROM [Location]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('location')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -211,7 +211,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '1d. Clusters
-            mySqlAction = "SELECT [ClusterId],[ClusterName],[ClusterCBOs] FROM [Clusters]" & _
+            mySqlAction = "SELECT [ClusterId],[ClusterName],[ClusterCBOs] FROM [Clusters]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('clusters')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -234,7 +234,7 @@ Public Class frmExportMaintenanceData
 
             '2. Education
             '2a. schoollevel
-            mySqlAction = "SELECT [SchoolLevelID],[SchoolLevel] as SchoolLevel_name FROM [SchoolLevel]" & _
+            mySqlAction = "SELECT [SchoolLevelID],[SchoolLevel] as SchoolLevel_name FROM [SchoolLevel]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('schoollevel')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -253,7 +253,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '2b. schoolname
-            mySqlAction = "SELECT [SchoolID],[SchoolName],[District],[Schoollevel] FROM [Schools]" & _
+            mySqlAction = "SELECT [SchoolID],[SchoolName],[District],[Schoollevel] FROM [Schools]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('schools')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -272,7 +272,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '2c. class
-            mySqlAction = "SELECT [ClassId],[Class] as Class_name,[SchoolLevel] FROM [Class]" & _
+            mySqlAction = "SELECT [ClassId],[Class] as Class_name,[SchoolLevel] FROM [Class]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('class')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -295,7 +295,7 @@ Public Class frmExportMaintenanceData
 
             '3. Health
             '3a. hivstatus
-            mySqlAction = "SELECT [HIVStatusID],[HIVStatus] as HIVStatus_name FROM [HIVStatus]" & _
+            mySqlAction = "SELECT [HIVStatusID],[HIVStatus] as HIVStatus_name FROM [HIVStatus]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('hivstatus')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -314,7 +314,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '3b. artstatus
-            mySqlAction = "SELECT [ARTStatusID] ,[ARTStatus] as ARTStatus_name FROM [ARTStatus]" & _
+            mySqlAction = "SELECT [ARTStatusID] ,[ARTStatus] as ARTStatus_name FROM [ARTStatus]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('artstatus')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -333,7 +333,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '3c. facilities
-            mySqlAction = "SELECT [Facilityid] ,[Facility] ,[DistrictId] FROM [Facilities]" & _
+            mySqlAction = "SELECT [Facilityid] ,[Facility] ,[DistrictId] FROM [Facilities]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('facilities')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -356,7 +356,7 @@ Public Class frmExportMaintenanceData
 
             '4. Domains
             '4a. domain
-            mySqlAction = "SELECT [DomainID],[Domain] as Domain_name,[IsHCBC],[IsOVC],[IsActive] ,[IsCaregiver] FROM [Domain]" & _
+            mySqlAction = "SELECT [DomainID],[Domain] as Domain_name,[IsHCBC],[IsOVC],[IsActive] ,[IsCaregiver] FROM [Domain]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('domain')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -375,7 +375,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '4b. subdomain
-            mySqlAction = "SELECT [SubdomainID] ,[DomainID] ,[Subdomain] as Subdomain_name FROM [SubDomain]" & _
+            mySqlAction = "SELECT [SubdomainID] ,[DomainID] ,[Subdomain] as Subdomain_name FROM [SubDomain]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('subdomain')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -394,7 +394,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '4c. CoreServices
-            mySqlAction = "SELECT [CSID],[Domainid],[CoreService],[MustSelect],[Type] FROM [CoreServices]" & _
+            mySqlAction = "SELECT [CSID],[Domainid],[CoreService],[MustSelect],[Type] FROM [CoreServices]" &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('CoreServices')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -414,11 +414,11 @@ Public Class frmExportMaintenanceData
 
             '4d. ServiceStatus
             'when a field has same name as table, errors come up. So servicestatus comes as [Status], but needs to be mapped back to servicestatus
-            mySqlAction = "select [SSID],[CSID],[ServiceStatus] as ServiceStatus_name,[Duration],[Procurable] " & _
-      " ,[IsPriority],[IsHCBC],[IsOVC],[SSCode],[IsActive],[IsCaregiver] " & _
-     " ,[AgeRequired],[Gender],[Needstobeselectedprior],[Needstobeunselectedprior] " & _
-      " ,[PriorNumberofMonths],[AffectsLongitudinalbiodata] " & _
-        " from ServiceStatus " & _
+            mySqlAction = "select [SSID],[CSID],[ServiceStatus] as ServiceStatus_name,[Duration],[Procurable] " &
+      " ,[IsPriority],[IsHCBC],[IsOVC],[SSCode],[IsActive],[IsCaregiver] " &
+     " ,[AgeRequired],[Gender],[Needstobeselectedprior],[Needstobeunselectedprior] " &
+      " ,[PriorNumberofMonths],[AffectsLongitudinalbiodata] " &
+        " from ServiceStatus " &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('ServiceStatus')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -440,7 +440,7 @@ Public Class frmExportMaintenanceData
             worker.ReportProgress(40)
 
             '5. Eligibility
-            mySqlAction = "select [ClienttypeID] ,[ClientType] as ClientType_name from  [ClientType] " & _
+            mySqlAction = "select [ClienttypeID] ,[ClientType] as ClientType_name from  [ClientType] " &
                                     " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('clienttype')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -462,7 +462,7 @@ Public Class frmExportMaintenanceData
             worker.ReportProgress(50)
 
             '6. Reason for exit
-            mySqlAction = "SELECT [HidingReasonID] ,[HidingReason] as HidingReason_name FROM [HidingReason]" & _
+            mySqlAction = "SELECT [HidingReasonID] ,[HidingReason] as HidingReason_name FROM [HidingReason]" &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('hidingreason')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -484,7 +484,7 @@ Public Class frmExportMaintenanceData
             worker.ReportProgress(60)
 
             '7a. CSI providers
-            mySqlAction = "select [ProviderID],[Provider] as Provider_name from  [Provider] " & _
+            mySqlAction = "select [ProviderID],[Provider] as Provider_name from  [Provider] " &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('provider')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -503,7 +503,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '7b. Goals
-            mySqlAction = "select [GoalID],[Goal] as Goal_name from  [Goal]" & _
+            mySqlAction = "select [GoalID],[Goal] as Goal_name from  [Goal]" &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('goal')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -525,7 +525,7 @@ Public Class frmExportMaintenanceData
             worker.ReportProgress(70)
 
             '8. Cause of Death
-            mySqlAction = "select [CauseofDeathID],[CauseofDeath] as CauseofDeath_name from  [CauseofDeath] " & _
+            mySqlAction = "select [CauseofDeathID],[CauseofDeath] as CauseofDeath_name from  [CauseofDeath] " &
                                              " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('causeofdeath')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -547,7 +547,7 @@ Public Class frmExportMaintenanceData
             worker.ReportProgress(80)
 
             '9. Relationship
-            mySqlAction = "select [RelationshipID],[Relationship] as Relationship_name  from  [Relationship] " & _
+            mySqlAction = "select [RelationshipID],[Relationship] as Relationship_name  from  [Relationship] " &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('relationship')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -569,7 +569,7 @@ Public Class frmExportMaintenanceData
             worker.ReportProgress(90)
 
             '10. Employment Types
-            mySqlAction = "select [employmenttypeid],[EmploymentType] as EmploymentType_name  from  [EmploymentType] " & _
+            mySqlAction = "select [employmenttypeid],[EmploymentType] as EmploymentType_name  from  [EmploymentType] " &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('employmenttype')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -588,7 +588,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '11. Critical Events
-            mySqlAction = "SELECT [CriticalEventsID],[EventName],[IsOVC],[IsCaregiver] FROM [dbo].[CriticalEvents] " & _
+            mySqlAction = "SELECT [CriticalEventsID],[EventName],[IsOVC],[IsCaregiver] FROM [dbo].[CriticalEvents] " &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('criticalevents')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -607,7 +607,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '12. Immunization
-            mySqlAction = "SELECT [ImmunizationID],[ImmunizationStatus] FROM [dbo].[Immunization] " & _
+            mySqlAction = "SELECT [ImmunizationID],[ImmunizationStatus] FROM [dbo].[Immunization] " &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('immunization')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -626,7 +626,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '13. HHDomains
-            mySqlAction = "SELECT [HHDomainid],[HHDomain] FROM [dbo].[HHAssessmentDomain] " & _
+            mySqlAction = "SELECT [HHDomainid],[HHDomain] FROM [dbo].[HHAssessmentDomain] " &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('HHAssessmentDomain')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -645,7 +645,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '14. HHAssessentCodes
-            mySqlAction = "SELECT [HHCodeid],[HHCode],[HHDomainid] FROM [dbo].[HHAssessentCodes] " & _
+            mySqlAction = "SELECT [HHCodeid],[HHCode],[HHDomainid] FROM [dbo].[HHAssessentCodes] " &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('HHAssessentCodes')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
@@ -664,7 +664,7 @@ Public Class frmExportMaintenanceData
             End If
 
             '15. HHResponses
-            mySqlAction = "SELECT [Responseid],[HHCodeid],[Response] FROM [dbo].[HHResponses] " & _
+            mySqlAction = "SELECT [Responseid],[HHCodeid],[Response] FROM [dbo].[HHResponses] " &
                                               " FOR XML AUTO,TYPE, ELEMENTS ,ROOT('HHResponses')"
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
             If MyDatable.Rows.Count > 0 And MyDatable.Rows(0).Item(0).ToString.Length > 0 Then
