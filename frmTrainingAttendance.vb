@@ -75,7 +75,7 @@ Public Class frmTrainingAttendance
         Try
 
             'populate the combobox
-            Dim mySqlAction As String = "select distinct county from OVCRegistrationDetails  order by county asc"
+            Dim mySqlAction As String = "select distinct county from OVCRegistrationDetails where cbo_id in (" & strcbos & ")  order by county asc"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)
@@ -100,7 +100,7 @@ Public Class frmTrainingAttendance
         Try
 
             'populate the datagrid with all the data
-            Dim mySqlAction As String = "SELECT distinct caregiver_id,caregiver_names,county,cbo,ward,chv_names  from OVCRegistrationDetails where 1 = 1"
+            Dim mySqlAction As String = "SELECT distinct caregiver_id,caregiver_names,county,cbo,ward,chv_names  from OVCRegistrationDetails where 1 = 1  and cbo_id in (" & strcbos & ")"
 
             If cbosearchcounty.Text.ToString.Length <> 0 Then
                 mySqlAction = mySqlAction & " AND OVCRegistrationDetails.county = '" & cbosearchcounty.Text & "'"
@@ -130,12 +130,12 @@ Public Class frmTrainingAttendance
             DataGridView1.Rows.Clear()
             If MyDatable.Rows.Count > 0 Then
                 For K = 0 To MyDatable.Rows.Count - 1
-                    mycpimsid = MyDatable.Rows(0).Item("caregiver_id").ToString
-                    mycaregivernames = MyDatable.Rows(0).Item("caregiver_names").ToString
-                    Mycounty = MyDatable.Rows(0).Item("county").ToString
-                    mycbo = MyDatable.Rows(0).Item("cbo").ToString
-                    myward = MyDatable.Rows(0).Item("ward").ToString
-                    mychvnames = MyDatable.Rows(0).Item("chv_names").ToString
+                    mycpimsid = MyDatable.Rows(K).Item("caregiver_id").ToString
+                    mycaregivernames = MyDatable.Rows(K).Item("caregiver_names").ToString
+                    Mycounty = MyDatable.Rows(K).Item("county").ToString
+                    mycbo = MyDatable.Rows(K).Item("cbo").ToString
+                    myward = MyDatable.Rows(K).Item("ward").ToString
+                    mychvnames = MyDatable.Rows(K).Item("chv_names").ToString
 
 
                     DataGridView1.Rows.Add(mycpimsid, mycaregivernames, mychvnames, mycbo, Mycounty, myward, "Select")
@@ -258,7 +258,7 @@ Public Class frmTrainingAttendance
             'populate the combobox
             Dim mySqlAction As String = "select ROW_NUMBER() OVER(ORDER BY cbo ASC) AS cbo_id, cbo,county " &
                                         "from " &
-                                        "(select distinct cbo,county from OVCRegistrationDetails) tbl_cbo  " &
+                                        "(select distinct cbo,county from OVCRegistrationDetails where cbo_id in (" & strcbos & ")) tbl_cbo  " &
                                         "where county = '" & mycounty.ToString & "' order by cbo asc"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable

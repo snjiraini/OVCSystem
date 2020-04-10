@@ -192,6 +192,18 @@
     <Compile Include="frmExportMaintenanceData.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmFCIDisseminationSessionsAttendance.Designer.vb">
+      <DependentUpon>frmFCIDisseminationSessionsAttendance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFCIDisseminationSessionsAttendance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFCIMessageDissemination.Designer.vb">
+      <DependentUpon>frmFCIMessageDissemination.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFCIMessageDissemination.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmImportMaintenanceData.Designer.vb">
       <DependentUpon>frmImportMaintenanceData.vb</DependentUpon>
     </Compile>
@@ -244,6 +256,12 @@
       <DependentUpon>frmVSLAListing.vb</DependentUpon>
     </Compile>
     <Compile Include="frmVSLAListing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVslaTracking.Designer.vb">
+      <DependentUpon>frmVslaTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmVslaTracking.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmVsla_membership.Designer.vb">
@@ -312,6 +330,12 @@
     <EmbeddedResource Include="frmExportMaintenanceData.resx">
       <DependentUpon>frmExportMaintenanceData.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFCIDisseminationSessionsAttendance.resx">
+      <DependentUpon>frmFCIDisseminationSessionsAttendance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFCIMessageDissemination.resx">
+      <DependentUpon>frmFCIMessageDissemination.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmImportMaintenanceData.resx">
       <DependentUpon>frmImportMaintenanceData.vb</DependentUpon>
     </EmbeddedResource>
@@ -338,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmVSLAListing.resx">
       <DependentUpon>frmVSLAListing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVslaTracking.resx">
+      <DependentUpon>frmVslaTracking.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVsla_membership.resx">
       <DependentUpon>frmVsla_membership.vb</DependentUpon>

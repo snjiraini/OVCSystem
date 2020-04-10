@@ -35,6 +35,7 @@ Partial Class MDIMain
         Me.Closemenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaintenanceMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.VSLAListing = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VSLALoanTracking = New System.Windows.Forms.ToolStripMenuItem()
         Me.StarterKits = New System.Windows.Forms.ToolStripMenuItem()
         Me.ValueChains = New System.Windows.Forms.ToolStripMenuItem()
         Me.TrainingsListing = New System.Windows.Forms.ToolStripMenuItem()
@@ -46,6 +47,9 @@ Partial Class MDIMain
         Me.Tools = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManageClusters = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserManagement = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FCI = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MessageDissemination = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FCIReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -62,7 +66,7 @@ Partial Class MDIMain
         'MenuStrip
         '
         Me.MenuStrip.ImageScalingSize = New System.Drawing.Size(40, 40)
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientMenu, Me.MaintenanceMenu, Me.ViewMenu, Me.Tools})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientMenu, Me.MaintenanceMenu, Me.ViewMenu, Me.Tools, Me.FCI})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Padding = New System.Windows.Forms.Padding(9, 3, 0, 3)
@@ -118,7 +122,7 @@ Partial Class MDIMain
         '
         'MaintenanceMenu
         '
-        Me.MaintenanceMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VSLAListing, Me.StarterKits, Me.ValueChains, Me.TrainingsListing, Me.ExportMaintenanceData, Me.ImportMaintenanceData, Me.ImportCPIMSData})
+        Me.MaintenanceMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VSLAListing, Me.VSLALoanTracking, Me.StarterKits, Me.ValueChains, Me.TrainingsListing, Me.ExportMaintenanceData, Me.ImportMaintenanceData, Me.ImportCPIMSData})
         Me.MaintenanceMenu.Name = "MaintenanceMenu"
         Me.MaintenanceMenu.Size = New System.Drawing.Size(124, 29)
         Me.MaintenanceMenu.Text = "&Maintenance"
@@ -128,6 +132,12 @@ Partial Class MDIMain
         Me.VSLAListing.Name = "VSLAListing"
         Me.VSLAListing.Size = New System.Drawing.Size(299, 30)
         Me.VSLAListing.Text = "VSLA Listing"
+        '
+        'VSLALoanTracking
+        '
+        Me.VSLALoanTracking.Name = "VSLALoanTracking"
+        Me.VSLALoanTracking.Size = New System.Drawing.Size(299, 30)
+        Me.VSLALoanTracking.Text = "VSLA Loan tracking"
         '
         'StarterKits
         '
@@ -190,14 +200,33 @@ Partial Class MDIMain
         'ManageClusters
         '
         Me.ManageClusters.Name = "ManageClusters"
-        Me.ManageClusters.Size = New System.Drawing.Size(242, 30)
+        Me.ManageClusters.Size = New System.Drawing.Size(253, 30)
         Me.ManageClusters.Text = "Manage Clusters"
         '
         'UserManagement
         '
         Me.UserManagement.Name = "UserManagement"
-        Me.UserManagement.Size = New System.Drawing.Size(242, 30)
+        Me.UserManagement.Size = New System.Drawing.Size(253, 30)
         Me.UserManagement.Text = "User Management"
+        '
+        'FCI
+        '
+        Me.FCI.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MessageDissemination, Me.FCIReports})
+        Me.FCI.Name = "FCI"
+        Me.FCI.Size = New System.Drawing.Size(49, 29)
+        Me.FCI.Text = "FCI"
+        '
+        'MessageDissemination
+        '
+        Me.MessageDissemination.Name = "MessageDissemination"
+        Me.MessageDissemination.Size = New System.Drawing.Size(284, 30)
+        Me.MessageDissemination.Text = "Message Dissemination"
+        '
+        'FCIReports
+        '
+        Me.FCIReports.Name = "FCIReports"
+        Me.FCIReports.Size = New System.Drawing.Size(284, 30)
+        Me.FCIReports.Text = "FCI Reports"
         '
         'StatusStrip
         '
@@ -322,4 +351,8 @@ Partial Class MDIMain
     Friend WithEvents CaregiverValueChains As ToolStripMenuItem
     Friend WithEvents TrainingAttendance As ToolStripMenuItem
     Friend WithEvents ImportCPIMSData As ToolStripMenuItem
+    Friend WithEvents VSLALoanTracking As ToolStripMenuItem
+    Friend WithEvents FCI As ToolStripMenuItem
+    Friend WithEvents MessageDissemination As ToolStripMenuItem
+    Friend WithEvents FCIReports As ToolStripMenuItem
 End Class

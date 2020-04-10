@@ -760,4 +760,32 @@ Public Class MDIMain
 
         ChildForm.Show()
     End Sub
+
+    Private Sub VSLALoanTracking_Click(sender As Object, e As EventArgs) Handles VSLALoanTracking.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmVslaTracking
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "VSLA loans tracking" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub MessageDissemination_Click(sender As Object, e As EventArgs) Handles MessageDissemination.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmFCIMessageDissemination
+        ' Make it a child of this MDI form before showing it.
+        ChildForm.MdiParent = Me
+
+        m_ChildFormNumber += 1
+        ChildForm.Text = "MESSAGES DISSEMINATION TO ORGANIZED GROUPS" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
+    End Sub
+
+    Private Sub FCIReports_Click(sender As Object, e As EventArgs) Handles FCIReports.Click
+
+    End Sub
 End Class

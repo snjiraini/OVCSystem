@@ -108,7 +108,7 @@ Public Class frmUserManagement
             Dim j As Int16
 
             'Dim MyDataTable As New Data.DataTable
-            Dim sqlAction As String = "Select Distinct districtid,district from district order by district"
+            Dim sqlAction As String = "Select Distinct cbo_id,cbo from OVCRegistrationDetails order by cbo"
 
 
             TreeView1.Nodes.Clear() 'first remove any nodes
@@ -125,12 +125,12 @@ Public Class frmUserManagement
             '    MnuCount = MyDataTable.Rows.Count
             '    For j = 0 To MyDataTable.Rows.Count - 1
             Do While myreader.Read
-                MyDomainName = myreader("district").ToString
-                MyDomainid = myreader("districtid").ToString
+                MyDomainName = myreader("cbo").ToString
+                MyDomainid = myreader("cbo_id").ToString
                 Dim MyMainNode As New TreeNode
                 MyMainNode.Tag = MyDomainid
                 MyMainNode.Text = MyDomainName.ToUpper.ToString
-                AddChildNode(MyDomainid.ToString, MyMainNode) 'Add the cbos for each district respectively
+                'AddChildNode(MyDomainid.ToString, MyMainNode) 'Add the cbos for each district respectively
                 TreeView1.Nodes.Add(MyMainNode)
             Loop
 
@@ -202,7 +202,7 @@ Public Class frmUserManagement
     End Sub
     Private Sub frmUserManagement_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         populatemenus()
-        'AddRootNode()
+        AddRootNode()
         fillgrid()
     End Sub
 
@@ -240,7 +240,7 @@ Public Class frmUserManagement
                 '--------district and cbo listing -----
                 'save user cbos
                 'There are 2 levels on the treeview District-CBO
-                Dim MyMainDistrictid As String = ""
+                'Dim MyMainDistrictid As String = ""
                 Dim Mycboid As String = ""
                 Dim Mystatusid As String = ""
                 'Dim myarraylist As New ArrayList
@@ -253,40 +253,41 @@ Public Class frmUserManagement
                 Dim MyChildNode As New TreeNode
 
                 For Each MyNode In TreeView1.Nodes 'Loop thru level1 [Districts]
-                    MyMainDistrictid = MyNode.Tag.ToString
+                    'MyMainDistrictid = MyNode.Tag.ToString
                     'If MyNode.Nodes.Count > 0 Then
 
-                    For Each MyChildNode In MyNode.Nodes 'Loop thru level2 [cbos]
-                        If MyChildNode.Checked = True Then
-                            Mycboid = MyChildNode.Tag.ToString
-                            If mydistrictlist.Length = 0 Then
-                                mydistrictlist = MyMainDistrictid
-                            Else
-                                mydistrictlist = mydistrictlist & "," & MyMainDistrictid
-                            End If
-                            If mycbolist.Length = 0 Then
-                                mycbolist = Mycboid
-                            Else
-                                mycbolist = mycbolist & "," & Mycboid
-                            End If
-                            If mydistrictlist.Length = 0 Then
-                                mydistrictlist = MyMainDistrictid
-                            Else
-                                mydistrictlist = mydistrictlist & "," & MyMainDistrictid
-                            End If
-
-
+                    'For Each MyChildNode In MyNode.Nodes 'Loop thru level2 [cbos]
+                    If MyNode.Checked = True Then
+                        Mycboid = MyNode.Tag.ToString
+                        'If mydistrictlist.Length = 0 Then
+                        '    mydistrictlist = MyMainDistrictid
+                        'Else
+                        '    mydistrictlist = mydistrictlist & "," & MyMainDistrictid
+                        'End If
+                        If mycbolist.Length = 0 Then
+                            mycbolist = Mycboid
+                        Else
+                            mycbolist = mycbolist & "," & Mycboid
                         End If
-                        ' MsgBox(MyMainDistrictid & " " & Mycboid)
-                    Next
+                        'If mydistrictlist.Length = 0 Then
+                        '    mydistrictlist = MyMainDistrictid
+                        'Else
+                        '    mydistrictlist = mydistrictlist & "," & MyMainDistrictid
+                        'End If
+
+
+                    End If
+                    ' MsgBox(MyMainDistrictid & " " & Mycboid)
+                    'Next
 
                 Next
 
+
+
                 'Edit district and cbos for user
 
-                mySqlAction = "update users set " & _
-                " districtlist = '" & mydistrictlist.ToString & "', cbolist = '" & mycbolist.ToString & "' " & _
-                ", allowdelete = '" & CBool(chkallowdelete.Checked) & "' " & _
+                mySqlAction = "update users set " &
+                "  cbolist = '" & mycbolist.ToString & "' " &
                 "where username = '" & txtUserName.Text.ToString & "'"
                 MyDBAction.DBAction(mySqlAction, functions.DBActionType.Update)
                 '----------------------------------------
@@ -346,7 +347,7 @@ Public Class frmUserManagement
             '--------district and cbo listing -----
             'save user cbos
             'There are 2 levels on the treeview District-CBO
-            Dim MyMainDistrictid As String = ""
+            'Dim MyMainDistrictid As String = ""
             Dim Mycboid As String = ""
             Dim Mystatusid As String = ""
             'Dim myarraylist As New ArrayList
@@ -359,32 +360,32 @@ Public Class frmUserManagement
             Dim MyChildNode As New TreeNode
 
             For Each MyNode In TreeView1.Nodes 'Loop thru level1 [Districts]
-                MyMainDistrictid = MyNode.Tag.ToString
+                'MyMainDistrictid = MyNode.Tag.ToString
                 'If MyNode.Nodes.Count > 0 Then
 
-                For Each MyChildNode In MyNode.Nodes 'Loop thru level2 [cbos]
-                    If MyChildNode.Checked = True Then
-                        Mycboid = MyChildNode.Tag.ToString
-                        If mydistrictlist.Length = 0 Then
-                            mydistrictlist = MyMainDistrictid
-                        Else
-                            mydistrictlist = mydistrictlist & "," & MyMainDistrictid
-                        End If
-                        If mycbolist.Length = 0 Then
-                            mycbolist = Mycboid
-                        Else
-                            mycbolist = mycbolist & "," & Mycboid
-                        End If
-                        If mydistrictlist.Length = 0 Then
-                            mydistrictlist = MyMainDistrictid
-                        Else
-                            mydistrictlist = mydistrictlist & "," & MyMainDistrictid
-                        End If
-
-
+                'For Each MyChildNode In MyNode.Nodes 'Loop thru level2 [cbos]
+                If MyNode.Checked = True Then
+                    Mycboid = MyNode.Tag.ToString
+                    'If mydistrictlist.Length = 0 Then
+                    '    mydistrictlist = MyMainDistrictid
+                    'Else
+                    '    mydistrictlist = mydistrictlist & "," & MyMainDistrictid
+                    'End If
+                    If mycbolist.Length = 0 Then
+                        mycbolist = Mycboid
+                    Else
+                        mycbolist = mycbolist & "," & Mycboid
                     End If
-                    ' MsgBox(MyMainDistrictid & " " & Mycboid)
-                Next
+                    'If mydistrictlist.Length = 0 Then
+                    '    mydistrictlist = MyMainDistrictid
+                    'Else
+                    '    mydistrictlist = mydistrictlist & "," & MyMainDistrictid
+                    'End If
+
+
+                End If
+                ' MsgBox(MyMainDistrictid & " " & Mycboid)
+                'Next
 
             Next
             '----------------------------------------
@@ -392,9 +393,9 @@ Public Class frmUserManagement
             'save record
             Dim mySqlAction As String = ""
             Dim MyDBAction As New functions
-            mySqlAction = "Insert Into users(username,password,districtlist,cbolist,allowdelete,datecreated,createdby) " & _
-            " values('" & txtUserName.Text.ToString & "','" & encryptedpassword.ToString & "'," & _
-            "'" & mydistrictlist.ToString & "','" & mycbolist.ToString & "','" & CBool(chkallowdelete.Checked) & "'," & _
+            mySqlAction = "Insert Into users(username,password,cbolist,datecreated,createdby) " &
+            " values('" & txtUserName.Text.ToString & "','" & encryptedpassword.ToString & "'," &
+            "'" & mycbolist.ToString & "'," &
             "'" & Format(Date.Today, "dd-MMM-yyyy") & "','SYSTEM')"
             MyDBAction.DBAction(mySqlAction, functions.DBActionType.Insert)
 
@@ -483,7 +484,7 @@ Public Class frmUserManagement
 
             K = e.RowIndex
             txtUserName.Text = Me.DataGridView1.Rows(K).Cells(0).Value
-            chkallowdelete.Checked = CBool(Me.DataGridView1.Rows(K).Cells(4).Value)
+            'chkallowdelete.Checked = CBool(Me.DataGridView1.Rows(K).Cells(4).Value)
 
             Dim MyDatable As New Data.DataTable
             mysqlaction = "select * from userrights where username = '" & Me.DataGridView1.Rows(K).Cells(0).Value & "'"

@@ -3104,11 +3104,11 @@ Public Class frmDataSync
 
             Dim errorMessage As String = String.Empty
 
-            If (ex.Message.Contains("Received an invalid column length from the bcp client for colid")) Then
+            ' If (ex.Message.Contains("Received an invalid column length from the bcp client for colid")) Then
 
-                ' this method gives message with column name with length.  
-                errorMessage = GetBulkCopyColumnException(ex, bulkcopy)
-            End If
+            ' this method gives message with column name with length.  
+            errorMessage = GetBulkCopyColumnException(ex, bulkcopy)
+            'End If
             MsgBox(errorMessage, MsgBoxStyle.Exclamation)
             Return False
         End Try
@@ -3119,8 +3119,8 @@ Public Class frmDataSync
     Protected Function GetBulkCopyColumnException(ByVal ex As Exception, ByVal bulkcopy As SqlBulkCopy) As String
         Dim message As String = String.Empty
 
-        If ex.Message.Contains("Received an invalid column length from the bcp client for colid") Then
-            Dim pattern As String = "\d+"
+        ' If ex.Message.Contains("Received an invalid column length from the bcp client for colid") Then
+        Dim pattern As String = "\d+"
             Dim match As Match = Regex.Match(ex.Message.ToString(), pattern)
             Dim index = Convert.ToInt32(match.Value) - 1
             Dim fi As FieldInfo = GetType(SqlBulkCopy).GetField("_sortedColumnMappings", BindingFlags.NonPublic Or BindingFlags.Instance)
@@ -3131,7 +3131,7 @@ Public Class frmDataSync
             Dim column = metadata.[GetType]().GetField("column", BindingFlags.[Public] Or BindingFlags.NonPublic Or BindingFlags.Instance).GetValue(metadata)
             Dim length = metadata.[GetType]().GetField("length", BindingFlags.[Public] Or BindingFlags.NonPublic Or BindingFlags.Instance).GetValue(metadata)
             message = (String.Format("Column: {0} contains data with a length greater than: {1}", column, length))
-        End If
+        'End If
 
         Return message
     End Function
