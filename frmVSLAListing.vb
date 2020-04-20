@@ -12,7 +12,10 @@ Public Class frmVSLAListing
         Try
 
             'populate the combobox
-            Dim mySqlAction As String = "select distinct county_id,county from wards order by county"
+            Dim mySqlAction As String = "SELECT DISTINCT wards.county_id, wards.county " &
+                                        "From   wards INNER JOIN " &
+                                                         "OVCRegistrationDetails ON wards.county_id = OVCRegistrationDetails.countyid " &
+                                                        " where OVCRegistrationDetails.cbo_id in (" & strcbos & ") ORDER BY wards.county"
             Dim MyDBAction As New functions
             Dim MyDatable As New Data.DataTable
             MyDatable = TryCast(MyDBAction.DBAction(mySqlAction, DBActionType.DataTable), Data.DataTable)

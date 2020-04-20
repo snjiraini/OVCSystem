@@ -143,8 +143,8 @@ Public Class MDIMain
             Next
 
             For Each t As ToolStripItem In menues
-                't.Enabled = False
-                t.Enabled = True
+                t.Enabled = False
+                't.Enabled = True
             Next
 
             ''enable menus depending on user rights

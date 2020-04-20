@@ -68,7 +68,7 @@ Public Class frmCaregiverStarterKits
     Private Sub cbosearchcounty_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbosearchcounty.SelectedValueChanged
         Try
             'If cboDistrict.Text.Trim.Length <> 0 Or cboDistrict.Text <> "System.Data.DataRowView" Then
-            If IsNumeric(cbosearchcounty.SelectedIndex) = True AndAlso cbosearchcounty.SelectedIndex > 0 Then
+            If IsNumeric(cbosearchcounty.SelectedIndex) = True AndAlso cbosearchcounty.SelectedIndex >= 0 Then
 
                 populatesearchCBO(cbosearchcounty.Text.ToString)
                 populatesearchWard(cbosearchcounty.Text.ToString)

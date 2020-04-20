@@ -101,6 +101,7 @@ Public Class frmExcelReports
 
         rptdatefrom = Format(dtpFrom.Value, "dd-MMM-yyyy").ToString
         rptdateto = Format(dtpTo.Value, "dd-MMM-yyyy").ToString
+        rptcbos = strcbos
 
 
 
@@ -239,7 +240,7 @@ Public Class frmExcelReports
      Format(Date.Now, "dd-MMM-yyyy") & "\" & TemplateFileName & " " & timeMark & ".xlsm"
 
         'Populate data into relevant excel templates for reports
-        Dim demoDataSet As DataSet = Me.getDataSet(StoredProcName)
+        Dim demoDataSet As DataSet = Me.getDataSet(StoredProcName, strcbos)
 
         FastExportingMethod.ExportToExcel(demoDataSet, OutputFilePath, TemplateFilePath)
 
@@ -296,7 +297,7 @@ Public Class frmExcelReports
 
     End Sub
 
-    Private Function getDataSet(ByVal mystoredproc As String) As DataSet
+    Private Function getDataSet(ByVal mystoredproc As String, ByVal cbolist As String) As DataSet
         Dim conn As New SqlClient.SqlConnection(ConnectionStrings(SelectedConnectionString).ToString)
 
 
@@ -312,6 +313,7 @@ Public Class frmExcelReports
 
         cmd.Parameters.Add(New SqlParameter("@startdate", rptdatefrom.ToString))
         cmd.Parameters.Add(New SqlParameter("@enddate", rptdateto.ToString))
+        cmd.Parameters.Add(New SqlParameter("@cbolist", cbolist.ToString))
 
         conn.Open()
         cmd.Connection = conn

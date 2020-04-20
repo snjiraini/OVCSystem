@@ -566,7 +566,6 @@ Partial Class frmVsla_membership
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1378, 918)
         Me.Controls.Add(Me.TabControl1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmVsla_membership"
         Me.Text = "frmVsla_membership"

@@ -60,7 +60,7 @@ Public Class LoginForm
                 'see if to use universal cbo&districts or user specific cbo&districts
                 If myreader("cbolist").ToString <> "" Then
                     strdistricts = myreader("districtlist").ToString
-                    strcbos = myreader("cbolist").ToString
+                    strcbos = myreader("cbolist").ToString.Replace(vbCrLf, "")
                 Else
                     'read from the settings xml file to get the districts and cbos to work with
                     Dim myarraylist As New ArrayList
