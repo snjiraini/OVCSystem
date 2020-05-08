@@ -786,6 +786,13 @@ Public Class MDIMain
     End Sub
 
     Private Sub FCIReports_Click(sender As Object, e As EventArgs) Handles FCIReports.Click
+        ' Create a new instance of the child form.
+        Dim ChildForm As New frmFCIExcelReports
+        ChildForm.MdiParent = Me
 
+        m_ChildFormNumber += 1
+        ChildForm.Text = "MESSAGES DISSEMINATION TO ORGANIZED GROUPS - Reports" '"Window " & m_ChildFormNumber
+
+        ChildForm.Show()
     End Sub
 End Class

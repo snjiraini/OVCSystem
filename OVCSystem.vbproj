@@ -198,6 +198,12 @@
     <Compile Include="frmFCIDisseminationSessionsAttendance.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmFCIExcelReports.Designer.vb">
+      <DependentUpon>frmFCIExcelReports.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFCIExcelReports.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmFCIMessageDissemination.Designer.vb">
       <DependentUpon>frmFCIMessageDissemination.vb</DependentUpon>
     </Compile>
@@ -332,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFCIDisseminationSessionsAttendance.resx">
       <DependentUpon>frmFCIDisseminationSessionsAttendance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFCIExcelReports.resx">
+      <DependentUpon>frmFCIExcelReports.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFCIMessageDissemination.resx">
       <DependentUpon>frmFCIMessageDissemination.vb</DependentUpon>
